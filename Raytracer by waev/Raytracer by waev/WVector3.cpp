@@ -159,6 +159,33 @@ WVector3 WVector3::cross(WVector3 v)
 	return nv;
 }
 
+WVector3 WVector3::reflect(WVector3 normal)
+{
+	float dotNormal = 2 * this->dot(normal);
+	WVector3 dotNormalVector = normal * dotNormal;
+	WVector3 final(getX(), getY(), getZ());
+	final = final - dotNormalVector;
+	return final;
+}
+
+WVector3 WVector3::magProduct(WVector3 v, float f)
+{
+	return WVector3(v.getX() * f, v.getY() * f, v.getZ() * f);
+}
+
+WVector3 WVector3::toPoint()
+{
+	return WVector3(getX(), getY(), getZ());
+}
+
+WVector3 WVector3::lerp(WVector3 v, float t)
+{	
+	float nX = getX() + t * (v.getX() - getX());
+	float nY = getY() + t * (v.getY() - getY());
+	float nZ = getZ() + t * (v.getZ() - getZ());
+	return WVector3(nX, nY, nZ);
+}
+
 WVector3 WVector3::operator* (float f)
 {	
 	WVector3 v(getX() * f, getY() * f, getZ() * f);
@@ -205,5 +232,6 @@ WVector3 WVector3::operator/(float f)
 	float inverse = 1.0f / f;
 	v2.setX(v2.getX() * inverse);
 	v2.setY(v2.getY() * inverse);
+	v2.setZ(v2.getZ() * inverse);
 	return v2;
 }

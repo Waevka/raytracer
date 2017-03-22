@@ -32,6 +32,10 @@ public:
 	WVector3 normalizeProduct();
 	float dot(WVector3 v);
 	WVector3 cross(WVector3 v);
+	WVector3 reflect(WVector3 normal);
+	WVector3 magProduct(WVector3 v, float f);
+	WVector3 toPoint();
+	WVector3 lerp(WVector3 v, float t);
 
 	//operators
 	WVector3 operator* (float f);
