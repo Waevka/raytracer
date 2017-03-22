@@ -16,6 +16,9 @@ public:
 	float getX() const;
 	float getY() const;
 	float getZ() const;
+	void setX(float x);
+	void setY(float y);
+	void setZ(float z);
 
 	std::string toString();
 	float getLength();
@@ -29,5 +32,15 @@ public:
 	WVector3 normalizeProduct();
 	float dot(WVector3 v);
 	WVector3 cross(WVector3 v);
+
+	//operators
+	WVector3 operator* (float f);
+	WVector3 operator* (WVector3 v);
+	WVector3 operator+ (WVector3 v);
+	WVector3 operator- (WVector3 v);
+	WVector3 operator- ();
+	bool operator== (WVector3 v);
+	bool operator!= (WVector3 v);
+	WVector3 operator/ (float f);
 };
 

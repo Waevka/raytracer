@@ -6,10 +6,9 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 	cout << "Raytracer test" << endl;
-	WVector2 test(2, 2);
-	WVector2 test2(3, 3);
-	WVector2 test3(test, test2);
-	cout << test3.toString();
+	WVector3 test(2, 2, 3);
+	test = test * test;
+	cout << test.toString();
 	cin.get();
 	return 0;
 }

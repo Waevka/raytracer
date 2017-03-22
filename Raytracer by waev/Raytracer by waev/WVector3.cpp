@@ -48,6 +48,21 @@ float WVector3::getZ() const
 	return z;
 }
 
+void WVector3::setX(float x)
+{
+	this->x = x;
+}
+
+void WVector3::setY(float y)
+{
+	this->y = y;
+}
+
+void WVector3::setZ(float z)
+{
+	this->z = z;
+}
+
 std::string WVector3::toString()
 {
 	std::stringstream ss;
@@ -142,4 +157,53 @@ WVector3 WVector3::cross(WVector3 v)
 		z * v.getX() - x * v.getZ(),
 		x * v.getY() - y * v.getX());
 	return nv;
+}
+
+WVector3 WVector3::operator* (float f)
+{	
+	WVector3 v(getX() * f, getY() * f, getZ() * f);
+	return v;
+}
+
+WVector3 WVector3::operator*(WVector3 v)
+{
+	WVector3 v2(getX() * v.getX(), getY() * v.getY(), getZ() * v.getZ());
+	return v2;
+}
+
+WVector3 WVector3::operator+(WVector3 v)
+{
+	WVector3 v2(getX() + v.getX(), getY() + v.getY(), getZ() + v.getZ());
+	return v2;
+}
+
+WVector3 WVector3::operator-(WVector3 v)
+{
+	WVector3 v2(getX() - v.getX(), getY() - v.getY(), getZ() - v.getZ());
+	return v2;
+}
+
+WVector3 WVector3::operator-()
+{
+	WVector3 v2(-getX(), -getY(), -getZ());
+	return v2;
+}
+
+bool WVector3::operator==(WVector3 v)
+{
+	return (getX() == v.getX() && getY() == v.getY() && getZ() == v.getZ());
+}
+
+bool WVector3::operator!=(WVector3 v)
+{
+	return (getX() != v.getX() || getY() != v.getY() || getZ() != v.getZ());
+}
+
+WVector3 WVector3::operator/(float f)
+{
+	WVector3 v2(getX(), getY(), getZ());
+	float inverse = 1.0f / f;
+	v2.setX(v2.getX() * inverse);
+	v2.setY(v2.getY() * inverse);
+	return v2;
 }
