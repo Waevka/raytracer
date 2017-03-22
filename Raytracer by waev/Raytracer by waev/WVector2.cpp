@@ -20,6 +20,12 @@ WVector2::WVector2(const WVector2 &v) : x(v.getX()), y(v.getY())
 {
 }
 
+WVector2::WVector2(const WVector2 & v1, const WVector2 & v2) : 
+	x(v2.getX() - v1.getX()), y(v2.getY() - v1.getY())
+{
+
+}
+
 
 WVector2::~WVector2()
 {
