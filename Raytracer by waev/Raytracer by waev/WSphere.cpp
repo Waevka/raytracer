@@ -39,7 +39,7 @@ int WSphere::Intersect(WRay ray, float & dist)
 	float det = b*b - v.dot(v) + radius*radius;
 	int returnValue = 0;
 	//!
-	dist = 25.0f;
+	dist = 2500.0f;
 
 	if (det > 0) {
 		det = sqrtf(det);
@@ -60,6 +60,10 @@ int WSphere::Intersect(WRay ray, float & dist)
 				}
 			}
 		}
+	}
+	else if (det == 0) {
+		returnValue = 1;
+		dist = b;
 	}
 
 	return returnValue;
