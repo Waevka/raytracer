@@ -13,10 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\WStructures">
+      <UniqueIdentifier>{50fc4b2f-cbbd-47b2-81a2-0fb003e7cc5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WRay.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="WVector2.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="WSphere.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="WVector3.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="WPlane.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WRay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WSphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WVector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WVector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WPlane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

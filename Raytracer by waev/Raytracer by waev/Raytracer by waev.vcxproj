@@ -147,6 +147,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="WPlane.cpp" />
+    <ClCompile Include="WRay.cpp" />
+    <ClCompile Include="WSphere.cpp" />
+    <ClCompile Include="WVector2.cpp" />
+    <ClCompile Include="WVector3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WPlane.h" />
+    <ClInclude Include="WRay.h" />
+    <ClInclude Include="WSphere.h" />
+    <ClInclude Include="WVector2.h" />
+    <ClInclude Include="WVector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
