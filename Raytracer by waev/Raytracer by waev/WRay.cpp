@@ -12,10 +12,30 @@ WRay::WRay()
 WRay::WRay(WVector3 o, WVector3 d)
 {
 	origin = WVector3(o);
-	destination = WVector3(d);
+	direction = WVector3(d);
 }
 
 
 WRay::~WRay()
 {
+}
+
+WVector3 WRay::getOrigin()
+{
+	return origin;
+}
+
+WVector3 WRay::getDirection()
+{
+	return direction;
+}
+
+WVector3 WRay::getDestination()
+{
+	return destination;
+}
+
+float WRay::getDistance()
+{
+	return distance;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "WVector3.h"
+#include "WRay.h"
 
 class WSphere
 {
@@ -10,5 +11,9 @@ public:
 	WSphere();
 	WSphere(WVector3 v, float r);
 	~WSphere();
+
+	std::string toString();
+
+	int Intersect(WRay ray, float &dist);
 };
 
