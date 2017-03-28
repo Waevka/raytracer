@@ -10,12 +10,13 @@
 #include "WColor.h"
 #include "WImage.h"
 
-#define TESTSIZE 200
+#define TESTSIZE 500
 
 
 WWorld::WWorld()
 {	
 	viewPlane = WViewPlane(0.5f, TESTSIZE, TESTSIZE);
+	viewPlane.setPixelSize(0.05f);
 	backgroundColor = WColor(0.1f, 0.1f, 0.1f, 1.0f);
 	///////////////
 	WColor sphereColor(0.9f, 0.5f, 0.5f);
@@ -64,10 +65,10 @@ WWorld::~WWorld()
 void WWorld::draw()
 {	
 
-	WImage testImage(TESTSIZE, TESTSIZE);
+	WImage testImage(viewPlane.getWidth(), viewPlane.getHeight());
 
 	//base ray for viewPlane
-	WRay testRay(WVector3(-20, -20, -20), WVector3(0, 0, 1));
+	WRay testRay(WVector3(0, 0, -20), WVector3(0, 0, 1));
 
 	//generate rays
 	WRay **testRays = new WRay*[viewPlane.getWidth()];
@@ -75,10 +76,10 @@ void WWorld::draw()
 		testRays[i] = new WRay[viewPlane.getHeight()];
 	}
 
-	for (int i = 0; i < TESTSIZE; i++) {
-		for (int j = 0; j < TESTSIZE; j++) {
-			float newRayX = testRay.getOrigin().getX() + 0.2*i;
-			float newRayY = testRay.getOrigin().getY() + 0.2*j;
+	for (int i = 0; i < viewPlane.getWidth(); i++) {
+		for (int j = 0; j < viewPlane.getHeight(); j++) {
+			float newRayX = testRay.getOrigin().getX() + viewPlane.getPixelSize()*(i - viewPlane.getWidth()/2	+0.5f);
+			float newRayY = testRay.getOrigin().getY() + viewPlane.getPixelSize()*(j - viewPlane.getHeight()/2	+ 0.5f);
 			float newRayZ = testRay.getOrigin().getZ();
 			testRays[i][j] = WRay(WVector3(newRayX, newRayY, newRayZ), testRay.getDirection());
 		}
@@ -91,8 +92,8 @@ void WWorld::draw()
 	float bestDistance;
 	int result;
 
-	for (int i = 0; i < TESTSIZE; i++) {
-		for (int j = 0; j < TESTSIZE; j++) {
+	for (int i = 0; i < viewPlane.getWidth(); i++) {
+		for (int j = 0; j < viewPlane.getHeight(); j++) {
 
 			anythingForThisPixelFound = false;
 			currentBest = NULL;
