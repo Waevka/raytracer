@@ -11,6 +11,6 @@ public:
 	WPerspectiveCamera();
 	~WPerspectiveCamera();
 	void setDistance(float d);
-	void draw(int TESTSIZE_W, int TESTSIZE_H, std::list<WGeometricObject*> &objects);
+	void generateRays(WRay** &rays, WViewPlane &viewPlane);
 };
 

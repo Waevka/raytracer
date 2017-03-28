@@ -18,8 +18,6 @@
 
 WWorld::WWorld()
 {	
-	viewPlane = WViewPlane(0.5f, TESTSIZE_W, TESTSIZE_H);
-	viewPlane.setPixelSize(0.05f);
 	backgroundColor = WColor(0.1f, 0.1f, 0.1f, 1.0f);
 	///////////////
 	WColor sphereColor(0.9f, 0.5f, 0.5f);
@@ -74,8 +72,17 @@ void WWorld::draw()
 	WOrthoCamera ortho;
 	WPerspectiveCamera persp;
 
-	//ortho.draw(TESTSIZE_W, TESTSIZE_H, objects);
-	persp.draw(TESTSIZE_W, TESTSIZE_H, objects);
+	//ortho - draw
+	WRay rayOrtho(WVector3(0, 0, -20), WVector3(0, 0, 1));
+	WViewPlane viewPlaneOrtho = WViewPlane(0.5f, TESTSIZE_W, TESTSIZE_H, rayOrtho);
+	viewPlaneOrtho.setPixelSize(0.05f);
+	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlaneOrtho);
+
+	//persp - draw
+	WRay rayPersp(WVector3(0, 0, -40), WVector3(0, 0, 1.0f));
+	WViewPlane viewPlanePersp = WViewPlane(0.5f, TESTSIZE_W, TESTSIZE_H, rayPersp);
+	viewPlanePersp.setPixelSize(0.05f);
+	persp.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlanePersp);
 }
 
 void WWorld::addObject(WGeometricObject* o)

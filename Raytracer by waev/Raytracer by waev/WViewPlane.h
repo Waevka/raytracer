@@ -7,8 +7,9 @@ private:
 	float pixelSize;
 	int width;
 	int height;
+	WRay ray;
 public:
-	WViewPlane(float ps, int w, int h);
+	WViewPlane(float ps, int w, int h, WRay r);
 	WViewPlane();
 	~WViewPlane();
 	void setPixelSize(float ps);
@@ -18,5 +19,6 @@ public:
 	int getWidth();
 	int getHeight();
 	WRay getRayAt(int x, int y);
+	WRay getRay();
 };
 

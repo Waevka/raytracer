@@ -2,11 +2,12 @@
 
 
 
-WViewPlane::WViewPlane(float ps, int w, int h)
+WViewPlane::WViewPlane(float ps, int w, int h, WRay r)
 {
 	pixelSize = ps;
 	width = w;
 	height = h;
+	ray = r;
 }
 
 WViewPlane::WViewPlane()
@@ -54,4 +55,9 @@ int WViewPlane::getHeight()
 WRay WViewPlane::getRayAt(int x, int y)
 {
 	return WRay();
+}
+
+WRay WViewPlane::getRay()
+{
+	return ray;
 }

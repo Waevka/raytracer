@@ -6,6 +6,6 @@ class WOrthoCamera :
 public:
 	WOrthoCamera();
 	~WOrthoCamera();
-	void draw(int TESTSIZE_W, int TESTSIZE_H, std::list<WGeometricObject*> &objects);
+	void generateRays(WRay** &rays, WViewPlane &viewPlane);
 };
 
