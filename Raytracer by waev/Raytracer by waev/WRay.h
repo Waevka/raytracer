@@ -17,5 +17,7 @@ public:
 	WVector3 getDirection();
 	WVector3 getDestination();
 	float getDistance();
+	void setDestination(WVector3 w);
+	void calculateDirectionFromDestination();
 };
 

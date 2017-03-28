@@ -39,3 +39,14 @@ float WRay::getDistance()
 {
 	return distance;
 }
+
+void WRay::setDestination(WVector3 w)
+{
+	this->destination = w;
+}
+
+void WRay::calculateDirectionFromDestination()
+{
+
+	direction.normalize();
+}

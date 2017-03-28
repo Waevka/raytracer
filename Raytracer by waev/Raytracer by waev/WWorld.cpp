@@ -24,9 +24,11 @@ WWorld::WWorld()
 	///////////////
 	WColor sphereColor(0.9f, 0.5f, 0.5f);
 	WColor sphereColor2(0.4f, 0.8f, 0.2f);
+	WColor sphereColor3(0.2f, 0.4f, 0.8f);
 
 	WSphere *testSphere = new WSphere(WVector3(0, 0, 0), 10, sphereColor);
 	WSphere *testSphere2 = new WSphere(WVector3(-15, 2, 10), 12, sphereColor2);
+	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
 	WRay testRay(WVector3(0, 0, -20), WVector3(0, 0, 1));
 	WRay testRay2(WVector3(0, 0, -20), WVector3(0, 1, 0));
 	WRay testRay3(WVector3(0, -10, -10), WVector3(0, 1, 0));
@@ -58,6 +60,7 @@ WWorld::WWorld()
 	////////////////////////////////////////////////////////////////////////////////
 	addObject(testSphere);
 	addObject(testSphere2);
+	addObject(testSphere3);
 
 }
 
@@ -71,7 +74,8 @@ void WWorld::draw()
 	WOrthoCamera ortho;
 	WPerspectiveCamera persp;
 
-	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects);
+	//ortho.draw(TESTSIZE_W, TESTSIZE_H, objects);
+	persp.draw(TESTSIZE_W, TESTSIZE_H, objects);
 }
 
 void WWorld::addObject(WGeometricObject* o)
