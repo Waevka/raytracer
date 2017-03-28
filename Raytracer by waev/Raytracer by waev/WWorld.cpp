@@ -19,8 +19,10 @@ WWorld::WWorld()
 	backgroundColor = WColor(0.1f, 0.1f, 0.1f, 1.0f);
 	///////////////
 	WColor sphereColor(0.9f, 0.5f, 0.5f);
+	WColor sphereColor2(0.4f, 0.8f, 0.2f);
 
 	WSphere *testSphere = new WSphere(WVector3(0, 0, 0), 10, sphereColor);
+	WSphere *testSphere2 = new WSphere(WVector3(-15, 2, 10), 12, sphereColor2);
 	WRay testRay(WVector3(0, 0, -20), WVector3(0, 0, 1));
 	WRay testRay2(WVector3(0, 0, -20), WVector3(0, 1, 0));
 	WRay testRay3(WVector3(0, -10, -10), WVector3(0, 1, 0));
@@ -51,6 +53,7 @@ WWorld::WWorld()
 	//cout << test.toString();
 	////////////////////////////////////////////////////////////////////////////////
 	addObject(testSphere);
+	addObject(testSphere2);
 }
 
 
@@ -60,8 +63,7 @@ WWorld::~WWorld()
 
 void WWorld::draw()
 {	
-	float distance;
-	int result;
+
 	WImage testImage(TESTSIZE, TESTSIZE);
 
 	//base ray for viewPlane
@@ -83,17 +85,37 @@ void WWorld::draw()
 	}
 
 	//check all rays with objects
-	for (std::list<WGeometricObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++) {
-		distance = 250.0f;
-		for (int i = 0; i < TESTSIZE; i++) {
-			for (int j = 0; j < TESTSIZE; j++) {
+	bool anythingForThisPixelFound = false;
+	WGeometricObject* currentBest = NULL;
+	float distance = 400.0f;
+	float bestDistance;
+	int result;
+
+	for (int i = 0; i < TESTSIZE; i++) {
+		for (int j = 0; j < TESTSIZE; j++) {
+
+			anythingForThisPixelFound = false;
+			currentBest = NULL;
+			bestDistance = 400.0f;
+
+			for (std::list<WGeometricObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++) {
+
+				distance = 400.0f;
 				result = (*iter)->Intersection(testRays[i][j], distance);
 				if (result > 1) {
-					testImage.setPixel((*iter)->getColor(), i, j);
+					if (distance < bestDistance) {
+						bestDistance = distance;
+						currentBest = (*iter);
+						anythingForThisPixelFound = true;
+					}
 				}
-				else {
-					testImage.setPixel(backgroundColor, i, j);
-				}
+			}
+
+			if (anythingForThisPixelFound) {
+				testImage.setPixel(currentBest->getColor(), i, j);
+			}
+			else {
+				testImage.setPixel(backgroundColor, i, j);
 			}
 		}
 	}
