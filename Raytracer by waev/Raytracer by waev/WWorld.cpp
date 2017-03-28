@@ -10,12 +10,13 @@
 #include "WColor.h"
 #include "WImage.h"
 
-#define TESTSIZE 500
+#define TESTSIZE_W 500
+#define TESTSIZE_H 600
 
 
 WWorld::WWorld()
 {	
-	viewPlane = WViewPlane(0.5f, TESTSIZE, TESTSIZE);
+	viewPlane = WViewPlane(0.5f, TESTSIZE_W, TESTSIZE_H);
 	viewPlane.setPixelSize(0.05f);
 	backgroundColor = WColor(0.1f, 0.1f, 0.1f, 1.0f);
 	///////////////
@@ -116,6 +117,7 @@ void WWorld::draw()
 				testImage.setPixel(currentBest->getColor(), i, j);
 			}
 			else {
+				backgroundColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());
 				testImage.setPixel(backgroundColor, i, j);
 			}
 		}
@@ -130,7 +132,7 @@ void WWorld::draw()
 			testImage.setPixel(WColor(0.0f + i*0.01f, 0.0f + j*0.01f, 1.0f), i, j);
 		}
 	}*/
-	imageWriter.writeImage(testImage, TESTSIZE, TESTSIZE);
+	imageWriter.writeImage(testImage, TESTSIZE_W, TESTSIZE_H);
 }
 
 void WWorld::addObject(WGeometricObject* o)

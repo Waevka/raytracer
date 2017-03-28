@@ -1,4 +1,5 @@
 #include "WUtilities.h"
+#include <math.h>
 #include <iostream>
 
 WVector3 calculateIntersectionPoint(float distance, WRay r) {
@@ -9,4 +10,15 @@ WVector3 calculateIntersectionPoint(float distance, WRay r) {
 	WVector3 result(r.getDirection());
 	result = result * distance;
 	return result;
+}
+
+WColor getBackgroundCheckers(int x, int y, int width, int height)
+{
+	int slices = 6; //hardcoded just because
+	int ratio = width / slices;
+	int sliceX = x / ratio;
+	int sliceY = y / ratio;
+	float sliceZ = sqrt(x*x + y*y);
+	float sliceVal = 1.0f / 6;
+	return WColor(sliceVal * sliceX, sliceVal * sliceY, sliceVal* sliceZ);
 }
