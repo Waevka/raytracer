@@ -16,6 +16,15 @@
     <Filter Include="Source Files\WStructures">
       <UniqueIdentifier>{50fc4b2f-cbbd-47b2-81a2-0fb003e7cc5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ImageLibrary">
+      <UniqueIdentifier>{eec21213-5b87-468b-804b-8cdc781e745b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{ab1fa7c8-3f6f-4269-9959-76bb909fae05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WGeometricObjects">
+      <UniqueIdentifier>{07ca856c-dea6-4bbc-a2ef-8303ba6794f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,31 +36,79 @@
     <ClCompile Include="WVector2.cpp">
       <Filter>Source Files\WStructures</Filter>
     </ClCompile>
-    <ClCompile Include="WSphere.cpp">
-      <Filter>Source Files\WStructures</Filter>
-    </ClCompile>
     <ClCompile Include="WVector3.cpp">
       <Filter>Source Files\WStructures</Filter>
     </ClCompile>
     <ClCompile Include="WPlane.cpp">
       <Filter>Source Files\WStructures</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\ImageLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="WImageWriter.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="WColor.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="WImage.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="WWorld.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="WGeometricObject.cpp">
+      <Filter>Source Files\WGeometricObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="WSphere.cpp">
+      <Filter>Source Files\WGeometricObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="WUtilities.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="WViewPlane.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WRay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WSphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WVector2.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Image.h">
+      <Filter>Source Files\ImageLibrary</Filter>
     </ClInclude>
     <ClInclude Include="WVector3.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\WStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="WVector2.h">
+      <Filter>Source Files\WStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="WRay.h">
+      <Filter>Source Files\WStructures</Filter>
     </ClInclude>
     <ClInclude Include="WPlane.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\WStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="WImageWriter.h">
+      <Filter>Source Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="WColor.h">
+      <Filter>Source Files\WStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="WImage.h">
+      <Filter>Source Files\WStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="WWorld.h">
+      <Filter>Source Files\WStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="WGeometricObject.h">
+      <Filter>Source Files\WGeometricObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="WSphere.h">
+      <Filter>Source Files\WGeometricObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="WUtilities.h">
+      <Filter>Source Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="WViewPlane.h">
+      <Filter>Source Files\WStructures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

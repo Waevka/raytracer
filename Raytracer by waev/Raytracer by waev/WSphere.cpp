@@ -5,13 +5,13 @@
 
 
 
-WSphere::WSphere()
+WSphere::WSphere() : WGeometricObject(WColor(1.0f, 1.0f, 1.0f, 1.0f))
 {
 	origin = WVector3(0, 0, 0);
 	radius = 1.0f;
 }
 
-WSphere::WSphere(WVector3 v, float r)
+WSphere::WSphere(WVector3 v, float r, WColor c) : WGeometricObject(c)
 {
 	origin = WVector3(v);
 	radius = r;
@@ -32,7 +32,7 @@ std::string WSphere::toString()
 // 0 - miss
 // 1 - inprim
 // 2 - hit
-int WSphere::Intersect(WRay ray, float & dist)
+int WSphere::Intersection(WRay ray, float & dist)
 {
 	WVector3 v = ray.getOrigin() - origin;
 	float b = -v.dot(ray.getDirection());

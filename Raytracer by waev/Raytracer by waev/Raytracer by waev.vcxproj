@@ -146,19 +146,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="WColor.cpp" />
+    <ClCompile Include="WGeometricObject.cpp" />
+    <ClCompile Include="WImage.cpp" />
+    <ClCompile Include="WImageWriter.cpp" />
     <ClCompile Include="WPlane.cpp" />
     <ClCompile Include="WRay.cpp" />
     <ClCompile Include="WSphere.cpp" />
+    <ClCompile Include="WUtilities.cpp" />
     <ClCompile Include="WVector2.cpp" />
     <ClCompile Include="WVector3.cpp" />
+    <ClCompile Include="WViewPlane.cpp" />
+    <ClCompile Include="WWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="WColor.h" />
+    <ClInclude Include="WGeometricObject.h" />
+    <ClInclude Include="WImage.h" />
+    <ClInclude Include="WImageWriter.h" />
     <ClInclude Include="WPlane.h" />
     <ClInclude Include="WRay.h" />
     <ClInclude Include="WSphere.h" />
+    <ClInclude Include="WUtilities.h" />
     <ClInclude Include="WVector2.h" />
     <ClInclude Include="WVector3.h" />
+    <ClInclude Include="WViewPlane.h" />
+    <ClInclude Include="WWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
