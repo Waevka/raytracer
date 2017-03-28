@@ -3,7 +3,10 @@
 
 
 WImage::WImage(int width, int height)
-{
+{	
+	this->width = width;
+	this->height = height;
+
 	this->image = new WColor**[width];
 	for (int i = 0; i < width; i++) {
 		this->image[i] = new WColor*[height];
@@ -16,6 +19,12 @@ WImage::WImage(int width, int height)
 
 WImage::~WImage()
 {
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			delete this->image[i][j];
+		}
+		delete[] this->image[i];
+	}
 }
 
 void WImage::setPixel(WColor &c, int x, int y)

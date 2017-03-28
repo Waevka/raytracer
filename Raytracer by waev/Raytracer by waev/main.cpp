@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 
 	WWorld world;
 	world.draw();
-	cout << "\nFinished - test.tga";
+	cout << "\n All finished.";
 	cin.get();
 	return 0;
 }

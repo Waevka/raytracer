@@ -148,10 +148,13 @@
   <ItemGroup>
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="WCamera.cpp" />
     <ClCompile Include="WColor.cpp" />
     <ClCompile Include="WGeometricObject.cpp" />
     <ClCompile Include="WImage.cpp" />
     <ClCompile Include="WImageWriter.cpp" />
+    <ClCompile Include="WOrthoCamera.cpp" />
+    <ClCompile Include="WPerspectiveCamera.cpp" />
     <ClCompile Include="WPlane.cpp" />
     <ClCompile Include="WRay.cpp" />
     <ClCompile Include="WSphere.cpp" />
@@ -163,10 +166,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h" />
+    <ClInclude Include="WCamera.h" />
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WGeometricObject.h" />
     <ClInclude Include="WImage.h" />
     <ClInclude Include="WImageWriter.h" />
+    <ClInclude Include="WOrthoCamera.h" />
+    <ClInclude Include="WPerspectiveCamera.h" />
     <ClInclude Include="WPlane.h" />
     <ClInclude Include="WRay.h" />
     <ClInclude Include="WSphere.h" />

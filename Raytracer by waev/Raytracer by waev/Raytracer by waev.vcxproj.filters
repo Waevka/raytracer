@@ -25,6 +25,9 @@
     <Filter Include="Source Files\WGeometricObjects">
       <UniqueIdentifier>{07ca856c-dea6-4bbc-a2ef-8303ba6794f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\WStructures\WCamera">
+      <UniqueIdentifier>{292a3dae-c548-44f1-998a-861ba7c00e77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,6 +72,15 @@
     <ClCompile Include="WViewPlane.cpp">
       <Filter>Source Files\WStructures</Filter>
     </ClCompile>
+    <ClCompile Include="WCamera.cpp">
+      <Filter>Source Files\WStructures\WCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="WOrthoCamera.cpp">
+      <Filter>Source Files\WStructures\WCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="WPerspectiveCamera.cpp">
+      <Filter>Source Files\WStructures\WCamera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -109,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="WViewPlane.h">
       <Filter>Source Files\WStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="WCamera.h">
+      <Filter>Source Files\WStructures\WCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="WOrthoCamera.h">
+      <Filter>Source Files\WStructures\WCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="WPerspectiveCamera.h">
+      <Filter>Source Files\WStructures\WCamera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

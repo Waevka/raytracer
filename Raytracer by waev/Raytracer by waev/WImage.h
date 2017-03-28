@@ -4,6 +4,8 @@ class WImage
 {
 private:
 	WColor ***image;
+	int width;
+	int height;
 public:
 	WImage(int width, int height);
 	~WImage();

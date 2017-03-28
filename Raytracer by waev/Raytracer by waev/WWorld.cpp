@@ -9,6 +9,8 @@
 #include "WPlane.h"
 #include "WColor.h"
 #include "WImage.h"
+#include "WOrthoCamera.h"
+#include "WPerspectiveCamera.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -56,6 +58,7 @@ WWorld::WWorld()
 	////////////////////////////////////////////////////////////////////////////////
 	addObject(testSphere);
 	addObject(testSphere2);
+
 }
 
 
@@ -65,77 +68,19 @@ WWorld::~WWorld()
 
 void WWorld::draw()
 {	
+	WOrthoCamera ortho;
+	WPerspectiveCamera persp;
 
-	WImage testImage(viewPlane.getWidth(), viewPlane.getHeight());
-
-	//base ray for viewPlane
-	WRay testRay(WVector3(0, 0, -20), WVector3(0, 0, 1));
-
-	//generate rays
-	WRay **testRays = new WRay*[viewPlane.getWidth()];
-	for (int i = 0; i < viewPlane.getWidth(); i++) {
-		testRays[i] = new WRay[viewPlane.getHeight()];
-	}
-
-	for (int i = 0; i < viewPlane.getWidth(); i++) {
-		for (int j = 0; j < viewPlane.getHeight(); j++) {
-			float newRayX = testRay.getOrigin().getX() + viewPlane.getPixelSize()*(i - viewPlane.getWidth()/2	+0.5f);
-			float newRayY = testRay.getOrigin().getY() + viewPlane.getPixelSize()*(j - viewPlane.getHeight()/2	+ 0.5f);
-			float newRayZ = testRay.getOrigin().getZ();
-			testRays[i][j] = WRay(WVector3(newRayX, newRayY, newRayZ), testRay.getDirection());
-		}
-	}
-
-	//check all rays with objects
-	bool anythingForThisPixelFound = false;
-	WGeometricObject* currentBest = NULL;
-	float distance = 400.0f;
-	float bestDistance;
-	int result;
-
-	for (int i = 0; i < viewPlane.getWidth(); i++) {
-		for (int j = 0; j < viewPlane.getHeight(); j++) {
-
-			anythingForThisPixelFound = false;
-			currentBest = NULL;
-			bestDistance = 400.0f;
-
-			for (std::list<WGeometricObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++) {
-
-				distance = 400.0f;
-				result = (*iter)->Intersection(testRays[i][j], distance);
-				if (result > 1) {
-					if (distance < bestDistance) {
-						bestDistance = distance;
-						currentBest = (*iter);
-						anythingForThisPixelFound = true;
-					}
-				}
-			}
-
-			if (anythingForThisPixelFound) {
-				testImage.setPixel(currentBest->getColor(), i, j);
-			}
-			else {
-				backgroundColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());
-				testImage.setPixel(backgroundColor, i, j);
-			}
-		}
-	}
-
-	/*
-	//save result to file
-	WColor testColor(0.5f, 0.7f, 0.5f);
-	//imageWriter.writeImage(testColor, testWidth, testHeight);
-	for (int i = 0; i < TESTSIZE; i++) {
-		for (int j = 0; j < TESTSIZE; j++) {
-			testImage.setPixel(WColor(0.0f + i*0.01f, 0.0f + j*0.01f, 1.0f), i, j);
-		}
-	}*/
-	imageWriter.writeImage(testImage, TESTSIZE_W, TESTSIZE_H);
+	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects);
 }
 
 void WWorld::addObject(WGeometricObject* o)
 {
 	objects.push_back(o);
 }
+
+void WWorld::addCamera(WCamera * c)
+{
+	cameras.push_back(c);
+}
+

@@ -11,7 +11,7 @@ WImageWriter::~WImageWriter()
 {
 }
 
-void WImageWriter::writeImage(WImage &i, int width, int height)
+void WImageWriter::writeImage(WImage &i, int width, int height, string filename)
 {
 	short w = (short)width;
 	short h = (short)height;
@@ -31,6 +31,7 @@ void WImageWriter::writeImage(WImage &i, int width, int height)
 		}
 
 	//write the image to disk
-	string filename = "test.tga";
 	img->WriteImage(filename);
+
+	delete img;
 }
