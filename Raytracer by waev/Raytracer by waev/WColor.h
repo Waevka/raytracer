@@ -10,5 +10,7 @@ public:
 	WColor(float r, float g, float b);
 	WColor(float r, float g, float b, float a);
 	~WColor();
+	bool operator==(WColor corner);
+	bool operator!=(WColor corner);
 };
 

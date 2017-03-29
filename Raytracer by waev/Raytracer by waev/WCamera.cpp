@@ -74,20 +74,42 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 		}
 		else {
 			pixelColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());
-
 		}
 
 	}
 	else {
 		float offset = (float)(viewPlane.getPixelSize() * pow(0.5f, aliasingLevel+1));
+
 		WRay topLeftRay		= generateSingleRay(ray, -	offset,		offset, i, j);
 		WRay topRightRay	= generateSingleRay(ray,	offset,		offset, i, j);
 		WRay bottomLeftRay	= generateSingleRay(ray, -	offset, -	offset, i, j);
 		WRay bottomRightRay = generateSingleRay(ray,	offset, -	offset, i, j);
-		WColor topLeft		= intersectSingleRay(topLeftRay,		objects, i, j, viewPlane, aliasingLevel + 1);
-		WColor topRight		= intersectSingleRay(topRightRay,		objects, i, j, viewPlane, aliasingLevel + 1);
-		WColor bottomLeft	= intersectSingleRay(bottomLeftRay,		objects, i, j, viewPlane, aliasingLevel + 1);
-		WColor bottomRight	= intersectSingleRay(bottomRightRay,	objects, i, j, viewPlane, aliasingLevel + 1);
+
+		WColor middle		= intersectSingleRay(ray, objects, i, j, viewPlane, this->aliasingLevel);
+		WColor topLeft		= intersectSingleRay(topLeftRay,		objects, i, j, viewPlane, this->aliasingLevel);
+		WColor topRight		= intersectSingleRay(topRightRay,		objects, i, j, viewPlane, this->aliasingLevel);
+		WColor bottomLeft	= intersectSingleRay(bottomLeftRay,		objects, i, j, viewPlane, this->aliasingLevel);
+		WColor bottomRight	= intersectSingleRay(bottomRightRay,	objects, i, j, viewPlane, this->aliasingLevel);
+
+		offset = (float)(viewPlane.getPixelSize() * pow(0.5f, aliasingLevel + 2));
+
+		if (middle != topLeft) {
+			intersectSingleRay(topLeftRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			topLeftRay = generateSingleRay(ray, -offset, offset, i, j);
+		}
+		if (middle != topLeft) {
+			intersectSingleRay(topRightRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			topRightRay = generateSingleRay(ray, offset, offset, i, j);
+		}
+		if (middle != topLeft) {
+			intersectSingleRay(bottomLeftRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			bottomLeftRay = generateSingleRay(ray, -offset, -offset, i, j);
+		}
+		if (middle != topLeft) {
+			intersectSingleRay(bottomRightRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			bottomRightRay = generateSingleRay(ray, offset, -offset, i, j);
+		}
+
 		float r = (float)((topLeft.r + topRight.r + bottomLeft.r + bottomRight.r) / 4.0f);
 		float g = (float)((topLeft.g + topRight.g + bottomLeft.g + bottomRight.g) / 4.0f);
 		float b = (float)((topLeft.b + topRight.b + bottomLeft.b + bottomRight.b) / 4.0f);
@@ -100,13 +122,13 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 WCamera::WCamera()
 {
 	this->name = "camera.tga";
-	aliasingLevel = 2;
+	aliasingLevel = 5;
 }
 
 WCamera::WCamera(std::string name)
 {
 	this->name = name;
-	aliasingLevel = 2;
+	aliasingLevel = 5;
 }
 
 

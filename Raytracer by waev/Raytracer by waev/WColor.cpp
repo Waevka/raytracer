@@ -30,3 +30,15 @@ WColor::WColor(float r, float g, float b, float a)
 WColor::~WColor()
 {
 }
+
+bool WColor::operator==(WColor corner)
+{	
+	if (r == corner.r && g == corner.g && b == corner.b && a == corner.a) return true;
+	else return false;
+}
+
+bool WColor::operator!=(WColor corner)
+{
+	if (r == corner.r && g == corner.g && b == corner.b && a == corner.a) return false;
+	else return true;
+}
