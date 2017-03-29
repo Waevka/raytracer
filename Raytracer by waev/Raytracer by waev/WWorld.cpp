@@ -74,14 +74,12 @@ void WWorld::draw()
 
 	//ortho - draw
 	WRay rayOrtho(WVector3(0, 0, -20), WVector3(0, 0, 1));
-	WViewPlane viewPlaneOrtho = WViewPlane(0.5f, TESTSIZE_W, TESTSIZE_H, rayOrtho);
-	viewPlaneOrtho.setPixelSize(0.05f);
+	WViewPlane viewPlaneOrtho = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayOrtho);
 	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlaneOrtho);
 
 	//persp - draw
 	WRay rayPersp(WVector3(0, 0, -40), WVector3(0, 0, 1.0f));
-	WViewPlane viewPlanePersp = WViewPlane(0.5f, TESTSIZE_W, TESTSIZE_H, rayPersp);
-	viewPlanePersp.setPixelSize(0.05f);
+	WViewPlane viewPlanePersp = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayPersp);
 	persp.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlanePersp);
 }
 

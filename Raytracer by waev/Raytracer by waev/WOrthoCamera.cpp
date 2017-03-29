@@ -32,3 +32,11 @@ void WOrthoCamera::generateRays(WRay **& rays, WViewPlane & viewPlane)
 		}
 	}
 }
+
+WRay WOrthoCamera::generateSingleRay(WRay &ray, float xOffset, float yOffset, int i, int j)
+{
+	float newRayX = ray.getOrigin().getX() + xOffset;
+	float newRayY = ray.getOrigin().getY() + yOffset;
+	float newRayZ = ray.getOrigin().getZ();
+	return WRay(WVector3(newRayX, newRayY, newRayZ), ray.getDirection());
+}
