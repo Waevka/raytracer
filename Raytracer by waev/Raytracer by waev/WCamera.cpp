@@ -85,13 +85,13 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 		WRay bottomLeftRay	= generateSingleRay(ray, -	offset, -	offset, i, j);
 		WRay bottomRightRay = generateSingleRay(ray,	offset, -	offset, i, j);
 
-		WColor middle		= intersectSingleRay(ray, objects, i, j, viewPlane, this->aliasingLevel);
+		WColor middle		= intersectSingleRay(ray,				objects, i, j, viewPlane, this->aliasingLevel);
 		WColor topLeft		= intersectSingleRay(topLeftRay,		objects, i, j, viewPlane, this->aliasingLevel);
 		WColor topRight		= intersectSingleRay(topRightRay,		objects, i, j, viewPlane, this->aliasingLevel);
 		WColor bottomLeft	= intersectSingleRay(bottomLeftRay,		objects, i, j, viewPlane, this->aliasingLevel);
 		WColor bottomRight	= intersectSingleRay(bottomRightRay,	objects, i, j, viewPlane, this->aliasingLevel);
 
-		offset = (float)(viewPlane.getPixelSize() * pow(0.5f, aliasingLevel + 2));
+		offset = (float)(viewPlane.getPixelSize() * pow(0.5f, aliasingLevel + 2)); //TODO: offset/2
 
 		if (middle != topLeft) {
 			intersectSingleRay(topLeftRay, objects, i, j, viewPlane, aliasingLevel + 1);

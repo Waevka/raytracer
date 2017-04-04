@@ -72,14 +72,16 @@ void WWorld::draw()
 	WOrthoCamera ortho;
 	WPerspectiveCamera persp;
 
-	//ortho - draw
+	//ortho - draw 
+	/*
 	WRay rayOrtho(WVector3(0, 0, -20), WVector3(0, 0, 1));
 	WViewPlane viewPlaneOrtho = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayOrtho);
-	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlaneOrtho);
+	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlaneOrtho);*/
 
 	//persp - draw
-	WRay rayPersp(WVector3(0, 0, -40), WVector3(0, 0, 1.0f));
+	WRay rayPersp(WVector3(0, 0, 35), WVector3(0.5f, 0.0f, -1.0f));
 	WViewPlane viewPlanePersp = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayPersp);
+	persp.setDistance(-10);
 	persp.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlanePersp);
 }
 

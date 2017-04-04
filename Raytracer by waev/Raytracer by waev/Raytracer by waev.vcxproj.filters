@@ -81,6 +81,9 @@
     <ClCompile Include="WPerspectiveCamera.cpp">
       <Filter>Source Files\WStructures\WCamera</Filter>
     </ClCompile>
+    <ClCompile Include="WTriangle.cpp">
+      <Filter>Source Files\WGeometricObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="WPerspectiveCamera.h">
       <Filter>Source Files\WStructures\WCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="WTriangle.h">
+      <Filter>Source Files\WGeometricObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
