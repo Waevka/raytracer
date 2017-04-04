@@ -3,10 +3,10 @@
 class WVector3
 {
 private:
+public:
 	float x;
 	float y;
 	float z;
-public:
 	WVector3();
 	WVector3(float x, float y, float z);
 	WVector3(const WVector3 &v);

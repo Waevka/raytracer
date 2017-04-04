@@ -10,6 +10,7 @@
 #include "WColor.h"
 #include "WImage.h"
 #include "WOrthoCamera.h"
+#include "WTriangle.h"
 #include "WPerspectiveCamera.h"
 
 #define TESTSIZE_W 500
@@ -27,6 +28,12 @@ WWorld::WWorld()
 	WSphere *testSphere = new WSphere(WVector3(0, 0, 0), 10, sphereColor);
 	WSphere *testSphere2 = new WSphere(WVector3(-15, 2, 10), 12, sphereColor2);
 	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
+	WTriangle *triangle= new WTriangle(
+		WVector3(-10,-10,0),
+		WVector3(25,10,10),
+		WVector3(-50,0,10)
+		);
+
 	WRay testRay(WVector3(0, 0, -20), WVector3(0, 0, 1));
 	WRay testRay2(WVector3(0, 0, -20), WVector3(0, 1, 0));
 	WRay testRay3(WVector3(0, -10, -10), WVector3(0, 1, 0));
@@ -57,8 +64,9 @@ WWorld::WWorld()
 	//cout << test.toString();
 	////////////////////////////////////////////////////////////////////////////////
 	addObject(testSphere);
-	addObject(testSphere2);
-	addObject(testSphere3);
+	//addObject(testSphere2);
+	//addObject(testSphere3);
+	addObject(triangle);
 
 }
 
