@@ -84,6 +84,9 @@
     <ClCompile Include="WTriangle.cpp">
       <Filter>Source Files\WGeometricObjects</Filter>
     </ClCompile>
+    <ClCompile Include="WObjReader.cpp">
+      <Filter>Source Files\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="WTriangle.h">
       <Filter>Source Files\WGeometricObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="WObjReader.h">
+      <Filter>Source Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
