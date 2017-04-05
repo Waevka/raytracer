@@ -20,5 +20,5 @@ WColor getBackgroundCheckers(int x, int y, int width, int height)
 	int sliceY = y / ratio;
 	float sliceZ = sqrt(x*x + y*y);
 	float sliceVal = 1.0f / 6;
-	return WColor(sliceVal * sliceX, sliceVal * sliceY, sliceVal* sliceZ);
+	return WColor(sliceVal * sliceX, sliceVal * sliceY, 0.5);
 }

@@ -2,6 +2,7 @@
 #include "WGeometricObject.h"
 #include "WImageWriter.h"
 #include "WViewPlane.h"
+#include "WObjReader.h"
 #include "WCamera.h"
 #include <list>
 
@@ -13,6 +14,7 @@ private:
 	std::list<WCamera*> cameras;
 	WColor backgroundColor;
 	WImageWriter imageWriter;
+	WObjReader objReader;
 
 public:
 	WWorld();

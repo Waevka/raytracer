@@ -11,6 +11,7 @@
 #include "WImage.h"
 #include "WOrthoCamera.h"
 #include "WTriangle.h"
+#include "WObjReader.h"
 #include "WPerspectiveCamera.h"
 
 #define TESTSIZE_W 500
@@ -63,10 +64,17 @@ WWorld::WWorld()
 	//test = test.reflect(norm);
 	//cout << test.toString();
 	////////////////////////////////////////////////////////////////////////////////
-	addObject(testSphere);
+	//addObject(testSphere);
 	//addObject(testSphere2);
 	//addObject(testSphere3);
-	addObject(triangle);
+	//addObject(triangle);
+
+	int elems;
+	std::vector<WTriangle*> readTriangles = objReader.readFile(elems);
+
+	for (int i = 0; i < elems; i++) {
+		addObject(readTriangles[i]);
+	}
 
 }
 
