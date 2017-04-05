@@ -26,7 +26,7 @@ WWorld::WWorld()
 	WColor sphereColor2(0.4f, 0.8f, 0.2f);
 	WColor sphereColor3(0.2f, 0.4f, 0.8f);
 
-	WSphere *testSphere = new WSphere(WVector3(0, 0, 0), 10, sphereColor);
+	WSphere *testSphere = new WSphere(WVector3(0, 0.5, -0.5), 4, sphereColor);
 	WSphere *testSphere2 = new WSphere(WVector3(-15, 2, 10), 12, sphereColor2);
 	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
 	WTriangle *triangle= new WTriangle(
@@ -64,10 +64,10 @@ WWorld::WWorld()
 	//test = test.reflect(norm);
 	//cout << test.toString();
 	////////////////////////////////////////////////////////////////////////////////
-	//addObject(testSphere);
+	addObject(testSphere);
 	//addObject(testSphere2);
 	//addObject(testSphere3);
-	//addObject(triangle);
+	addObject(triangle);
 
 	int elems;
 	std::vector<WTriangle*> readTriangles = objReader.readFile(elems);
@@ -95,7 +95,7 @@ void WWorld::draw()
 	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlaneOrtho);*/
 
 	//persp - draw
-	WRay rayPersp(WVector3(0, 0, 35), WVector3(0.5f, 0.0f, -1.0f));
+	WRay rayPersp(WVector3(20, -10, 30), WVector3(0.5f, 0.0f, -1.0f));
 	WViewPlane viewPlanePersp = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayPersp);
 	persp.setDistance(-10);
 	persp.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlanePersp);
