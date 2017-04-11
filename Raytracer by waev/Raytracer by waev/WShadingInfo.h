@@ -1,14 +1,16 @@
 #pragma once
-#include "WVector3.h"
+
+class WMaterial;
+class WWorld;
+
 #include "WColor.h"
 #include "WRay.h"
 
-class WMaterial;
 
 class WShadingInfo
 {
 public:
-	WShadingInfo();
+	WShadingInfo(WWorld &wr);
 	~WShadingInfo();
 
 	bool hitObject;
@@ -21,7 +23,7 @@ public:
 	int depth;
 	float t;
 	WVector3 direction;
-	//WWorld world;
+	WWorld &world;
 
 	WShadingInfo(const WShadingInfo &si);
 

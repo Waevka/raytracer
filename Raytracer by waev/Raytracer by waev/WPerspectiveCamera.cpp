@@ -4,7 +4,7 @@
 #include "WUtilities.h"
 
 
-WPerspectiveCamera::WPerspectiveCamera() : WCamera("persp.tga")
+WPerspectiveCamera::WPerspectiveCamera(WWorld & wr) : WCamera("persp.tga", wr)
 {
 	this->d = 20;
 }

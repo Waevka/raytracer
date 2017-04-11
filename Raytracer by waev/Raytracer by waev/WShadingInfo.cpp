@@ -2,8 +2,10 @@
 
 
 
-WShadingInfo::WShadingInfo()
+WShadingInfo::WShadingInfo(WWorld &wr) : hitObject(false), material(NULL), hitPoint(),
+localHitPoint(), normal(), ray(), depth(0), direction(), world(wr)
 {
+
 }
 
 
@@ -19,6 +21,6 @@ WShadingInfo::~WShadingInfo()
 WShadingInfo::WShadingInfo(const WShadingInfo & si) :
 	hitObject(si.hitObject), material(si.material), hitPoint(si.hitPoint),
 	localHitPoint(si.localHitPoint), normal(si.normal), ray(si.ray),
-	depth(si.depth), direction(si.direction)
+	depth(si.depth), direction(si.direction), world(si.world)
 {
 }

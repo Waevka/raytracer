@@ -11,7 +11,7 @@ private:
 	int viewPlaneHeight;
 	float pixelSize;
 public:
-	WPerspectiveCamera();
+	WPerspectiveCamera(WWorld &wr);
 	~WPerspectiveCamera();
 	void setDistance(float d);
 	void generateRays(WRay** &rays, WViewPlane &viewPlane);

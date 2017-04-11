@@ -2,13 +2,20 @@
 
 
 
-WMatteMaterial::WMatteMaterial()
+WMatteMaterial::WMatteMaterial() : WMaterial(), ambient(new WLambertian), diffuse(new WLambertian)
 {
 }
 
 
 WMatteMaterial::~WMatteMaterial()
 {
+}
+
+WColor WMatteMaterial::shade(WShadingInfo & si)
+{
+	WVector3 wo = -si.ray.getDirection();
+	return WColor();
+	//WColor L = ambient->rho(si, wo) * si.
 }
 
 void WMatteMaterial::setKa(float k)

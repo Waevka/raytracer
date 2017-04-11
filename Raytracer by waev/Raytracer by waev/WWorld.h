@@ -20,7 +20,6 @@ private:
 
 public:
 	WWorld();
-	//WWorld()
 	~WWorld();
 	void draw();
 	void addObject(WGeometricObject* o);

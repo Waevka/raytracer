@@ -85,8 +85,8 @@ WWorld::~WWorld()
 
 void WWorld::draw()
 {	
-	WOrthoCamera ortho;
-	WPerspectiveCamera persp;
+	WOrthoCamera ortho(*this);
+	WPerspectiveCamera persp(*this);
 
 	//ortho - draw 
 	/*

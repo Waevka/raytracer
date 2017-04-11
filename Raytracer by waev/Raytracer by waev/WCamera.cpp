@@ -48,7 +48,7 @@ WColor WCamera::rayAliasing(int currentLevel)
 WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &objects, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
 {	
 	WColor pixelColor;
-	WShadingInfo shadingInfo;
+	WShadingInfo shadingInfo(world);
 	WVector3 normal;
 	WVector3 localHitPoint;
 	if (aliasingLevel >= this->aliasingLevel) {
@@ -130,13 +130,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 	return pixelColor;
 }
 
-WCamera::WCamera()
-{
-	this->name = "camera.tga";
-	aliasingLevel = 5;
-}
-
-WCamera::WCamera(std::string name)
+WCamera::WCamera(std::string name, WWorld &wr) : world(wr)
 {
 	this->name = name;
 	aliasingLevel = 5;

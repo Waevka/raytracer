@@ -7,8 +7,9 @@
 #include <list>
 
 
-WOrthoCamera::WOrthoCamera() : WCamera("ortho.tga")
+WOrthoCamera::WOrthoCamera(WWorld & wr) : WCamera("ortho.tga", wr)
 {
+	
 }
 
 
