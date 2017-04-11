@@ -11,6 +11,14 @@ WColor::WColor()
 	this->a = 1.0f;
 }
 
+WColor::WColor(float c)
+{
+	r = c;
+	b = c;
+	g = c;
+	a = 1.0f;
+}
+
 WColor::WColor(float r, float g, float b)
 {
 	this->r = r;
@@ -27,6 +35,10 @@ WColor::WColor(float r, float g, float b, float a)
 	this->a = a;
 }
 
+WColor::WColor(const WColor & wc) : r(wc.r), g(wc.g), b(wc.b), a(wc.a)
+{
+}
+
 WColor::~WColor()
 {
 }
@@ -41,4 +53,16 @@ bool WColor::operator!=(WColor corner)
 {
 	if (r == corner.r && g == corner.g && b == corner.b && a == corner.a) return false;
 	else return true;
+}
+
+WColor WColor::operator*(float f)
+{
+	WColor c(r * f, g * f, b * f);
+	return c;
+}
+
+WColor WColor::operator*(const float f) const
+{
+	WColor c(r * f, g * f, b * f);
+	return c;
 }

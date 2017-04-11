@@ -148,16 +148,24 @@
   <ItemGroup>
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="WAmbient.cpp" />
+    <ClCompile Include="WBRDF.cpp" />
     <ClCompile Include="WCamera.cpp" />
     <ClCompile Include="WColor.cpp" />
     <ClCompile Include="WGeometricObject.cpp" />
     <ClCompile Include="WImage.cpp" />
     <ClCompile Include="WImageWriter.cpp" />
+    <ClCompile Include="WLambertian.cpp" />
+    <ClCompile Include="WLight.cpp" />
+    <ClCompile Include="WMaterial.cpp" />
+    <ClCompile Include="WMatteMaterial.cpp" />
     <ClCompile Include="WObjReader.cpp" />
     <ClCompile Include="WOrthoCamera.cpp" />
     <ClCompile Include="WPerspectiveCamera.cpp" />
     <ClCompile Include="WPlane.cpp" />
+    <ClCompile Include="WPointLight.cpp" />
     <ClCompile Include="WRay.cpp" />
+    <ClCompile Include="WShadingInfo.cpp" />
     <ClCompile Include="WSphere.cpp" />
     <ClCompile Include="WTriangle.cpp" />
     <ClCompile Include="WUtilities.cpp" />
@@ -168,16 +176,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h" />
+    <ClInclude Include="WAmbient.h" />
+    <ClInclude Include="WBRDF.h" />
     <ClInclude Include="WCamera.h" />
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WGeometricObject.h" />
     <ClInclude Include="WImage.h" />
     <ClInclude Include="WImageWriter.h" />
+    <ClInclude Include="WLambertian.h" />
+    <ClInclude Include="WLight.h" />
+    <ClInclude Include="WMaterial.h" />
+    <ClInclude Include="WMatteMaterial.h" />
     <ClInclude Include="WObjReader.h" />
     <ClInclude Include="WOrthoCamera.h" />
     <ClInclude Include="WPerspectiveCamera.h" />
     <ClInclude Include="WPlane.h" />
+    <ClInclude Include="WPointLight.h" />
     <ClInclude Include="WRay.h" />
+    <ClInclude Include="WShadingInfo.h" />
     <ClInclude Include="WSphere.h" />
     <ClInclude Include="WTriangle.h" />
     <ClInclude Include="WUtilities.h" />

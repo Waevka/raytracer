@@ -28,6 +28,18 @@
     <Filter Include="Source Files\WStructures\WCamera">
       <UniqueIdentifier>{292a3dae-c548-44f1-998a-861ba7c00e77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\WShading">
+      <UniqueIdentifier>{c9c1db28-191b-4d23-9234-6ddbeb821363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WShading\WMaterials">
+      <UniqueIdentifier>{ae301dd2-f930-42f4-91ba-3a2b7ba4fc64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WShading\WLights">
+      <UniqueIdentifier>{f70d66fc-2d9d-4cd6-8d12-c43b75d99b35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WShading\WBRDF">
+      <UniqueIdentifier>{be4f5116-7500-44b3-89ec-c5cd78ac1732}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -87,6 +99,30 @@
     <ClCompile Include="WObjReader.cpp">
       <Filter>Source Files\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="WLight.cpp">
+      <Filter>Source Files\WShading\WLights</Filter>
+    </ClCompile>
+    <ClCompile Include="WMaterial.cpp">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="WShadingInfo.cpp">
+      <Filter>Source Files\WShading</Filter>
+    </ClCompile>
+    <ClCompile Include="WMatteMaterial.cpp">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="WLambertian.cpp">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClCompile>
+    <ClCompile Include="WBRDF.cpp">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClCompile>
+    <ClCompile Include="WAmbient.cpp">
+      <Filter>Source Files\WShading\WLights</Filter>
+    </ClCompile>
+    <ClCompile Include="WPointLight.cpp">
+      <Filter>Source Files\WShading\WLights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -142,6 +178,30 @@
     </ClInclude>
     <ClInclude Include="WObjReader.h">
       <Filter>Source Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="WLight.h">
+      <Filter>Source Files\WShading\WLights</Filter>
+    </ClInclude>
+    <ClInclude Include="WMaterial.h">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="WShadingInfo.h">
+      <Filter>Source Files\WShading</Filter>
+    </ClInclude>
+    <ClInclude Include="WMatteMaterial.h">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="WLambertian.h">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="WBRDF.h">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="WAmbient.h">
+      <Filter>Source Files\WShading\WLights</Filter>
+    </ClInclude>
+    <ClInclude Include="WPointLight.h">
+      <Filter>Source Files\WShading\WLights</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
