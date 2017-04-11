@@ -12,6 +12,13 @@ WVector3::WVector3()
 	this->z = 0;
 }
 
+WVector3::WVector3(float xyz)
+{	
+	this->x = xyz;
+	this->y = xyz;
+	this->z = xyz;
+}
+
 WVector3::WVector3(float x, float y, float z)
 {
 	this->x = x;
@@ -184,6 +191,15 @@ WVector3 WVector3::lerp(WVector3 v, float t)
 	float nY = getY() + t * (v.getY() - getY());
 	float nZ = getZ() + t * (v.getZ() - getZ());
 	return WVector3(nX, nY, nZ);
+}
+
+WVector3 WVector3::hat()
+{	
+	float length = sqrt(x*x + y*y + z*z);
+	x /= length;
+	y /= length;
+	z /= length;
+	return (*this);
 }
 
 WVector3 WVector3::operator* (float f)

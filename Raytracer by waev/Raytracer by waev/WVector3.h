@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <math.h>
 class WVector3
 {
 private:
@@ -8,6 +9,7 @@ public:
 	float y;
 	float z;
 	WVector3();
+	WVector3(float xyz);
 	WVector3(float x, float y, float z);
 	WVector3(const WVector3 &v);
 	WVector3(const WVector3 &v1, const WVector3 &v2);
@@ -36,6 +38,7 @@ public:
 	WVector3 magProduct(WVector3 v, float f);
 	WVector3 toPoint();
 	WVector3 lerp(WVector3 v, float t);
+	WVector3 hat();
 
 	//operators
 	WVector3 operator* (float f);
