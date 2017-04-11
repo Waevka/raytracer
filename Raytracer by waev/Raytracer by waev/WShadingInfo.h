@@ -2,7 +2,9 @@
 #include "WVector3.h"
 #include "WColor.h"
 #include "WRay.h"
-#include "WMaterial.h"
+
+class WMaterial;
+
 class WShadingInfo
 {
 public:
@@ -17,6 +19,7 @@ public:
 	WColor color;
 	WRay ray;
 	int depth;
+	float t;
 	WVector3 direction;
 	//WWorld world;
 

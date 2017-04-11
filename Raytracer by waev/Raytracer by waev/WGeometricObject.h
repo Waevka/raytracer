@@ -1,15 +1,18 @@
 #pragma once
 #include "WColor.h"
+#include "WMaterial.h"
 #include "WRay.h"
 
 class WGeometricObject
 {
 private:
 	WColor color;
+	WMaterial material;
 public:
 	WGeometricObject(WColor c);
 	~WGeometricObject();
 	WColor getColor();
+	WMaterial* getMaterial();
 	virtual int Intersection(WRay ray, float & dist);
 };
 

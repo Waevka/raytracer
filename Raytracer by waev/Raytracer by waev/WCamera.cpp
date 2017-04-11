@@ -48,6 +48,9 @@ WColor WCamera::rayAliasing(int currentLevel)
 WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &objects, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
 {	
 	WColor pixelColor;
+	WShadingInfo shadingInfo;
+	WVector3 normal;
+	WVector3 localHitPoint;
 	if (aliasingLevel >= this->aliasingLevel) {
 
 		bool anythingForThisPixelFound = false;
@@ -64,13 +67,21 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 				if (distance < bestDistance) {
 					bestDistance = distance;
 					currentBest = (*iter);
+					shadingInfo.hitObject = true;
+					shadingInfo.material = (*currentBest).getMaterial();
+					shadingInfo.hitPoint = ray.getOrigin() + bestDistance * ray.getDistance();
+					shadingInfo.color = (*currentBest).getColor();
+					normal = shadingInfo.normal;
+					localHitPoint = shadingInfo.localHitPoint;
 					anythingForThisPixelFound = true;
 				}
 			}
 		}
 
 		if (anythingForThisPixelFound) {
-			pixelColor = currentBest->getColor();
+			shadingInfo.t = bestDistance;
+			shadingInfo.localHitPoint = localHitPoint;
+			pixelColor = shadingInfo.material->shade(shadingInfo);
 		}
 		else {
 			pixelColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());

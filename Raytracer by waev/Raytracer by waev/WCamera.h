@@ -3,6 +3,7 @@
 #include <list>
 #include "WGeometricObject.h"
 #include "WImageWriter.h"
+#include "WShadingInfo.h"
 #include "WViewPlane.h"
 class WCamera
 {
