@@ -21,3 +21,13 @@ WColor WAmbient::L(WShadingInfo & si)
 {
 	return color * ls;
 }
+
+bool WAmbient::isInShadows(WRay & r, WShadingInfo & si)
+{
+	return false;
+}
+
+bool WAmbient::castsShadows()
+{
+	return true;
+}

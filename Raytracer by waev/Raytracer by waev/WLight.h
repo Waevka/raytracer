@@ -9,6 +9,8 @@ public:
 	~WLight();
 	virtual WVector3 getDirection(WShadingInfo &si) = 0;
 	virtual WColor L(WShadingInfo &si) = 0;
+	virtual bool isInShadows(WRay & r, WShadingInfo &si) = 0;
+	virtual bool castsShadows() = 0;
 protected:
 	bool shadows;
 };

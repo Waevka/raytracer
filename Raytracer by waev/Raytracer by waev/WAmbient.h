@@ -11,6 +11,8 @@ public:
 	~WAmbient();
 	virtual WVector3 getDirection(WShadingInfo &si);
 	virtual WColor L(WShadingInfo &si);
+	virtual bool isInShadows(WRay & r, WShadingInfo &si);
+	virtual bool castsShadows();
 private:
 	float ls;
 	WColor color;

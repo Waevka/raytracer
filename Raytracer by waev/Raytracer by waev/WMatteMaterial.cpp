@@ -22,9 +22,17 @@ WColor WMatteMaterial::shade(WShadingInfo & si)
 		float ndotwi = si.normal.dot(wi);
 
 		if (ndotwi > 0.0) {
-			WColor diff = diffuse->f(si, wo, wi);
-			WColor light = si.world.lights[j]->L(si);
-			L = L + diff * light * ndotwi;
+			bool isInShadow = false;
+
+			if (si.world.lights[j]->castsShadows()) {
+				WRay shadowRay(si.hitPoint, wi);
+				isInShadow = si.world.lights[j]->isInShadows(shadowRay, si);
+			}
+			if (!isInShadow) {
+				WColor diff = diffuse->f(si, wo, wi);
+				WColor light = si.world.lights[j]->L(si);
+				L = L + diff * light * ndotwi;
+			}
 		}
 	}
 

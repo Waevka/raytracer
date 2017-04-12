@@ -31,7 +31,7 @@ void WPointLight::setLocation(WVector3 v)
 	location = v;
 }
 
-bool WPointLight::isInShadow(WRay & r, WShadingInfo &si)
+bool WPointLight::isInShadows(WRay & r, WShadingInfo &si)
 {
 	float t;
 	float d = location.distance(r.getOrigin());
@@ -39,4 +39,9 @@ bool WPointLight::isInShadow(WRay & r, WShadingInfo &si)
 		if ((*iter)->shadowHit(r, t) && t < d) return true;
 	}
 	return false;
+}
+
+bool WPointLight::castsShadows()
+{
+	return true;
 }

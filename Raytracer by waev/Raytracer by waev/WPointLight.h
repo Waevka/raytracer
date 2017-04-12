@@ -15,7 +15,8 @@ public:
 	virtual WColor L(WShadingInfo &si);
 	virtual void scaleRadiance(float f);
 	virtual void setLocation(WVector3 v);
-	bool isInShadow(WRay &r, WShadingInfo &si);
+	bool isInShadows(WRay &r, WShadingInfo &si);
+	virtual bool castsShadows();
 private:
 	float ls;
 	WColor color;
