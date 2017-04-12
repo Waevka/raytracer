@@ -35,8 +35,10 @@ bool WPointLight::isInShadows(WRay & r, WShadingInfo &si)
 {
 	float t;
 	float d = location.distance(r.getOrigin());
-	for (std::list<WGeometricObject*>::iterator iter = si.world.objects.begin(); iter != si.world.objects.end(); iter++) {
-		if ((*iter)->shadowHit(r, t) && t < d) return true;
+	WWorld &w = si.world;
+	int objCount = si.world.objects.size();
+	for (int j = 0; j < objCount;j++) {
+		if (w.objects[j]->shadowHit(r, t) && t < d) return true;
 	}
 	return false;
 }

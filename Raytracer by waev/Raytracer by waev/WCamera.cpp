@@ -2,7 +2,7 @@
 #include "WUtilities.h"
 #include <iostream>
 
-void WCamera::draw(int TESTSIZE_W, int TESTSIZE_H, std::list<WGeometricObject*> &objects, WViewPlane &viewPlane)
+void WCamera::draw(int TESTSIZE_W, int TESTSIZE_H, std::vector<WGeometricObject*> &objects, WViewPlane &viewPlane)
 {
 	WImage testImage(viewPlane.getWidth(), viewPlane.getHeight());
 
@@ -28,7 +28,7 @@ void WCamera::generateRays(WRay **& rays, WViewPlane &viewPlane)
 
 }
 
-void WCamera::intersectRays(WViewPlane &viewPlane, std::list<WGeometricObject*> &objects, WRay** &rays, WImage &testImage)
+void WCamera::intersectRays(WViewPlane &viewPlane, std::vector<WGeometricObject*> &objects, WRay** &rays, WImage &testImage)
 {
 	for (int i = 0; i < viewPlane.getWidth(); i++) {
 		for (int j = 0; j < viewPlane.getHeight(); j++) {
@@ -45,7 +45,7 @@ WColor WCamera::rayAliasing(int currentLevel)
 	return WColor();
 }
 
-WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &objects, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
+WColor WCamera::intersectSingleRay(WRay &ray, std::vector<WGeometricObject*> &objects, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
 {	
 	WColor pixelColor;
 	WShadingInfo shadingInfo(world);
@@ -59,14 +59,15 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 		float bestDistance = 400.0f;
 		int result;
 
-		for (std::list<WGeometricObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++) {
+		int objectCount = objects.size();
+		for (int j = 0; j < objectCount; j++) {
 
 			distance = 400.0f;
-			result = (*iter)->Intersection(ray, distance, shadingInfo);
+			result = objects[j]->Intersection(ray, distance, shadingInfo);
 			if (result > 1) {
 				if (distance < bestDistance) {
 					bestDistance = distance;
-					currentBest = (*iter);
+					currentBest = objects[j];
 					shadingInfo.hitObject = true;
 					shadingInfo.material = (*currentBest).getMaterial();
 					shadingInfo.hitPoint = ray.getOrigin() + ray.getDirection() * bestDistance;

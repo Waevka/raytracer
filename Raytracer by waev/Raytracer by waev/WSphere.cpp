@@ -80,7 +80,6 @@ bool WSphere::shadowHit(WRay & r, float & tmin)
 	WVector3 v = r.getOrigin() - origin;
 	float b = -v.dot(r.getDirection());
 	float det = b*b - v.dot(v) + radius*radius;
-	int returnValue = false;
 	//!
 	tmin = 2500.0f;
 
@@ -93,21 +92,19 @@ bool WSphere::shadowHit(WRay & r, float & tmin)
 			if (i1 < 0) {
 				if (i2 < tmin) {
 					tmin = i2;
-					returnValue = false;
+					return false;
 				}
 			}
 			else {
 				if (i1 < tmin) {
 					tmin = i1;
-					returnValue = true;
+					return true;
 				}
 			}
 		}
 	}
 	else {
-		returnValue = false;
+		return false;
 		tmin = b;
 	}
-
-	return returnValue;
 }

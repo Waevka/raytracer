@@ -25,6 +25,6 @@ public:
 	void addLight(WLight* l);
 	WLight *ambient;
 	std::vector<WLight*> lights;
-	std::list<WGeometricObject*> objects;
+	std::vector<WGeometricObject*> objects;
 };
 
