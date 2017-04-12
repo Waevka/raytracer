@@ -157,7 +157,7 @@ bool WTriangle::shadowHit(WRay & ray, float & tmin)
 	double e3 = a*p - b*r + d*s;
 	double t = e3 * inv_denom;
 
-	if (t < 0.00001) {
+	if (t < 0.001) {
 		hit = false;
 		return hit;
 	}

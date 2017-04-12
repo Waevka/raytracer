@@ -28,7 +28,7 @@ WWorld::WWorld()
 	/////////////// Lights
 
 	WPointLight *pointlight1 = new WPointLight();
-	pointlight1->setLocation(WVector3(12,-10.5,0.5f));
+	pointlight1->setLocation(WVector3(1,-0.5,11.5f));
 	pointlight1->scaleRadiance(3.0f);
 	addLight(pointlight1);
 
@@ -38,7 +38,7 @@ WWorld::WWorld()
 	WColor sphereColor3(0.2f, 0.4f, 0.8f);
 
 	WSphere *testSphere = new WSphere(WVector3(0, 0.5, -0.5), 4, sphereColor);
-	WSphere *testSphere2 = new WSphere(WVector3(-15, 2, 10), 12, sphereColor2);
+	WSphere *testSphere2 = new WSphere(WVector3(6, -7, 0), 5, sphereColor2);
 	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
 	WTriangle *triangle= new WTriangle(
 		WVector3(-10,-10,0),
@@ -49,15 +49,15 @@ WWorld::WWorld()
 
 	//// plane
 	WTriangle *planetr1 = new WTriangle(
-		WVector3(-6, -50, -50),
-		WVector3(-6, -50, 15),
-		WVector3(-6, 30, 15));
+		WVector3(0, -50, -50),
+		WVector3(0, -50, 15),
+		WVector3(0, 30, 15));
 	(*planetr1).normal = WVector3(1, 0, 0);
 
 	WTriangle *planetr2 = new WTriangle(
-		WVector3(-6, -50, -50),
-		WVector3(-6, 30, -50),
-		WVector3(-6, 30, 15));
+		WVector3(0, -50, -50),
+		WVector3(0, 30, -50),
+		WVector3(0, 30, 15));
 	(*planetr2).normal = WVector3(1, 0, 0);
 	////
 
@@ -65,8 +65,14 @@ WWorld::WWorld()
 	triangleMat->setKa(0.25f);
 	triangleMat->setKd(0.65f);
 	triangleMat->setCd(WColor(1,1,0));
+	WMatteMaterial *sphereMat = new WMatteMaterial();
+	sphereMat->setKa(0.4f);
+	sphereMat->setKd(0.75f);
+	sphereMat->setCd(WColor(1, 0.25f, 0));
+
 	(*triangle).setMaterial(triangleMat);
 	(*testSphere).setMaterial(triangleMat);
+	(*testSphere2).setMaterial(sphereMat);
 	(*planetr1).setMaterial(triangleMat);
 	(*planetr2).setMaterial(triangleMat);
 
@@ -101,7 +107,7 @@ WWorld::WWorld()
 	*/
 	////////////////////////////////////////////////////////////////////////////////
 	addObject(testSphere);
-	//addObject(testSphere2);
+	addObject(testSphere2);
 	//addObject(testSphere3);
 	//addObject(triangle);
 	addObject(planetr1);
