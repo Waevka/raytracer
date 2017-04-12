@@ -1,10 +1,10 @@
 #include "WGeometricObject.h"
 
 
-
 WGeometricObject::WGeometricObject(WColor c)
 {
 	this->color = c;
+	this->material = new WMaterial();
 }
 
 
@@ -19,10 +19,20 @@ WColor WGeometricObject::getColor()
 
 WMaterial* WGeometricObject::getMaterial()
 {
-	return &material;
+	return material;
 }
 
-int WGeometricObject::Intersection(WRay ray, float & dist)
+void WGeometricObject::setMaterial(WMaterial *m)
+{
+	material = m;
+}
+
+int WGeometricObject::Intersection(WRay ray, float & dist, WShadingInfo &ws)
 {
 	return 0;
+}
+
+bool WGeometricObject::shadowHit(WRay & r, float & tmin)
+{
+	return false;
 }

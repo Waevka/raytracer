@@ -45,7 +45,7 @@ WTriangle::~WTriangle()
 {
 }
 
-int WTriangle::Intersection(WRay ray, float & dist)
+int WTriangle::Intersection(WRay ray, float & dist, WShadingInfo &ws)
 {
 	int hit = 2;
 
@@ -101,6 +101,13 @@ int WTriangle::Intersection(WRay ray, float & dist)
 	}
 
 	dist = t;
+	ws.normal = normal;
+	ws.localHitPoint = ray.getOrigin() + ray.getDirection() * t;
 
 	return hit;
+}
+
+bool WTriangle::shadowHit(WRay & r, float & tmin)
+{
+	return false;
 }

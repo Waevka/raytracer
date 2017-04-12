@@ -15,6 +15,8 @@ public:
 	bool operator==(WColor corner);
 	bool operator!=(WColor corner);
 	WColor operator* (float f);
+	WColor operator* (const WColor &wc);
+	WColor operator+(const WColor &wc);
 	WColor operator* (const float f) const;
 };
 

@@ -11,9 +11,7 @@ class WWorld
 {
 private:
 	WViewPlane viewPlane;
-	std::list<WGeometricObject*> objects;
 	std::list<WCamera*> cameras;
-	std::list<WLight*> lights;
 	WColor backgroundColor;
 	WImageWriter imageWriter;
 	WObjReader objReader;
@@ -24,5 +22,9 @@ public:
 	void draw();
 	void addObject(WGeometricObject* o);
 	void addCamera(WCamera* c);
+	void addLight(WLight* l);
+	WLight *ambient;
+	std::vector<WLight*> lights;
+	std::list<WGeometricObject*> objects;
 };
 

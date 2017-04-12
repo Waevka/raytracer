@@ -12,7 +12,10 @@
 #include "WOrthoCamera.h"
 #include "WTriangle.h"
 #include "WObjReader.h"
+#include "WAmbient.h"
+#include "WMatteMaterial.h"
 #include "WPerspectiveCamera.h"
+#include "WPointLight.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -21,6 +24,14 @@
 WWorld::WWorld()
 {	
 	backgroundColor = WColor(0.1f, 0.1f, 0.1f, 1.0f);
+	ambient = new WAmbient();
+	/////////////// Lights
+
+	WPointLight *pointlight1 = new WPointLight();
+	pointlight1->setLocation(WVector3(12,-10.5,0.5f));
+	pointlight1->scaleRadiance(3.0f);
+	addLight(pointlight1);
+
 	///////////////
 	WColor sphereColor(0.9f, 0.5f, 0.5f);
 	WColor sphereColor2(0.4f, 0.8f, 0.2f);
@@ -34,6 +45,30 @@ WWorld::WWorld()
 		WVector3(25,10,10),
 		WVector3(-50,0,10)
 		);
+	(*triangle).normal = WVector3(0, 1, 0);
+
+	//// plane
+	WTriangle *planetr1 = new WTriangle(
+		WVector3(-6, -50, -50),
+		WVector3(-6, -50, 15),
+		WVector3(-6, 30, 15));
+	(*planetr1).normal = WVector3(1, 0, 0);
+
+	WTriangle *planetr2 = new WTriangle(
+		WVector3(-6, -50, -50),
+		WVector3(-6, 30, -50),
+		WVector3(-6, 30, 15));
+	(*planetr2).normal = WVector3(1, 0, 0);
+	////
+
+	WMatteMaterial *triangleMat = new WMatteMaterial();
+	triangleMat->setKa(0.25f);
+	triangleMat->setKd(0.65f);
+	triangleMat->setCd(WColor(1,1,0));
+	(*triangle).setMaterial(triangleMat);
+	(*testSphere).setMaterial(triangleMat);
+	(*planetr1).setMaterial(triangleMat);
+	(*planetr2).setMaterial(triangleMat);
 
 	WRay testRay(WVector3(0, 0, -20), WVector3(0, 0, 1));
 	WRay testRay2(WVector3(0, 0, -20), WVector3(0, 1, 0));
@@ -42,7 +77,7 @@ WWorld::WWorld()
 	WRay testPlaneRay1(WVector3(0, 10, 15), WVector3(0.0f, 1, 1)); // prostopadly
 	WRay testPlaneRay2(WVector3(0, 10, 15), WVector3(0.0f, -1, 1)); // równolegly
 
-	float distance = 250.0f;
+	float distance = 250.0f; /*
 	std::cout << testSphere->toString() << "\n";
 	std::cout << "TestSphere vs testRay1 (Should be: 2 intersections), result: " << testSphere->Intersection(testRay, distance) << "\n";
 	WVector3 intersectionPoint = calculateIntersectionPoint(distance, testRay);
@@ -63,16 +98,20 @@ WWorld::WWorld()
 	//cout << "Point of intersection:  " << intersectionPoint5.toString() << "\n\n";
 	//test = test.reflect(norm);
 	//cout << test.toString();
+	*/
 	////////////////////////////////////////////////////////////////////////////////
 	addObject(testSphere);
 	//addObject(testSphere2);
 	//addObject(testSphere3);
-	addObject(triangle);
+	//addObject(triangle);
+	addObject(planetr1);
+	addObject(planetr2);
 
 	int elems;
 	std::vector<WTriangle*> readTriangles = objReader.readFile(elems);
 
 	for (int i = 0; i < elems; i++) {
+		readTriangles[i]->setMaterial(triangleMat);
 		addObject(readTriangles[i]);
 	}
 
@@ -109,5 +148,10 @@ void WWorld::addObject(WGeometricObject* o)
 void WWorld::addCamera(WCamera * c)
 {
 	cameras.push_back(c);
+}
+
+void WWorld::addLight(WLight * l)
+{	
+	lights.push_back(l);
 }
 

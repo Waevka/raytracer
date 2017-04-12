@@ -62,15 +62,16 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 		for (std::list<WGeometricObject*>::iterator iter = objects.begin(); iter != objects.end(); iter++) {
 
 			distance = 400.0f;
-			result = (*iter)->Intersection(ray, distance);
+			result = (*iter)->Intersection(ray, distance, shadingInfo);
 			if (result > 1) {
 				if (distance < bestDistance) {
 					bestDistance = distance;
 					currentBest = (*iter);
 					shadingInfo.hitObject = true;
 					shadingInfo.material = (*currentBest).getMaterial();
-					shadingInfo.hitPoint = ray.getOrigin() + bestDistance * ray.getDistance();
+					shadingInfo.hitPoint = ray.getOrigin() + ray.getDirection() * bestDistance;
 					shadingInfo.color = (*currentBest).getColor();
+					shadingInfo.ray = ray;
 					normal = shadingInfo.normal;
 					localHitPoint = shadingInfo.localHitPoint;
 					anythingForThisPixelFound = true;
@@ -81,6 +82,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::list<WGeometricObject*> &obje
 		if (anythingForThisPixelFound) {
 			shadingInfo.t = bestDistance;
 			shadingInfo.localHitPoint = localHitPoint;
+			shadingInfo.normal = normal;
 			pixelColor = shadingInfo.material->shade(shadingInfo);
 		}
 		else {

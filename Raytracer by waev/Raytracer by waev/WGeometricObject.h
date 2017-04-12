@@ -7,12 +7,14 @@ class WGeometricObject
 {
 private:
 	WColor color;
-	WMaterial material;
+	WMaterial *material;
 public:
 	WGeometricObject(WColor c);
 	~WGeometricObject();
 	WColor getColor();
 	WMaterial* getMaterial();
-	virtual int Intersection(WRay ray, float & dist);
+	void setMaterial(WMaterial *m);
+	virtual int Intersection(WRay ray, float & dist, WShadingInfo &ws);
+	virtual bool shadowHit(WRay &r, float &tmin);
 };
 

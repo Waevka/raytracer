@@ -39,6 +39,7 @@ public:
 	WVector3 toPoint();
 	WVector3 lerp(WVector3 v, float t);
 	WVector3 hat();
+	float distance(WVector3);
 
 	//operators
 	WVector3 operator* (float f);

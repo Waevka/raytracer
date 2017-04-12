@@ -36,7 +36,7 @@ WVector3 WRay::getDestination()
 }
 
 float WRay::getDistance()
-{
+{	
 	return distance;
 }
 

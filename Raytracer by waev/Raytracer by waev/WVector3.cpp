@@ -202,6 +202,14 @@ WVector3 WVector3::hat()
 	return (*this);
 }
 
+float WVector3::distance(WVector3 v)
+{
+	float xd = x - v.x;
+	float yd = y - v.y;
+	float zd = z - v.z;
+	return sqrt(xd*xd + yd*yd + zd*zd);
+}
+
 WVector3 WVector3::operator* (float f)
 {	
 	WVector3 v(getX() * f, getY() * f, getZ() * f);

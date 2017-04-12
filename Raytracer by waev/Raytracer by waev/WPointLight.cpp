@@ -20,3 +20,23 @@ WColor WPointLight::L(WShadingInfo & si)
 {
 	return color * ls;
 }
+
+void WPointLight::scaleRadiance(float f)
+{
+	ls = f;
+}
+
+void WPointLight::setLocation(WVector3 v)
+{
+	location = v;
+}
+
+bool WPointLight::isInShadow(WRay & r, WShadingInfo &si)
+{
+	float t;
+	float d = location.distance(r.getOrigin());
+	for (std::list<WGeometricObject*>::iterator iter = si.world.objects.begin(); iter != si.world.objects.end(); iter++) {
+		if ((*iter)->shadowHit(r, t) && t < d) return true;
+	}
+	return false;
+}

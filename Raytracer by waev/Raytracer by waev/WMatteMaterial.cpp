@@ -1,5 +1,5 @@
 #include "WMatteMaterial.h"
-
+#include "WWorld.h"
 
 
 WMatteMaterial::WMatteMaterial() : WMaterial(), ambient(new WLambertian), diffuse(new WLambertian)
@@ -14,8 +14,21 @@ WMatteMaterial::~WMatteMaterial()
 WColor WMatteMaterial::shade(WShadingInfo & si)
 {
 	WVector3 wo = -si.ray.getDirection();
-	return WColor();
-	//WColor L = ambient->rho(si, wo) * si.
+	WColor L = ambient->rho(si, wo) * si.world.ambient->L(si);
+	int numLights = si.world.lights.size();
+
+	for (int j = 0; j < numLights; j++) {
+		WVector3 wi = si.world.lights[j]->getDirection(si);
+		float ndotwi = si.normal.dot(wi);
+
+		if (ndotwi > 0.0) {
+			WColor diff = diffuse->f(si, wo, wi);
+			WColor light = si.world.lights[j]->L(si);
+			L = L + diff * light * ndotwi;
+		}
+	}
+
+	return L;
 }
 
 void WMatteMaterial::setKa(float k)

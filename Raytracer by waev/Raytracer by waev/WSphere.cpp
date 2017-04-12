@@ -32,7 +32,7 @@ std::string WSphere::toString()
 // 0 - miss
 // 1 - inprim
 // 2 - hit
-int WSphere::Intersection(WRay ray, float & dist)
+int WSphere::Intersection(WRay ray, float & dist, WShadingInfo &ws)
 {
 	WVector3 v = ray.getOrigin() - origin;
 	float b = -v.dot(ray.getDirection());
@@ -50,12 +50,16 @@ int WSphere::Intersection(WRay ray, float & dist)
 			if (i1 < 0) {
 				if (i2 < dist) {
 					dist = i2;
+					ws.normal = (v + ray.getDirection() * dist) / radius;
+					ws.localHitPoint = ray.getOrigin() + ray.getDirection() * dist;
 					returnValue = 1;
 				}
 			}
 			else {
 				if (i1 < dist) {
 					dist = i1;
+					ws.normal = (v + ray.getDirection() * dist) / radius;
+					ws.localHitPoint = ray.getOrigin() + ray.getDirection() * dist;
 					returnValue = 2;
 				}
 			}
@@ -64,6 +68,8 @@ int WSphere::Intersection(WRay ray, float & dist)
 	else if (det == 0) {
 		returnValue = 1;
 		dist = b;
+		ws.normal = (v + ray.getDirection() * dist) / radius;
+		ws.localHitPoint = ray.getOrigin() + ray.getDirection() * dist;
 	}
 
 	return returnValue;

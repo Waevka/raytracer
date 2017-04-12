@@ -15,6 +15,6 @@ public:
 
 	std::string toString();
 
-	int Intersection(WRay ray, float &dist);
+	int Intersection(WRay ray, float &dist, WShadingInfo &ws);
 };
 

@@ -61,6 +61,20 @@ WColor WColor::operator*(float f)
 	return c;
 }
 
+WColor WColor::operator*(const WColor & wc)
+{
+	return WColor(r * wc.r, g * wc.g, b* wc.b, a*wc.a); // alpha?
+}
+
+WColor WColor::operator+(const WColor & wc)
+{
+	float rn = (r + wc.r > 1.0f ? 1.0f : r + wc.r);
+	float gn = (g + wc.g > 1.0f ? 1.0f : g + wc.g);
+	float bn = (b + wc.b > 1.0f ? 1.0f : b + wc.b);
+	float an = (a + wc.a > 1.0f ? 1.0f : a + wc.a);
+	return WColor(rn, gn, bn, an);
+}
+
 WColor WColor::operator*(const float f) const
 {
 	WColor c(r * f, g * f, b * f);
