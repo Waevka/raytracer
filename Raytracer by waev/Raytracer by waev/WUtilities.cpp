@@ -7,7 +7,7 @@ WVector3 calculateIntersectionPoint(float distance, WRay r) {
 		std::cout << "\nNo point of intersection\n";
 		distance = 0; // do exception
 	}
-	WVector3 result(r.getDirection());
+	WVector3 result(r.direction);
 	result = result * distance;
 	return result;
 }

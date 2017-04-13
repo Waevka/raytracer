@@ -34,10 +34,9 @@ void WPointLight::setLocation(WVector3 v)
 bool WPointLight::isInShadows(WRay & r, WShadingInfo &si)
 {
 	float t;
-	float d = location.distance(r.getOrigin());
+	float d = location.distance(r.origin);
 	WWorld &w = si.world;
-	int objCount = (int)si.world.objects.size();
-	for (int j = 0; j < objCount;j++) {
+	for (int j = 0; j < si.objectsCount;j++) {
 		if (w.objects[j]->shadowHit(r, t) && t < d) return true;
 	}
 	return false;

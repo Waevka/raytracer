@@ -22,14 +22,14 @@ WPlane::~WPlane()
 int WPlane::Intersection(WRay r, float & dist)
 {
 	int returnValue = 0;
-	float denom = normal.dot(r.getDirection());
+	float denom = normal.dot(r.direction);
 	float q = 0.0f;
 
 	if (denom < 0.000001) {
 		return 0; //parallel
 	}
 	
-	q = r.getOrigin().dot(normal);
+	q = r.origin.dot(normal);
 	dist = (offset - q) / denom;
 	
 	if (dist >= 0) {

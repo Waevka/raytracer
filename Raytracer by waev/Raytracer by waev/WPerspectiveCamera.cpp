@@ -38,7 +38,7 @@ void WPerspectiveCamera::generateRays(WRay **& rays, WViewPlane &viewPlane)
 			float newRayZ = d;
 			WVector3 newDirection = WVector3(newRayX, newRayY, newRayZ);
 			newDirection.normalize();
-			rays[i][j] = WRay(viewPlane.getRay().getOrigin(), newDirection);
+			rays[i][j] = WRay(viewPlane.getRay().origin, newDirection);
 		}
 	}
 }
@@ -50,5 +50,5 @@ WRay WPerspectiveCamera::generateSingleRay(WRay & ray, float xOffset, float yOff
 	float newRayZ = d;
 	WVector3 newDirection = WVector3(newRayX, newRayY, newRayZ);
 	newDirection.normalize();
-	return WRay(ray.getOrigin(), newDirection);
+	return WRay(ray.origin, newDirection);
 }

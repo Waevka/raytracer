@@ -51,16 +51,16 @@ int WTriangle::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 
 	double	a = v0.x - v1.x,
 		b = v0.x - v2.x,
-		c = ray.getDirection().x,
-		d = v0.x - ray.getOrigin().x;
+		c = ray.direction.x,
+		d = v0.x - ray.origin.x;
 	double e = v0.y - v1.y,
 		f = v0.y - v2.y,
-		g = ray.getDirection().y,
-		h = v0.y - ray.getOrigin().y;
+		g = ray.direction.y,
+		h = v0.y - ray.origin.y;
 	double i = v0.z - v1.z,
 		j = v0.z - v2.z,
-		k = ray.getDirection().z,
-		l = v0.z - ray.getOrigin().z;
+		k = ray.direction.z,
+		l = v0.z - ray.origin.z;
 
 	double m = f*k - g*j,
 		n = h*k - g*l,
@@ -102,7 +102,7 @@ int WTriangle::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 
 	dist = (float)t;
 	ws.normal = normal;
-	ws.localHitPoint = ray.getOrigin() + ray.getDirection() * (float)t;
+	ws.localHitPoint = ray.origin + ray.direction * (float)t;
 
 	return hit;
 }
@@ -113,16 +113,16 @@ bool WTriangle::shadowHit(WRay & ray, float & tmin)
 
 	double	a = v0.x - v1.x,
 		b = v0.x - v2.x,
-		c = ray.getDirection().x,
-		d = v0.x - ray.getOrigin().x;
+		c = ray.direction.x,
+		d = v0.x - ray.origin.x;
 	double e = v0.y - v1.y,
 		f = v0.y - v2.y,
-		g = ray.getDirection().y,
-		h = v0.y - ray.getOrigin().y;
+		g = ray.direction.y,
+		h = v0.y - ray.origin.y;
 	double i = v0.z - v1.z,
 		j = v0.z - v2.z,
-		k = ray.getDirection().z,
-		l = v0.z - ray.getOrigin().z;
+		k = ray.direction.z,
+		l = v0.z - ray.origin.z;
 
 	double m = f*k - g*j,
 		n = h*k - g*l,

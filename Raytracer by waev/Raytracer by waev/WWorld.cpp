@@ -143,7 +143,7 @@ void WWorld::draw()
 	WRay rayPersp(WVector3(20, -10, 30), WVector3(0.5f, 0.0f, -1.0f));
 	WViewPlane viewPlanePersp = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayPersp);
 	persp.setDistance(-10);
-	persp.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlanePersp);
+	persp.draw(TESTSIZE_W, TESTSIZE_H, viewPlanePersp);
 }
 
 void WWorld::addObject(WGeometricObject* o)

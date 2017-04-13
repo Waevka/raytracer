@@ -1,8 +1,9 @@
 #include "WCamera.h"
 #include "WUtilities.h"
+#include "WWorld.h"
 #include <iostream>
 
-void WCamera::draw(int TESTSIZE_W, int TESTSIZE_H, std::vector<WGeometricObject*> &objects, WViewPlane &viewPlane)
+void WCamera::draw(int TESTSIZE_W, int TESTSIZE_H, WViewPlane &viewPlane)
 {
 	WImage testImage(viewPlane.getWidth(), viewPlane.getHeight());
 
@@ -11,7 +12,7 @@ void WCamera::draw(int TESTSIZE_W, int TESTSIZE_H, std::vector<WGeometricObject*
 	generateRays(testRays, viewPlane);
 
 	//check all rays with objects
-	intersectRays(viewPlane, objects, testRays, testImage);
+	intersectRays(viewPlane, testRays, testImage);
 
 	imageWriter.writeImage(testImage, TESTSIZE_W, TESTSIZE_H, name);
 
@@ -28,12 +29,14 @@ void WCamera::generateRays(WRay **& rays, WViewPlane &viewPlane)
 
 }
 
-void WCamera::intersectRays(WViewPlane &viewPlane, std::vector<WGeometricObject*> &objects, WRay** &rays, WImage &testImage)
-{
+void WCamera::intersectRays(WViewPlane &viewPlane, WRay** &rays, WImage &testImage)
+{	
+	WShadingInfo shadingInfo(world);
+	shadingInfo.objectsCount = world.objects.size();
 	for (int i = 0; i < viewPlane.getWidth(); i++) {
 		for (int j = 0; j < viewPlane.getHeight(); j++) {
 
-			WColor pixelColor = intersectSingleRay(rays[i][j], objects, i, j, viewPlane, 0);
+			WColor pixelColor = intersectSingleRay(rays[i][j], shadingInfo, i, j, viewPlane, 0);
 
 			testImage.setPixel(pixelColor, i, j);
 		}
@@ -45,12 +48,12 @@ WColor WCamera::rayAliasing(int currentLevel)
 	return WColor();
 }
 
-WColor WCamera::intersectSingleRay(WRay &ray, std::vector<WGeometricObject*> &objects, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
+WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
 {	
 	WColor pixelColor;
-	WShadingInfo shadingInfo(world);
 	WVector3 normal;
 	WVector3 localHitPoint;
+	std::vector<WGeometricObject*> &objects = shadingInfo.world.objects;
 	if (aliasingLevel >= this->aliasingLevel) {
 
 		bool anythingForThisPixelFound = false;
@@ -59,8 +62,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::vector<WGeometricObject*> &ob
 		float bestDistance = 400.0f;
 		int result;
 
-		int objectCount = (int)objects.size();
-		for (int j = 0; j < objectCount; j++) {
+		for (int j = 0; j < shadingInfo.objectsCount; j++) {
 
 			distance = 400.0f;
 			result = objects[j]->Intersection(ray, distance, shadingInfo);
@@ -70,7 +72,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::vector<WGeometricObject*> &ob
 					currentBest = objects[j];
 					shadingInfo.hitObject = true;
 					shadingInfo.material = currentBest->getMaterial();
-					shadingInfo.hitPoint = ray.getOrigin() + ray.getDirection() * bestDistance;
+					shadingInfo.hitPoint = ray.origin + ray.direction * bestDistance;
 					shadingInfo.color = currentBest->getColor();
 					shadingInfo.ray = ray;
 					normal = shadingInfo.normal;
@@ -99,28 +101,28 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::vector<WGeometricObject*> &ob
 		WRay bottomLeftRay	= generateSingleRay(ray, -	offset, -	offset, i, j);
 		WRay bottomRightRay = generateSingleRay(ray,	offset, -	offset, i, j);
 
-		WColor middle		= intersectSingleRay(ray,				objects, i, j, viewPlane, this->aliasingLevel);
-		WColor topLeft		= intersectSingleRay(topLeftRay,		objects, i, j, viewPlane, this->aliasingLevel);
-		WColor topRight		= intersectSingleRay(topRightRay,		objects, i, j, viewPlane, this->aliasingLevel);
-		WColor bottomLeft	= intersectSingleRay(bottomLeftRay,		objects, i, j, viewPlane, this->aliasingLevel);
-		WColor bottomRight	= intersectSingleRay(bottomRightRay,	objects, i, j, viewPlane, this->aliasingLevel);
+		WColor middle		= intersectSingleRay(ray,				shadingInfo, i, j, viewPlane, this->aliasingLevel);
+		WColor topLeft		= intersectSingleRay(topLeftRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel);
+		WColor topRight		= intersectSingleRay(topRightRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel);
+		WColor bottomLeft	= intersectSingleRay(bottomLeftRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel);
+		WColor bottomRight	= intersectSingleRay(bottomRightRay,	shadingInfo, i, j, viewPlane, this->aliasingLevel);
 
 		offset = (float)(viewPlane.getPixelSize() * pow(0.5f, aliasingLevel + 2)); //TODO: offset/2
 
 		if (middle != topLeft) {
-			intersectSingleRay(topLeftRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(topLeftRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
 			topLeftRay = generateSingleRay(ray, -offset, offset, i, j);
 		}
 		if (middle != topLeft) {
-			intersectSingleRay(topRightRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(topRightRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
 			topRightRay = generateSingleRay(ray, offset, offset, i, j);
 		}
 		if (middle != topLeft) {
-			intersectSingleRay(bottomLeftRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(bottomLeftRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
 			bottomLeftRay = generateSingleRay(ray, -offset, -offset, i, j);
 		}
 		if (middle != topLeft) {
-			intersectSingleRay(bottomRightRay, objects, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(bottomRightRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
 			bottomRightRay = generateSingleRay(ray, offset, -offset, i, j);
 		}
 

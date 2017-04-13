@@ -34,8 +34,8 @@ std::string WSphere::toString()
 // 2 - hit
 int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 {
-	WVector3 v = ray.getOrigin() - origin;
-	float b = -v.dot(ray.getDirection());
+	WVector3 v = ray.origin - origin;
+	float b = -v.dot(ray.direction);
 	float det = b*b - v.dot(v) + radius*radius;
 	int returnValue = 0;
 	//!
@@ -50,16 +50,16 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 			if (i1 < 0) {
 				if (i2 < dist) {
 					dist = i2;
-					ws.normal = (v + ray.getDirection() * dist) / radius;
-					ws.localHitPoint = ray.getOrigin() + ray.getDirection() * dist;
+					ws.normal = (v + ray.direction * dist) / radius;
+					ws.localHitPoint = ray.origin + ray.direction * dist;
 					returnValue = 1;
 				}
 			}
 			else {
 				if (i1 < dist) {
 					dist = i1;
-					ws.normal = (v + ray.getDirection() * dist) / radius;
-					ws.localHitPoint = ray.getOrigin() + ray.getDirection() * dist;
+					ws.normal = (v + ray.direction * dist) / radius;
+					ws.localHitPoint = ray.origin + ray.direction * dist;
 					returnValue = 2;
 				}
 			}
@@ -68,8 +68,8 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 	else if (det == 0) {
 		returnValue = 1;
 		dist = b;
-		ws.normal = (v + ray.getDirection() * dist) / radius;
-		ws.localHitPoint = ray.getOrigin() + ray.getDirection() * dist;
+		ws.normal = (v + ray.direction * dist) / radius;
+		ws.localHitPoint = ray.origin + ray.direction * dist;
 	}
 
 	return returnValue;
@@ -77,8 +77,8 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 
 bool WSphere::shadowHit(WRay & r, float & tmin)
 {
-	WVector3 v = r.getOrigin() - origin;
-	float b = -v.dot(r.getDirection());
+	WVector3 v = r.origin - origin;
+	float b = -v.dot(r.direction);
 	float det = b*b - v.dot(v) + radius*radius;
 	//!
 	tmin = 2500.0f;

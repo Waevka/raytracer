@@ -13,11 +13,10 @@ WMatteMaterial::~WMatteMaterial()
 
 WColor WMatteMaterial::shade(WShadingInfo & si)
 {
-	WVector3 wo = -si.ray.getDirection();
+	WVector3 wo = -si.ray.direction;
 	WColor L = ambient->rho(si, wo) * si.world.ambient->L(si);
-	int numLights = (int)si.world.lights.size();
 
-	for (int j = 0; j < numLights; j++) {
+	for (int j = 0; j < si.world.lights.size(); j++) {
 		WVector3 wi = si.world.lights[j]->getDirection(si);
 		float ndotwi = (float)si.normal.dot(wi);
 

@@ -123,11 +123,10 @@ WVector3 WVector3::normalizeProduct()
 
 float WVector3::dot(WVector3 &v)
 {
-	float d = (x * v.x + y * v.y + z * v.z);
-	return d;
+	return (x * v.x + y * v.y + z * v.z);
 }
 
-WVector3 WVector3::cross(WVector3 v)
+WVector3 WVector3::cross(WVector3 &v)
 {
 	WVector3 nv(
 		y * v.z - z * v.y,
@@ -136,7 +135,7 @@ WVector3 WVector3::cross(WVector3 v)
 	return nv;
 }
 
-WVector3 WVector3::reflect(WVector3 normal)
+WVector3 WVector3::reflect(WVector3 &normal)
 {
 	float dotNormal = 2 * this->dot(normal);
 	WVector3 dotNormalVector = normal * dotNormal;
@@ -145,7 +144,7 @@ WVector3 WVector3::reflect(WVector3 normal)
 	return final;
 }
 
-WVector3 WVector3::magProduct(WVector3 v, float f)
+WVector3 WVector3::magProduct(WVector3 &v, float f)
 {
 	return WVector3(v.x * f, v.y * f, v.z * f);
 }
@@ -155,7 +154,7 @@ WVector3 WVector3::toPoint()
 	return WVector3(x, y, z);
 }
 
-WVector3 WVector3::lerp(WVector3 v, float t)
+WVector3 WVector3::lerp(WVector3 &v, float t)
 {	
 	float nX = x + t * (v.x - x);
 	float nY = y + t * (v.y - y);
@@ -172,7 +171,7 @@ WVector3 WVector3::hat()
 	return (*this);
 }
 
-float WVector3::distance(WVector3 v)
+float WVector3::distance(WVector3 &v)
 {
 	float xd = x - v.x;
 	float yd = y - v.y;
@@ -186,19 +185,19 @@ WVector3 WVector3::operator* (float f)
 	return v;
 }
 
-WVector3 WVector3::operator*(WVector3 v)
+WVector3 WVector3::operator*(WVector3 &v)
 {
 	WVector3 v2(x * v.x, y * v.y, z * v.z);
 	return v2;
 }
 
-WVector3 WVector3::operator+(WVector3 v)
+WVector3 WVector3::operator+(WVector3 &v)
 {
 	WVector3 v2(x + v.x, y + v.y, z + v.z);
 	return v2;
 }
 
-WVector3 WVector3::operator-(WVector3 v)
+WVector3 WVector3::operator-(WVector3 &v)
 {
 	WVector3 v2(x - v.x, y - v.y, z - v.z);
 	return v2;
@@ -210,12 +209,12 @@ WVector3 WVector3::operator-()
 	return v2;
 }
 
-bool WVector3::operator==(WVector3 v)
+bool WVector3::operator==(WVector3 &v)
 {
 	return (x == v.x && y == v.y && z == v.z);
 }
 
-bool WVector3::operator!=(WVector3 v)
+bool WVector3::operator!=(WVector3 &v)
 {
 	return (x != v.x || y != v.y || z != v.z);
 }
