@@ -27,7 +27,7 @@ void WGeometricObject::setMaterial(WMaterial *m)
 	material = m;
 }
 
-int WGeometricObject::Intersection(WRay ray, float & dist, WShadingInfo &ws)
+int WGeometricObject::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 {
 	return 0;
 }

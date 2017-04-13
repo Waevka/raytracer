@@ -14,7 +14,7 @@ public:
 	WColor getColor();
 	WMaterial* getMaterial();
 	void setMaterial(WMaterial *m);
-	virtual int Intersection(WRay ray, float & dist, WShadingInfo &ws);
+	virtual int Intersection(WRay &ray, float & dist, WShadingInfo &ws);
 	virtual bool shadowHit(WRay &r, float &tmin);
 };
 

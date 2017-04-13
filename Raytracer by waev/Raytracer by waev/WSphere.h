@@ -15,7 +15,7 @@ public:
 
 	std::string toString();
 
-	int Intersection(WRay ray, float &dist, WShadingInfo &ws);
-	bool shadowHit(WRay &r, float &tmin);
+	virtual int Intersection(WRay &ray, float &dist, WShadingInfo &ws);
+	virtual bool shadowHit(WRay &r, float &tmin);
 };
 

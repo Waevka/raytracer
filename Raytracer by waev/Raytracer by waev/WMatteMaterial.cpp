@@ -15,11 +15,11 @@ WColor WMatteMaterial::shade(WShadingInfo & si)
 {
 	WVector3 wo = -si.ray.getDirection();
 	WColor L = ambient->rho(si, wo) * si.world.ambient->L(si);
-	int numLights = si.world.lights.size();
+	int numLights = (int)si.world.lights.size();
 
 	for (int j = 0; j < numLights; j++) {
 		WVector3 wi = si.world.lights[j]->getDirection(si);
-		float ndotwi = si.normal.dot(wi);
+		float ndotwi = (float)si.normal.dot(wi);
 
 		if (ndotwi > 0.0) {
 			bool isInShadow = false;

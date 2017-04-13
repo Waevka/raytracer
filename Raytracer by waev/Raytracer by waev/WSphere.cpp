@@ -32,7 +32,7 @@ std::string WSphere::toString()
 // 0 - miss
 // 1 - inprim
 // 2 - hit
-int WSphere::Intersection(WRay ray, float & dist, WShadingInfo &ws)
+int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 {
 	WVector3 v = ray.getOrigin() - origin;
 	float b = -v.dot(ray.getDirection());
@@ -107,4 +107,5 @@ bool WSphere::shadowHit(WRay & r, float & tmin)
 		return false;
 		tmin = b;
 	}
+	return false;
 }

@@ -36,7 +36,7 @@ bool WPointLight::isInShadows(WRay & r, WShadingInfo &si)
 	float t;
 	float d = location.distance(r.getOrigin());
 	WWorld &w = si.world;
-	int objCount = si.world.objects.size();
+	int objCount = (int)si.world.objects.size();
 	for (int j = 0; j < objCount;j++) {
 		if (w.objects[j]->shadowHit(r, t) && t < d) return true;
 	}

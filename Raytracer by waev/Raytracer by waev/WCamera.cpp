@@ -59,7 +59,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::vector<WGeometricObject*> &ob
 		float bestDistance = 400.0f;
 		int result;
 
-		int objectCount = objects.size();
+		int objectCount = (int)objects.size();
 		for (int j = 0; j < objectCount; j++) {
 
 			distance = 400.0f;
@@ -69,9 +69,9 @@ WColor WCamera::intersectSingleRay(WRay &ray, std::vector<WGeometricObject*> &ob
 					bestDistance = distance;
 					currentBest = objects[j];
 					shadingInfo.hitObject = true;
-					shadingInfo.material = (*currentBest).getMaterial();
+					shadingInfo.material = currentBest->getMaterial();
 					shadingInfo.hitPoint = ray.getOrigin() + ray.getDirection() * bestDistance;
-					shadingInfo.color = (*currentBest).getColor();
+					shadingInfo.color = currentBest->getColor();
 					shadingInfo.ray = ray;
 					normal = shadingInfo.normal;
 					localHitPoint = shadingInfo.localHitPoint;

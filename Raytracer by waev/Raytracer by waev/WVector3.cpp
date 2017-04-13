@@ -26,48 +26,18 @@ WVector3::WVector3(float x, float y, float z)
 	this->z = z;
 }
 
-WVector3::WVector3(const WVector3& v) : x(v.getX()), y(v.getY()), z(v.getZ())
+WVector3::WVector3(const WVector3& v) : x(v.x), y(v.y), z(v.z)
 {
 }
 
 WVector3::WVector3(const WVector3 & v1, const WVector3 & v2) :
-	x(v2.getX() - v1.getX()), y(v2.getY() - v1.getY()), z(v2.getZ() - v1.getZ())
+	x(v2.x - v1.x), y(v2.y - v1.y), z(v2.z - v1.z)
 {
 }
 
 
 WVector3::~WVector3()
 {
-}
-
-float WVector3::getX() const
-{
-	return x;
-}
-
-float WVector3::getY() const
-{
-	return y;
-}
-
-float WVector3::getZ() const
-{
-	return z;
-}
-
-void WVector3::setX(float x)
-{
-	this->x = x;
-}
-
-void WVector3::setY(float y)
-{
-	this->y = y;
-}
-
-void WVector3::setZ(float z)
-{
-	this->z = z;
 }
 
 std::string WVector3::toString()
@@ -105,18 +75,18 @@ void WVector3::negate()
 	z = -z;
 }
 
-void WVector3::add(WVector3 v)
+void WVector3::add(WVector3 &v)
 {
-	x += v.getX();
-	y += v.getY();
-	z += v.getZ();
+	x += v.x;
+	y += v.y;
+	z += v.z;
 }
 
-void WVector3::subtract(WVector3 v)
+void WVector3::subtract(WVector3 &v)
 {
-	x -= v.getX();
-	y -= v.getY();
-	z -= v.getZ();
+	x -= v.x;
+	y -= v.y;
+	z -= v.z;
 }
 
 void WVector3::mag(float f)
@@ -151,18 +121,18 @@ WVector3 WVector3::normalizeProduct()
 	}
 }
 
-float WVector3::dot(WVector3 v)
+float WVector3::dot(WVector3 &v)
 {
-	float d = (x * v.getX() + y * v.getY() + z * v.getZ());
+	float d = (x * v.x + y * v.y + z * v.z);
 	return d;
 }
 
 WVector3 WVector3::cross(WVector3 v)
 {
 	WVector3 nv(
-		y * v.getZ() - z * v.getY(),
-		z * v.getX() - x * v.getZ(),
-		x * v.getY() - y * v.getX());
+		y * v.z - z * v.y,
+		z * v.x - x * v.z,
+		x * v.y - y * v.x);
 	return nv;
 }
 
@@ -170,26 +140,26 @@ WVector3 WVector3::reflect(WVector3 normal)
 {
 	float dotNormal = 2 * this->dot(normal);
 	WVector3 dotNormalVector = normal * dotNormal;
-	WVector3 final(getX(), getY(), getZ());
+	WVector3 final(x, y, z);
 	final = final - dotNormalVector;
 	return final;
 }
 
 WVector3 WVector3::magProduct(WVector3 v, float f)
 {
-	return WVector3(v.getX() * f, v.getY() * f, v.getZ() * f);
+	return WVector3(v.x * f, v.y * f, v.z * f);
 }
 
 WVector3 WVector3::toPoint()
 {
-	return WVector3(getX(), getY(), getZ());
+	return WVector3(x, y, z);
 }
 
 WVector3 WVector3::lerp(WVector3 v, float t)
 {	
-	float nX = getX() + t * (v.getX() - getX());
-	float nY = getY() + t * (v.getY() - getY());
-	float nZ = getZ() + t * (v.getZ() - getZ());
+	float nX = x + t * (v.x - x);
+	float nY = y + t * (v.y - y);
+	float nZ = z + t * (v.z - z);
 	return WVector3(nX, nY, nZ);
 }
 
@@ -212,50 +182,50 @@ float WVector3::distance(WVector3 v)
 
 WVector3 WVector3::operator* (float f)
 {	
-	WVector3 v(getX() * f, getY() * f, getZ() * f);
+	WVector3 v(x * f, y * f, z * f);
 	return v;
 }
 
 WVector3 WVector3::operator*(WVector3 v)
 {
-	WVector3 v2(getX() * v.getX(), getY() * v.getY(), getZ() * v.getZ());
+	WVector3 v2(x * v.x, y * v.y, z * v.z);
 	return v2;
 }
 
 WVector3 WVector3::operator+(WVector3 v)
 {
-	WVector3 v2(getX() + v.getX(), getY() + v.getY(), getZ() + v.getZ());
+	WVector3 v2(x + v.x, y + v.y, z + v.z);
 	return v2;
 }
 
 WVector3 WVector3::operator-(WVector3 v)
 {
-	WVector3 v2(getX() - v.getX(), getY() - v.getY(), getZ() - v.getZ());
+	WVector3 v2(x - v.x, y - v.y, z - v.z);
 	return v2;
 }
 
 WVector3 WVector3::operator-()
 {
-	WVector3 v2(-getX(), -getY(), -getZ());
+	WVector3 v2(-x, -y, -z);
 	return v2;
 }
 
 bool WVector3::operator==(WVector3 v)
 {
-	return (getX() == v.getX() && getY() == v.getY() && getZ() == v.getZ());
+	return (x == v.x && y == v.y && z == v.z);
 }
 
 bool WVector3::operator!=(WVector3 v)
 {
-	return (getX() != v.getX() || getY() != v.getY() || getZ() != v.getZ());
+	return (x != v.x || y != v.y || z != v.z);
 }
 
 WVector3 WVector3::operator/(float f)
 {
-	WVector3 v2(getX(), getY(), getZ());
+	WVector3 v2(x, y, z);
 	float inverse = 1.0f / f;
-	v2.setX(v2.getX() * inverse);
-	v2.setY(v2.getY() * inverse);
-	v2.setZ(v2.getZ() * inverse);
+	v2.x = v2.x * inverse;
+	v2.y = v2.y * inverse;
+	v2.z = v2.z * inverse;
 	return v2;
 }
