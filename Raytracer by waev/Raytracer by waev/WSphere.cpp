@@ -109,3 +109,17 @@ bool WSphere::shadowHit(WRay & r, float & tmin)
 	}
 	return false;
 }
+
+void WSphere::minXYZ(float & mx, float & my, float & mz)
+{
+	mx = origin.x - radius;
+	my = origin.y - radius;
+	mz = origin.z - radius;
+}
+
+void WSphere::maxXYZ(float & mx, float & my, float & mz)
+{
+	mx = origin.x + radius;
+	my = origin.y + radius;
+	mz = origin.z + radius;
+}

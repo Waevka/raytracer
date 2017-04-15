@@ -40,3 +40,17 @@ bool WGeometricObject::shadowHit(WRay & r, float & tmin)
 {
 	return false;
 }
+
+void WGeometricObject::minXYZ(float & mx, float & my, float & mz)
+{
+	mx = 0;
+	my = 0;
+	mz = 0;
+}
+
+void WGeometricObject::maxXYZ(float & mx, float & my, float & mz)
+{
+	mx = 0;
+	my = 0;
+	mz = 0;
+}

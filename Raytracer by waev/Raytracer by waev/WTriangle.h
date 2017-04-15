@@ -16,5 +16,7 @@ public:
 	~WTriangle();
 	virtual int Intersection(WRay &ray, float & dist, WShadingInfo &ws);
 	virtual bool shadowHit(WRay &r, float &tmin);
+	virtual void minXYZ(float &mx, float &my, float &mz);
+	virtual void maxXYZ(float &mx, float &my, float &mz);
 };
 

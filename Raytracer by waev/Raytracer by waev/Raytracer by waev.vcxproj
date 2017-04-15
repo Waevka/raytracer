@@ -149,6 +149,7 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="WAmbient.cpp" />
+    <ClCompile Include="WBoundingBox.cpp" />
     <ClCompile Include="WBRDF.cpp" />
     <ClCompile Include="WCamera.cpp" />
     <ClCompile Include="WColor.cpp" />
@@ -178,6 +179,7 @@
   <ItemGroup>
     <ClInclude Include="Image.h" />
     <ClInclude Include="WAmbient.h" />
+    <ClInclude Include="WBoundingBox.h" />
     <ClInclude Include="WBRDF.h" />
     <ClInclude Include="WCamera.h" />
     <ClInclude Include="WColor.h" />

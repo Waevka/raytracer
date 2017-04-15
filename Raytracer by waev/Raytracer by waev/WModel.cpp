@@ -2,13 +2,12 @@
 
 
 
-WModel::WModel() : WGeometricObject(WColor(1.0f, 1.0f, 1.0f, 1.0f))
+WModel::WModel() : WGeometricObject(WColor(1.0f, 1.0f, 1.0f, 1.0f)), boundingBox(NULL)
 {
 }
 
-WModel::WModel(std::vector<WGeometricObject*> ol) : WGeometricObject()
+WModel::WModel(std::vector<WGeometricObject*> ol) : WGeometricObject(), objects(ol), boundingBox(NULL)
 {
-	objects = ol;
 }
 
 
@@ -18,6 +17,9 @@ WModel::~WModel()
 
 int WModel::Intersection(WRay & ray, float & dist, WShadingInfo & ws)
 {	
+	if (!getBoundingBox()->hit(ray))
+		return 0;
+
 	WVector3 localHitPoint;
 	int bestObject = 0;
 	int anythingForThisPixelFound = 0;
@@ -57,6 +59,8 @@ bool WModel::shadowHit(WRay & r, float & tmin)
 void WModel::addObject(WGeometricObject * t)
 {
 	objects.push_back(t);
+	delete[] boundingBox;
+	boundingBox = NULL;
 }
 
 void WModel::setMaterial(WMaterial * m)
@@ -64,4 +68,45 @@ void WModel::setMaterial(WMaterial * m)
 	for (int i = 0; i < objects.size(); i++) {
 		objects[i]->setMaterial(m);
 	}
+}
+
+void WModel::calculateBoundingBox()
+{	
+	float x0 = 32000;
+	float y0 = 32000;
+	float z0 = 32000;
+
+	for (int i = 0; i < objects.size(); i++) {
+		float nx = 32000;
+		float ny = 32000;
+		float nz = 32000;
+		objects[i]->minXYZ(nx, ny, nz);
+
+		if (nx < x0) x0 = nx;
+		if (ny < y0) y0 = ny;
+		if (nz < z0) z0 = nz;
+	}
+
+	float x1 = -32000;
+	float y1 = -32000;
+	float z1 = -32000;
+	for (int i = 0; i < objects.size(); i++) {
+		float nx = -32000;
+		float ny = -32000;
+		float nz = -32000;
+		objects[i]->maxXYZ(nx, ny, nz);
+
+		if (nx > x1) x1 = nx;
+		if (ny > y1) y1 = ny;
+		if (nz > z1) z1 = nz;
+	}
+
+	boundingBox = new WBoundingBox(x0, x1, y0, y1, z0, z1);
+}
+
+WBoundingBox * WModel::getBoundingBox()
+{	
+	if (boundingBox == NULL)
+		calculateBoundingBox();
+	return boundingBox;
 }

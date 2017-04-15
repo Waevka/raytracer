@@ -46,7 +46,7 @@ WTriangle::~WTriangle()
 }
 
 int WTriangle::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
-{
+{	
 	int hit = 2;
 
 	double	a = v0.x - v1.x,
@@ -165,4 +165,46 @@ bool WTriangle::shadowHit(WRay & ray, float & tmin)
 	tmin = (float)t;
 
 	return hit;
+}
+
+void WTriangle::minXYZ(float & mx, float & my, float & mz)
+{
+	mx = v0.x;
+	if (mx > v1.x)
+		mx = v1.x;
+	if (mx > v2.x)
+		mx = v2.x;
+
+	my = v0.y;
+	if (my > v1.y)
+		my = v1.y;
+	if (my > v2.y)
+		my = v2.y;
+
+	mz = v0.z;
+	if (mz > v1.z)
+		mz = v1.z;
+	if (mz > v2.z)
+		mz = v2.z;
+}
+
+void WTriangle::maxXYZ(float & mx, float & my, float & mz)
+{
+	mx = v0.x;
+	if (mx < v1.x)
+		mx = v1.x;
+	if (mx < v2.x)
+		mx = v2.x;
+
+	my = v0.y;
+	if (my < v1.y)
+		my = v1.y;
+	if (my < v2.y)
+		my = v2.y;
+
+	mz = v0.z;
+	if (mz < v1.z)
+		mz = v1.z;
+	if (mz < v2.z)
+		mz = v2.z;
 }
