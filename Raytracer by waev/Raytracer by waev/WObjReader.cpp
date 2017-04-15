@@ -21,7 +21,7 @@ WObjReader::~WObjReader()
 {
 }
 
-std::vector<WTriangle*> WObjReader::readFile(std::string filename)
+std::vector<WGeometricObject*> WObjReader::readFile(std::string filename)
 {
 	std::ifstream input;
 	std::string text;
@@ -29,7 +29,7 @@ std::vector<WTriangle*> WObjReader::readFile(std::string filename)
 	std::vector<WVector3> normalList;
 	std::vector<WTriangle> triangleList;
 
-	std::vector<WTriangle*> objects;
+	std::vector<WGeometricObject*> objects;
 
 	input.open(filename.c_str());
 

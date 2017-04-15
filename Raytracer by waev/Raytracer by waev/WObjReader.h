@@ -8,7 +8,7 @@ class WObjReader
 public:
 	WObjReader();
 	~WObjReader();
-	std::vector<WTriangle*> readFile(std::string filename);
+	std::vector<WGeometricObject*> readFile(std::string filename);
 private:
 	std::vector<std::string> split(const std::string &s, char delim);
 	template<typename Out>

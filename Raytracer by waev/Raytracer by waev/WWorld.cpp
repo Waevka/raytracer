@@ -116,7 +116,7 @@ WWorld::WWorld()
 
 	//std::vector<WTriangle*> readTriangles = objReader.readFile("cube.obj");
 	WModel *monkey = new WModel();
-	monkey->triangles = objReader.readFile("monkey.obj");
+	monkey->objects = objReader.readFile("monkey.obj");
 	addObject(monkey);
 
 	//for (int i = 0; i < readTriangles.size(); i++) {

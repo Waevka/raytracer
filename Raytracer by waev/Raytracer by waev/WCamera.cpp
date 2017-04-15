@@ -56,7 +56,6 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 	if (aliasingLevel >= this->aliasingLevel) {
 
 		bool anythingForThisPixelFound = false;
-		WGeometricObject* currentBest = NULL;
 		float distance = 400.0f;
 		float bestDistance = 400.0f;
 		int result;
@@ -65,19 +64,16 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 
 			distance = 400.0f;
 			result = objects[j]->Intersection(ray, distance, shadingInfo);
-			if (result > 1) {
-				if (distance < bestDistance) {
-					bestDistance = distance;
-					currentBest = objects[j];
-					shadingInfo.hitObject = true;
-					shadingInfo.material = currentBest->getMaterial();
-					shadingInfo.hitPoint = ray.origin + ray.direction * bestDistance;
-					shadingInfo.color = currentBest->getColor();
-					shadingInfo.ray = ray;
-					normal = shadingInfo.normal;
-					localHitPoint = shadingInfo.localHitPoint;
-					anythingForThisPixelFound = true;
-				}
+			if (result > 1 && distance < bestDistance ) {
+				bestDistance = distance;
+				shadingInfo.hitObject = true;
+				shadingInfo.material = objects[j]->getMaterial();
+				shadingInfo.hitPoint = ray.origin + ray.direction * bestDistance;
+				shadingInfo.color = objects[j]->getColor();
+				shadingInfo.ray = ray;
+				normal = shadingInfo.normal;
+				localHitPoint = shadingInfo.localHitPoint;
+				anythingForThisPixelFound = true;
 			}
 		}
 
