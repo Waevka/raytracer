@@ -64,12 +64,10 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 
 			distance = 400.0f;
 			result = objects[j]->Intersection(ray, distance, shadingInfo);
-			if (result > 1 && distance < bestDistance ) {
+			if (result > 0 && distance < bestDistance ) {
 				bestDistance = distance;
 				shadingInfo.hitObject = true;
-				shadingInfo.material = objects[j]->getMaterial();
 				shadingInfo.hitPoint = ray.origin + ray.direction * bestDistance;
-				shadingInfo.color = objects[j]->getColor();
 				shadingInfo.ray = ray;
 				normal = shadingInfo.normal;
 				localHitPoint = shadingInfo.localHitPoint;

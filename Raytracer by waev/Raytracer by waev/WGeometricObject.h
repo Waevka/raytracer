@@ -9,6 +9,7 @@ private:
 	WColor color;
 	WMaterial *material;
 public:
+	WGeometricObject();
 	WGeometricObject(WColor c);
 	~WGeometricObject();
 	WColor getColor();

@@ -41,6 +41,15 @@ WWorld::WWorld()
 	WSphere *testSphere = new WSphere(WVector3(0, 0.5, -0.5), 4, sphereColor);
 	WSphere *testSphere2 = new WSphere(WVector3(6, -7, 0), 5, sphereColor2);
 	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
+
+	WModel *testSphereModel = new WModel();
+	testSphereModel->name = "SPHERE";
+	testSphereModel->addObject(testSphere);
+
+	WModel *testSphereModel2 = new WModel();
+	testSphereModel2->name = "SPHERE2";
+	testSphereModel2-> addObject(testSphere2);
+
 	WTriangle *triangle= new WTriangle(
 		WVector3(-10,-10,0),
 		WVector3(25,10,10),
@@ -107,8 +116,8 @@ WWorld::WWorld()
 	//cout << test.toString();
 	*/
 	////////////////////////////////////////////////////////////////////////////////
-	addObject(testSphere);
-	addObject(testSphere2);
+	addObject(testSphereModel);
+	addObject(testSphereModel2);
 	//addObject(testSphere3);
 	//addObject(triangle);
 	//addObject(planetr1);
@@ -117,7 +126,8 @@ WWorld::WWorld()
 	//std::vector<WTriangle*> readTriangles = objReader.readFile("cube.obj");
 	WModel *monkey = new WModel();
 	monkey->objects = objReader.readFile("monkey.obj");
-	addObject(monkey);
+	monkey->setMaterial(triangleMat);
+	//addObject(monkey);
 
 	//for (int i = 0; i < readTriangles.size(); i++) {
 	//	readTriangles[i]->setMaterial(triangleMat);

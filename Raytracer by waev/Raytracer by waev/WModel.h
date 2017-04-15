@@ -7,9 +7,11 @@ class WModel :
 {
 public:
 	WModel();
+	WModel(std::vector<WGeometricObject*> ol);
 	~WModel();
 
 	std::vector<WGeometricObject*> objects;
+	std::string name;
 
 	virtual int Intersection(WRay &ray, float &dist, WShadingInfo &ws);
 	virtual bool shadowHit(WRay &r, float &tmin);

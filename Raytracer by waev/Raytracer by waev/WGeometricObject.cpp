@@ -1,6 +1,10 @@
 #include "WGeometricObject.h"
 
 
+WGeometricObject::WGeometricObject()
+{
+}
+
 WGeometricObject::WGeometricObject(WColor c)
 {
 	this->color = c;
