@@ -2,12 +2,13 @@
 #include <vector>
 #include <list>
 #include "WTriangle.h"
+#include "WModel.h"
 class WObjReader
 {
 public:
 	WObjReader();
 	~WObjReader();
-	std::vector<WTriangle*> readFile(int &elems);
+	std::vector<WTriangle*> readFile(std::string filename);
 private:
 	std::vector<std::string> split(const std::string &s, char delim);
 	template<typename Out>

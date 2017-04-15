@@ -16,6 +16,7 @@
 #include "WMatteMaterial.h"
 #include "WPerspectiveCamera.h"
 #include "WPointLight.h"
+#include "WModel.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -49,15 +50,15 @@ WWorld::WWorld()
 
 	//// plane
 	WTriangle *planetr1 = new WTriangle(
-		WVector3(0, -50, -50),
-		WVector3(0, -50, 15),
+		WVector3(0, -40, -40),
+		WVector3(0, -40, 15),
 		WVector3(0, 30, 15));
 	(*planetr1).normal = WVector3(1, 0, 0);
 
 	WTriangle *planetr2 = new WTriangle(
-		WVector3(0, -50, -50),
-		WVector3(0, 30, -50),
-		WVector3(0, 30, 15));
+		WVector3(0, -40, -40),
+		WVector3(0, 25, -40),
+		WVector3(0, 25, 15));
 	(*planetr2).normal = WVector3(1, 0, 0);
 	////
 
@@ -110,16 +111,18 @@ WWorld::WWorld()
 	addObject(testSphere2);
 	//addObject(testSphere3);
 	//addObject(triangle);
-	addObject(planetr1);
-	addObject(planetr2);
+	//addObject(planetr1);
+	//addObject(planetr2);
 
-	int elems;
-	std::vector<WTriangle*> readTriangles = objReader.readFile(elems);
+	//std::vector<WTriangle*> readTriangles = objReader.readFile("cube.obj");
+	WModel *monkey = new WModel();
+	monkey->triangles = objReader.readFile("monkey.obj");
+	addObject(monkey);
 
-	for (int i = 0; i < elems; i++) {
-		readTriangles[i]->setMaterial(triangleMat);
-		addObject(readTriangles[i]);
-	}
+	//for (int i = 0; i < readTriangles.size(); i++) {
+	//	readTriangles[i]->setMaterial(triangleMat);
+		//addObject(readTriangles[i]);
+	//}
 
 }
 

@@ -32,7 +32,6 @@ void WCamera::generateRays(WRay **& rays, WViewPlane &viewPlane)
 void WCamera::intersectRays(WViewPlane &viewPlane, WRay** &rays, WImage &testImage)
 {	
 	WShadingInfo shadingInfo(world);
-	shadingInfo.objectsCount = world.objects.size();
 	for (int i = 0; i < viewPlane.getWidth(); i++) {
 		for (int j = 0; j < viewPlane.getHeight(); j++) {
 
@@ -62,7 +61,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 		float bestDistance = 400.0f;
 		int result;
 
-		for (int j = 0; j < shadingInfo.objectsCount; j++) {
+		for (int j = 0; j < objects.size(); j++) {
 
 			distance = 400.0f;
 			result = objects[j]->Intersection(ray, distance, shadingInfo);

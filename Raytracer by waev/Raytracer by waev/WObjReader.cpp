@@ -21,15 +21,13 @@ WObjReader::~WObjReader()
 {
 }
 
-std::vector<WTriangle*> WObjReader::readFile(int &elems)
+std::vector<WTriangle*> WObjReader::readFile(std::string filename)
 {
 	std::ifstream input;
-	std::string filename = "cube.obj";
 	std::string text;
 	std::vector<WVector3> vertexList;
 	std::vector<WVector3> normalList;
 	std::vector<WTriangle> triangleList;
-	elems = 0;
 
 	std::vector<WTriangle*> objects;
 
@@ -47,7 +45,7 @@ std::vector<WTriangle*> WObjReader::readFile(int &elems)
 			break;
 		}
 
-		std::cout << "\n" << text;
+		//std::cout << "\n" << text;
 
 		if (text[0] == '#') {
 			continue;
@@ -62,7 +60,9 @@ std::vector<WTriangle*> WObjReader::readFile(int &elems)
 			int vertexIndices[3];
 			int normalIndices[3];
 			for (int i = 0; i < 3; i++) {
-				int ind = i * 2 + 2;
+				int ind ;
+				if (v.size() > 5) ind = i * 2 + 2;
+				else ind = i+1;
 				std::vector<std::string> v2 = split(v[ind], '//'); //TODO
 				vertexIndices[i] = stoi(v2[0]) - 1;
 				normalIndices[i] = stoi(v2[2]) - 1;
@@ -80,21 +80,32 @@ std::vector<WTriangle*> WObjReader::readFile(int &elems)
 
 			WTriangle* t = new WTriangle(v0, v1, v2, n, c);
 			objects.push_back(t);
-			elems++;
 		}
 
 		//vertex normals
 		else if ((text[0] == 'v' || text[0] == 'V') &&
 			(text[1] == 'n' || text[1] == 'N')) {
 			std::vector<std::string> v = split(text, '  ');
-			WVector3 vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
+			WVector3 vec;
+			if (v.size() > 4) {
+				WVector3 vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
+			}
+			else {
+				WVector3 vec = WVector3(stof(v[1]), stof(v[2]), stof(v[3]));
+			}
 			normalList.push_back(vec);
 		}
 
 		//geometric vertex
 		else if (text[0] == 'v' || text[0] == 'V') {
 			std::vector<std::string> v = split(text, '  ');
-			WVector3 vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
+			WVector3 vec;
+			if (v.size() > 4) {
+				WVector3 vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
+			}
+			else {
+				WVector3 vec = WVector3(stof(v[1]), stof(v[2]), stof(v[3]));
+			}
 			vertexList.push_back(vec);
 		}
 

@@ -123,6 +123,9 @@
     <ClCompile Include="WPointLight.cpp">
       <Filter>Source Files\WShading\WLights</Filter>
     </ClCompile>
+    <ClCompile Include="WModel.cpp">
+      <Filter>Source Files\WGeometricObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -202,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="WPointLight.h">
       <Filter>Source Files\WShading\WLights</Filter>
+    </ClInclude>
+    <ClInclude Include="WModel.h">
+      <Filter>Source Files\WGeometricObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

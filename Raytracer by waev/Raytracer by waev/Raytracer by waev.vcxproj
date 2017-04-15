@@ -159,6 +159,7 @@
     <ClCompile Include="WLight.cpp" />
     <ClCompile Include="WMaterial.cpp" />
     <ClCompile Include="WMatteMaterial.cpp" />
+    <ClCompile Include="WModel.cpp" />
     <ClCompile Include="WObjReader.cpp" />
     <ClCompile Include="WOrthoCamera.cpp" />
     <ClCompile Include="WPerspectiveCamera.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="WLight.h" />
     <ClInclude Include="WMaterial.h" />
     <ClInclude Include="WMatteMaterial.h" />
+    <ClInclude Include="WModel.h" />
     <ClInclude Include="WObjReader.h" />
     <ClInclude Include="WOrthoCamera.h" />
     <ClInclude Include="WPerspectiveCamera.h" />
