@@ -24,7 +24,6 @@ public:
 	float t;
 	WVector3 direction;
 	WWorld &world;
-	int objectsCount;
 
 	WShadingInfo(const WShadingInfo &si);
 
