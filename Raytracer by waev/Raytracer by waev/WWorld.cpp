@@ -39,7 +39,7 @@ WWorld::WWorld()
 	WColor sphereColor3(0.2f, 0.4f, 0.8f);
 
 	WSphere *testSphere = new WSphere(WVector3(0, 0.5, -0.5), 4, sphereColor);
-	WSphere *testSphere2 = new WSphere(WVector3(6, -8, 0), 7, sphereColor2);
+	WSphere *testSphere2 = new WSphere(WVector3(6, -8, 0), 6, sphereColor2);
 	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
 
 	WModel *testSphereModel = new WModel();
@@ -122,8 +122,8 @@ WWorld::WWorld()
 	////////////////////////////////////////////////////////////////////////////////
 
 	//testSphereModel->addObject(testSphere2);
-	addObject(testSphereModel);
 	addObject(testSphereModel2);
+	addObject(testSphereModel);
 	//addObject(triangle);
 	//addObject(planetr1);
 	//addObject(planetr2);

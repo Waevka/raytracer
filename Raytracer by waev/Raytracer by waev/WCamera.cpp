@@ -63,6 +63,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 		WMaterial *material = NULL;
 		WVector3 normal;
 		WVector3 localHitPoint;
+		WVector3 hitPoint;
 
 		for (int j = 0; j < objects.size(); j++) {
 
@@ -72,7 +73,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 				normal = shadingInfo.normal;
 				material = shadingInfo.material;
 				localHitPoint = shadingInfo.localHitPoint;
-				shadingInfo.hitPoint = ray.origin + (ray.direction * bestDistance);
+				hitPoint = ray.origin + (ray.direction * bestDistance);
 				anythingForThisPixelFound = true;
 			}
 		}
@@ -82,7 +83,9 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 			shadingInfo.material = material;
 			shadingInfo.normal = normal;
 			shadingInfo.localHitPoint = localHitPoint;
+			shadingInfo.hitPoint = hitPoint;
 			pixelColor = shadingInfo.material->shade(shadingInfo);
+
 			//pixelColor = static_cast<WMatteMaterial*>(shadingInfo.material)->getCd();
 		}
 		else {
