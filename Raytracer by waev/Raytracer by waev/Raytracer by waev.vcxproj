@@ -153,6 +153,7 @@
     <ClCompile Include="WBRDF.cpp" />
     <ClCompile Include="WCamera.cpp" />
     <ClCompile Include="WColor.cpp" />
+    <ClCompile Include="WConstantColor.cpp" />
     <ClCompile Include="WGeometricObject.cpp" />
     <ClCompile Include="WGlossySpecular.cpp" />
     <ClCompile Include="WImage.cpp" />
@@ -171,6 +172,9 @@
     <ClCompile Include="WRay.cpp" />
     <ClCompile Include="WShadingInfo.cpp" />
     <ClCompile Include="WSphere.cpp" />
+    <ClCompile Include="WSV_Lambertian.cpp" />
+    <ClCompile Include="WSV_MatteMaterial.cpp" />
+    <ClCompile Include="WTexture.cpp" />
     <ClCompile Include="WTriangle.cpp" />
     <ClCompile Include="WUtilities.cpp" />
     <ClCompile Include="WVector2.cpp" />
@@ -185,6 +189,7 @@
     <ClInclude Include="WBRDF.h" />
     <ClInclude Include="WCamera.h" />
     <ClInclude Include="WColor.h" />
+    <ClInclude Include="WConstantColor.h" />
     <ClInclude Include="WGeometricObject.h" />
     <ClInclude Include="WGlossySpecular.h" />
     <ClInclude Include="WImage.h" />
@@ -203,6 +208,9 @@
     <ClInclude Include="WRay.h" />
     <ClInclude Include="WShadingInfo.h" />
     <ClInclude Include="WSphere.h" />
+    <ClInclude Include="WSV_Lambertian.h" />
+    <ClInclude Include="WSV_MatteMaterial.h" />
+    <ClInclude Include="WTexture.h" />
     <ClInclude Include="WTriangle.h" />
     <ClInclude Include="WUtilities.h" />
     <ClInclude Include="WVector2.h" />

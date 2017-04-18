@@ -40,6 +40,9 @@
     <Filter Include="Source Files\WShading\WBRDF">
       <UniqueIdentifier>{be4f5116-7500-44b3-89ec-c5cd78ac1732}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\WShading\WTextures">
+      <UniqueIdentifier>{db8d8f00-26f8-4e1f-ac7d-ee1f4f71c22e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -135,6 +138,18 @@
     <ClCompile Include="WGlossySpecular.cpp">
       <Filter>Source Files\WShading\WBRDF</Filter>
     </ClCompile>
+    <ClCompile Include="WTexture.cpp">
+      <Filter>Source Files\WShading\WTextures</Filter>
+    </ClCompile>
+    <ClCompile Include="WConstantColor.cpp">
+      <Filter>Source Files\WShading\WTextures</Filter>
+    </ClCompile>
+    <ClCompile Include="WSV_Lambertian.cpp">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClCompile>
+    <ClCompile Include="WSV_MatteMaterial.cpp">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -226,6 +241,18 @@
     </ClInclude>
     <ClInclude Include="WGlossySpecular.h">
       <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="WTexture.h">
+      <Filter>Source Files\WShading\WTextures</Filter>
+    </ClInclude>
+    <ClInclude Include="WConstantColor.h">
+      <Filter>Source Files\WShading\WTextures</Filter>
+    </ClInclude>
+    <ClInclude Include="WSV_Lambertian.h">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="WSV_MatteMaterial.h">
+      <Filter>Source Files\WShading\WMaterials</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
