@@ -33,6 +33,7 @@ WWorld::WWorld()
 	WPointLight *pointlight1 = new WPointLight();
 	pointlight1->setLocation(WVector3(12,-9.5,5.5f));
 	pointlight1->scaleRadiance(3.0f);
+	pointlight1->setColor(WColor(1.0f, 0.0, 0.0));
 	addLight(pointlight1);
 
 	///////////////
@@ -149,6 +150,12 @@ WWorld::WWorld()
 	//	readTriangles[i]->setMaterial(triangleMat);
 		//addObject(readTriangles[i]);
 	//}
+	WModel *flatPlane = new WModel();
+	flatPlane->objects = objReader.readFile("blenderflat.obj");
+	flatPlane->name = "FlatPlane";
+	flatPlane->setMaterial(triangleMat);
+	addObject(flatPlane);
+
 
 }
 

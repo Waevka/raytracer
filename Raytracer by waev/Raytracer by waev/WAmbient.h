@@ -15,6 +15,5 @@ public:
 	virtual bool castsShadows();
 private:
 	float ls;
-	WColor color;
 };
 

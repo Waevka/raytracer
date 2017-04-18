@@ -2,7 +2,7 @@
 
 
 
-WAmbient::WAmbient() : WLight(), ls(1.0f), color(1.0f)
+WAmbient::WAmbient() : WLight(), ls(1.0f)
 {
 }
 

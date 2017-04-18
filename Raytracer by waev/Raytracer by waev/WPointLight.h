@@ -19,7 +19,6 @@ public:
 	virtual bool castsShadows();
 private:
 	float ls;
-	WColor color;
 	WVector3 location;
 };
 
