@@ -75,8 +75,12 @@ WColor clampColor(const WColor & c)
 
 	if (c.r > 1.0 || c.g > 1.0 || c.b > 1.0) {
 		clamped.r = 1.0;
-		clamped.g = 1.0;
-		clamped.b = 1.0;
+		clamped.g = 0.0;
+		clamped.b = 0.0;
+		if (clamped.a < 0.00001) {
+			std::cout << "\n Alpha warning";
+		}
+		//std::cout << "\n Warning color: " << clamped.r << ", " << clamped.g << ", " << clamped.b << std::endl;
 	}
 
 	return clamped;

@@ -85,13 +85,13 @@ void WModel::addObject(WGeometricObject * t)
 void WModel::setMaterial(WMaterial * m)
 {
 	for (int i = 0; i < objects.size(); i++) {
-		WPhong *triangleMat = new WPhong();
+		/*WPhong *triangleMat = new WPhong();
 		triangleMat->setKa(0.25f);
 		triangleMat->setKd(0.65f);
 		triangleMat->setKs(0.2f);
-		triangleMat->setExp(200);
-		triangleMat->setCd(randomColor());
-		objects[i]->setMaterial(triangleMat);
+		triangleMat->setExp(5);
+		triangleMat->setCd(randomColor());*/
+		objects[i]->setMaterial(m);
 	}
 }
 

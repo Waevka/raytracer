@@ -78,7 +78,7 @@ WWorld::WWorld()
 	triangleMat->setKd(0.65f);
 	triangleMat->setKs(0.2f);
 	triangleMat->setCd(WColor(1,1,0));
-	triangleMat->setExp(20);
+	triangleMat->setExp(10);
 	WMatteMaterial *sphereMat = new WMatteMaterial();
 	sphereMat->setKa(0.25f);
 	sphereMat->setKd(0.65f);
@@ -86,9 +86,11 @@ WWorld::WWorld()
 	//sphereMat->setExp(200);
 	sphereMat->setCd(WColor(1, 0.25f, 0));
 	WPhong *monkeyMat = new WPhong();
-	triangleMat->setKa(0.25f);
-	triangleMat->setKd(0.65f);
-	triangleMat->setCd(WColor(0.5, 0.5, 1));
+	monkeyMat->setKa(0.25f);
+	monkeyMat->setKd(0.65f);
+	monkeyMat->setCd(WColor(0.5, 0.5, 1));
+	monkeyMat->setKs(0.2f);
+	monkeyMat->setExp(10);
 
 	(*triangle).setMaterial(triangleMat);
 	(*testSphere).setMaterial(triangleMat);

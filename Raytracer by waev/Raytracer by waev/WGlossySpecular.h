@@ -1,5 +1,6 @@
 #pragma once
 #include "WBRDF.h"
+#define invPI 0.31830988618379067154
 class WGlossySpecular :
 	public WBRDF
 {

@@ -4,7 +4,7 @@
 
 WColor WGlossySpecular::f(const WShadingInfo & si, const WVector3 & wi, const WVector3 & wo) const
 {	
-	WColor c;
+	WColor c(0.0, 0.0, 0.0);
 	float ndotwi = (float)si.normal.dot(wi);
 	WVector3 r(-wi + si.normal * 2.0 * ndotwi);
 	float rdotwo = (float)r.dot(wo);
