@@ -39,7 +39,7 @@ void WCamera::intersectRays(WViewPlane &viewPlane, WRay** &rays, WImage &testIma
 				std::cout << "hui";
 			}
 			WColor pixelColor = intersectSingleRay(rays[i][j], shadingInfo, i, j, viewPlane, 0);
-
+			pixelColor = correctColor(pixelColor);
 			testImage.setPixel(pixelColor, i, j);
 		}
 	}

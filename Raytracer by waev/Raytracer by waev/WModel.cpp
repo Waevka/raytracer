@@ -1,5 +1,5 @@
 #include "WModel.h"
-#include "WMatteMaterial.h"
+#include "WPhong.h"
 #include "WUtilities.h"
 
 
@@ -85,9 +85,11 @@ void WModel::addObject(WGeometricObject * t)
 void WModel::setMaterial(WMaterial * m)
 {
 	for (int i = 0; i < objects.size(); i++) {
-		WMatteMaterial *triangleMat = new WMatteMaterial();
+		WPhong *triangleMat = new WPhong();
 		triangleMat->setKa(0.25f);
 		triangleMat->setKd(0.65f);
+		triangleMat->setKs(0.2f);
+		triangleMat->setExp(200);
 		triangleMat->setCd(randomColor());
 		objects[i]->setMaterial(triangleMat);
 	}

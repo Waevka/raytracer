@@ -8,6 +8,7 @@ WViewPlane::WViewPlane(float ps, int w, int h, WRay r)
 	width = w;
 	height = h;
 	ray = r;
+	showOutOfGamut = false;
 }
 
 WViewPlane::WViewPlane()
@@ -15,6 +16,7 @@ WViewPlane::WViewPlane()
 	pixelSize = 0.5f;
 	width = 10;
 	height = 10;
+	showOutOfGamut = false;
 }
 
 

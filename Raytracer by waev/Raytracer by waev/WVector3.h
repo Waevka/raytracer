@@ -26,6 +26,7 @@ public:
 	void normalize();
 	WVector3 normalizeProduct();
 	float dot(WVector3 &v);
+	float dot(const WVector3 &v) const;
 	WVector3 cross(WVector3 &v);
 	WVector3 reflect(WVector3 &normal);
 	WVector3 magProduct(WVector3 &v, float f);
@@ -36,10 +37,13 @@ public:
 
 	//operators
 	WVector3 operator* (float f);
+	WVector3 operator* (const float &f) const;
 	WVector3 operator* (WVector3 &v);
+	WVector3 operator* (const WVector3 &v) const;
 	WVector3 operator+ (WVector3 &v);
 	WVector3 operator- (WVector3 &v);
 	WVector3 operator- ();
+	WVector3 operator- () const;
 	bool operator== (WVector3 &v);
 	bool operator!= (WVector3 &v);
 	WVector3 operator/ (float f);

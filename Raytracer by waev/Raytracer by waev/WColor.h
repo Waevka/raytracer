@@ -18,5 +18,6 @@ public:
 	WColor operator* (const WColor &wc);
 	WColor operator+(const WColor &wc);
 	WColor operator* (const float f) const;
+	WColor operator/(float f) const;
 };
 

@@ -126,6 +126,11 @@ float WVector3::dot(WVector3 &v)
 	return (x * v.x + y * v.y + z * v.z);
 }
 
+float WVector3::dot(const WVector3 & v) const
+{
+	return (x * v.x + y * v.y + z * v.z);
+}
+
 WVector3 WVector3::cross(WVector3 &v)
 {
 	WVector3 nv(
@@ -185,7 +190,19 @@ WVector3 WVector3::operator* (float f)
 	return v;
 }
 
+WVector3 WVector3::operator*(const float & f) const
+{
+	WVector3 v(x * f, y * f, z * f);
+	return v;
+}
+
 WVector3 WVector3::operator*(WVector3 &v)
+{
+	WVector3 v2(x * v.x, y * v.y, z * v.z);
+	return v2;
+}
+
+WVector3 WVector3::operator*(const WVector3 & v) const
 {
 	WVector3 v2(x * v.x, y * v.y, z * v.z);
 	return v2;
@@ -204,6 +221,12 @@ WVector3 WVector3::operator-(WVector3 &v)
 }
 
 WVector3 WVector3::operator-()
+{
+	WVector3 v2(-x, -y, -z);
+	return v2;
+}
+
+WVector3 WVector3::operator-() const
 {
 	WVector3 v2(-x, -y, -z);
 	return v2;

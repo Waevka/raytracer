@@ -16,7 +16,9 @@
 #include "WMatteMaterial.h"
 #include "WPerspectiveCamera.h"
 #include "WPointLight.h"
+#include "WMatteMaterial.h"
 #include "WModel.h"
+#include "WPhong.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -71,15 +73,19 @@ WWorld::WWorld()
 	(*planetr2).normal = WVector3(1, 0, 0);
 	////
 
-	WMatteMaterial *triangleMat = new WMatteMaterial();
+	WPhong *triangleMat = new WPhong();
 	triangleMat->setKa(0.25f);
 	triangleMat->setKd(0.65f);
+	triangleMat->setKs(0.2f);
 	triangleMat->setCd(WColor(1,1,0));
+	triangleMat->setExp(20);
 	WMatteMaterial *sphereMat = new WMatteMaterial();
-	sphereMat->setKa(0.4f);
-	sphereMat->setKd(0.75f);
+	sphereMat->setKa(0.25f);
+	sphereMat->setKd(0.65f);
+	//sphereMat->setKs(0.2f);
+	//sphereMat->setExp(200);
 	sphereMat->setCd(WColor(1, 0.25f, 0));
-	WMatteMaterial *monkeyMat = new WMatteMaterial();
+	WPhong *monkeyMat = new WPhong();
 	triangleMat->setKa(0.25f);
 	triangleMat->setKd(0.65f);
 	triangleMat->setCd(WColor(0.5, 0.5, 1));

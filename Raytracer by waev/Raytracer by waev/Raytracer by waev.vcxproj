@@ -154,6 +154,7 @@
     <ClCompile Include="WCamera.cpp" />
     <ClCompile Include="WColor.cpp" />
     <ClCompile Include="WGeometricObject.cpp" />
+    <ClCompile Include="WGlossySpecular.cpp" />
     <ClCompile Include="WImage.cpp" />
     <ClCompile Include="WImageWriter.cpp" />
     <ClCompile Include="WLambertian.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="WObjReader.cpp" />
     <ClCompile Include="WOrthoCamera.cpp" />
     <ClCompile Include="WPerspectiveCamera.cpp" />
+    <ClCompile Include="WPhong.cpp" />
     <ClCompile Include="WPlane.cpp" />
     <ClCompile Include="WPointLight.cpp" />
     <ClCompile Include="WRay.cpp" />
@@ -184,6 +186,7 @@
     <ClInclude Include="WCamera.h" />
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WGeometricObject.h" />
+    <ClInclude Include="WGlossySpecular.h" />
     <ClInclude Include="WImage.h" />
     <ClInclude Include="WImageWriter.h" />
     <ClInclude Include="WLambertian.h" />
@@ -194,6 +197,7 @@
     <ClInclude Include="WObjReader.h" />
     <ClInclude Include="WOrthoCamera.h" />
     <ClInclude Include="WPerspectiveCamera.h" />
+    <ClInclude Include="WPhong.h" />
     <ClInclude Include="WPlane.h" />
     <ClInclude Include="WPointLight.h" />
     <ClInclude Include="WRay.h" />

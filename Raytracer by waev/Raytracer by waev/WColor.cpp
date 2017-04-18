@@ -80,3 +80,9 @@ WColor WColor::operator*(const float f) const
 	WColor c(r * f, g * f, b * f);
 	return c;
 }
+
+WColor WColor::operator/(float f) const
+{
+	WColor c(r / f, g / f, b / f);
+	return c;
+}

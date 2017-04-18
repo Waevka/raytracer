@@ -30,3 +30,54 @@ WColor randomColor()
 	float randfloat3 = (float)(rand() % 99 + 1) / 100.0f;
 	return WColor(randfloat1, randfloat2, randfloat3);
 }
+
+WColor correctColor(WColor c)
+{	
+	float invGamma = 1.0f;
+	WColor corrected;
+	//if(viewplane.outofgamut)
+	corrected = maxColorToOne(c);
+	return corrected;
+}
+
+inline float max(float x0, float x1)
+{
+	return((x0 > x1) ? x0 : x1);
+}
+
+WColor maxColorToOne(const WColor & c)
+{
+	float maxVal = max(c.r, max(c.g, c.b));
+
+	WColor newColor(c);
+	if (maxVal > 1.0) {
+		if (c.r > 1.0)
+			newColor.r = 1.0f;
+		if (c.g > 1.0)
+			newColor.g = 1.0f;
+		if (c.b > 1.0f)
+			newColor.b = 1.0f;
+	}
+
+	
+	/*if (maxVal > 1.0) {
+		return (c / maxVal);
+	}
+	else {
+		return (c);
+	}*/
+	return newColor;
+}
+
+WColor clampColor(const WColor & c)
+{
+	WColor clamped(c);
+
+	if (c.r > 1.0 || c.g > 1.0 || c.b > 1.0) {
+		clamped.r = 1.0;
+		clamped.g = 1.0;
+		clamped.b = 1.0;
+	}
+
+	return clamped;
+}

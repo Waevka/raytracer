@@ -8,6 +8,7 @@ private:
 	int width;
 	int height;
 	WRay ray;
+	bool showOutOfGamut;
 public:
 	WViewPlane(float ps, int w, int h, WRay r);
 	WViewPlane();

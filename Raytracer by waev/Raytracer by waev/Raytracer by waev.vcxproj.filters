@@ -129,6 +129,12 @@
     <ClCompile Include="WBoundingBox.cpp">
       <Filter>Source Files\WGeometricObjects</Filter>
     </ClCompile>
+    <ClCompile Include="WPhong.cpp">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="WGlossySpecular.cpp">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -214,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="WBoundingBox.h">
       <Filter>Source Files\WGeometricObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="WPhong.h">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="WGlossySpecular.h">
+      <Filter>Source Files\WShading\WBRDF</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
