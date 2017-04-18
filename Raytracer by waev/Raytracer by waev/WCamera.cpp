@@ -138,7 +138,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 WCamera::WCamera(std::string name, WWorld &wr) : world(wr)
 {
 	this->name = name;
-	aliasingLevel = 5;
+	aliasingLevel = 2;
 }
 
 

@@ -36,6 +36,12 @@ WWorld::WWorld()
 	pointlight1->setColor(WColor(1.0f, 0.0, 0.0));
 	addLight(pointlight1);
 
+	WPointLight *pointlight2 = new WPointLight();
+	pointlight2->setLocation(WVector3(10, -20.5, 9.5f));
+	pointlight2->scaleRadiance(3.0f);
+	pointlight2->setColor(WColor(0.2f, 0.2f, 1.0f));
+	addLight(pointlight2);
+
 	///////////////
 	WColor sphereColor(0.9f, 0.5f, 0.5f);
 	WColor sphereColor2(0.4f, 0.8f, 0.2f);
@@ -139,7 +145,7 @@ WWorld::WWorld()
 
 	//std::vector<WTriangle*> readTriangles = objReader.readFile("cube.obj");
 	WModel *monkey = new WModel();
-	monkey->objects = objReader.readFile("blendercube2.obj");
+	monkey->objects = objReader.readFile("monkeyx8.obj");
 	monkey->name = "MONKEY";
 	monkey->setMaterial(monkeyMat);
 	//monkey->addObject(testSphere2);
@@ -176,7 +182,7 @@ void WWorld::draw()
 	ortho.draw(TESTSIZE_W, TESTSIZE_H, objects, viewPlaneOrtho);*/
 
 	//persp - draw
-	WRay rayPersp(WVector3(20, -10, 30), WVector3(0.5f, 0.0f, -1.0f));
+	WRay rayPersp(WVector3(10, -10, 30), WVector3(0.5f, 0.0f, -1.0f));
 	WViewPlane viewPlanePersp = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayPersp);
 	persp.setDistance(-10);
 	persp.draw(TESTSIZE_W, TESTSIZE_H, viewPlanePersp);
