@@ -1,5 +1,6 @@
 #include "WModel.h"
-
+#include "WMatteMaterial.h"
+#include "WUtilities.h"
 
 
 WModel::WModel() : WGeometricObject(WColor(1.0f, 1.0f, 1.0f, 1.0f)), boundingBox(NULL)
@@ -21,6 +22,7 @@ int WModel::Intersection(WRay & ray, float & dist, WShadingInfo & ws)
 		return 0;
 
 	WVector3 localHitPoint;
+	WVector3 normal;
 	int bestObject = 0;
 	int anythingForThisPixelFound = 0;
 	float distance = 400.0f;
@@ -29,23 +31,27 @@ int WModel::Intersection(WRay & ray, float & dist, WShadingInfo & ws)
 
 	for (int j = 0; j < objects.size(); j++) {
 
-		distance = 400.0f;
 		result = objects[j]->Intersection(ray, distance, ws);
-		if (result > 1 && distance < bestDistance) {
+		if (result > 0 && distance < bestDistance) {
 			bestDistance = distance;
 			bestObject = j;
+			ws.material = objects[bestObject]->getMaterial();
+			ws.color = objects[bestObject]->getColor();
+			ws.hitPoint = ray.origin + (ray.direction * bestDistance);
+			localHitPoint = ws.localHitPoint;
+			normal = ws.normal;
 			anythingForThisPixelFound = 1;
 		}
 	}
 
-	if (anythingForThisPixelFound && bestDistance < dist) {
+	if (anythingForThisPixelFound) {
 		ws.hitObject = true;
-		ws.material = objects[bestObject]->getMaterial();
-		ws.hitPoint = ray.origin + ray.direction * bestDistance;
-		ws.color = objects[bestObject]->getColor();
 		ws.ray = ray;
+		ws.normal = normal;
+		ws.localHitPoint = localHitPoint;
 		ws.t = bestDistance;
 		dist = bestDistance;
+		ws.name = name;
 	}
 
 	return anythingForThisPixelFound;
@@ -53,7 +59,20 @@ int WModel::Intersection(WRay & ray, float & dist, WShadingInfo & ws)
 
 bool WModel::shadowHit(WRay & r, float & tmin)
 {
-	return false;
+	//if (!getBoundingBox()->hit(r))
+	//	return false;
+
+	float tmin2 = 400.0f;
+	bool hit = false;
+
+	for (int i = 0; i < objects.size(); i++) {
+		if (objects[i]->shadowHit(r, tmin2) && tmin2 < tmin) {
+			tmin = tmin2;
+			hit = true;
+		}
+	}
+
+	return hit;
 }
 
 void WModel::addObject(WGeometricObject * t)
@@ -66,7 +85,11 @@ void WModel::addObject(WGeometricObject * t)
 void WModel::setMaterial(WMaterial * m)
 {
 	for (int i = 0; i < objects.size(); i++) {
-		objects[i]->setMaterial(m);
+		WMatteMaterial *triangleMat = new WMatteMaterial();
+		triangleMat->setKa(0.25f);
+		triangleMat->setKd(0.65f);
+		triangleMat->setCd(randomColor());
+		objects[i]->setMaterial(triangleMat);
 	}
 }
 

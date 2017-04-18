@@ -76,7 +76,7 @@ std::vector<WGeometricObject*> WObjReader::readFile(std::string filename)
 			WVector3 v1 = WVector3(vertexList[v1ind]);
 			WVector3 v2 = WVector3(vertexList[v2ind]);
 			WVector3 n = WVector3(normalList[vnind]);
-			WColor c = randomColor();
+			WColor c;
 
 			WTriangle* t = new WTriangle(v0, v1, v2, n, c);
 			objects.push_back(t);
@@ -88,10 +88,10 @@ std::vector<WGeometricObject*> WObjReader::readFile(std::string filename)
 			std::vector<std::string> v = split(text, '  ');
 			WVector3 vec;
 			if (v.size() > 4) {
-				WVector3 vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
+				vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
 			}
 			else {
-				WVector3 vec = WVector3(stof(v[1]), stof(v[2]), stof(v[3]));
+				vec = WVector3(stof(v[1]), stof(v[2]), stof(v[3]));
 			}
 			normalList.push_back(vec);
 		}
@@ -101,10 +101,10 @@ std::vector<WGeometricObject*> WObjReader::readFile(std::string filename)
 			std::vector<std::string> v = split(text, '  ');
 			WVector3 vec;
 			if (v.size() > 4) {
-				WVector3 vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
+				vec = WVector3(stof(v[2]), stof(v[4]), stof(v[6]));
 			}
 			else {
-				WVector3 vec = WVector3(stof(v[1]), stof(v[2]), stof(v[3]));
+				vec = WVector3(stof(v[1]), stof(v[2]), stof(v[3]));
 			}
 			vertexList.push_back(vec);
 		}
@@ -123,10 +123,3 @@ std::vector<std::string> WObjReader::split(const std::string &s, char delim) {
 	return elems;
 }
 
-WColor WObjReader::randomColor()
-{	
-	float randfloat1 = (float)(rand() % 99 + 1) / 100.0f;
-	float randfloat2 = (float)(rand() % 99 + 1) / 100.0f;
-	float randfloat3 = (float)(rand() % 99 + 1) / 100.0f;
-	return WColor(randfloat1, randfloat2, randfloat3);
-}

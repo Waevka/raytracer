@@ -6,3 +6,4 @@ WVector3 calculateIntersectionPoint(float distance, WRay r);
 
 WColor getBackgroundCheckers(int x, int y, int width, int height);
 
+WColor randomColor();

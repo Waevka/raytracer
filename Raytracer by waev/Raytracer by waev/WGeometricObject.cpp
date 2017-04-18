@@ -27,7 +27,7 @@ WMaterial* WGeometricObject::getMaterial()
 }
 
 void WGeometricObject::setMaterial(WMaterial *m)
-{
+{	
 	material = m;
 }
 

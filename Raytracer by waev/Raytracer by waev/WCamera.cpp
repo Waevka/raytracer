@@ -1,6 +1,7 @@
 #include "WCamera.h"
 #include "WUtilities.h"
 #include "WWorld.h"
+#include "WMatteMaterial.h"
 #include <iostream>
 
 void WCamera::draw(int TESTSIZE_W, int TESTSIZE_H, WViewPlane &viewPlane)
@@ -34,7 +35,9 @@ void WCamera::intersectRays(WViewPlane &viewPlane, WRay** &rays, WImage &testIma
 	WShadingInfo shadingInfo(world);
 	for (int i = 0; i < viewPlane.getWidth(); i++) {
 		for (int j = 0; j < viewPlane.getHeight(); j++) {
-
+			if (i == 367 && j == 358) {
+				std::cout << "hui";
+			}
 			WColor pixelColor = intersectSingleRay(rays[i][j], shadingInfo, i, j, viewPlane, 0);
 
 			testImage.setPixel(pixelColor, i, j);
@@ -50,8 +53,6 @@ WColor WCamera::rayAliasing(int currentLevel)
 WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
 {	
 	WColor pixelColor;
-	WVector3 normal;
-	WVector3 localHitPoint;
 	std::vector<WGeometricObject*> &objects = shadingInfo.world.objects;
 	if (aliasingLevel >= this->aliasingLevel) {
 
@@ -59,27 +60,30 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 		float distance = 400.0f;
 		float bestDistance = 400.0f;
 		int result;
+		WMaterial *material = NULL;
+		WVector3 normal;
+		WVector3 localHitPoint;
 
 		for (int j = 0; j < objects.size(); j++) {
 
-			distance = 400.0f;
 			result = objects[j]->Intersection(ray, distance, shadingInfo);
 			if (result > 0 && distance < bestDistance ) {
 				bestDistance = distance;
-				shadingInfo.hitObject = true;
-				shadingInfo.hitPoint = ray.origin + ray.direction * bestDistance;
-				shadingInfo.ray = ray;
 				normal = shadingInfo.normal;
+				material = shadingInfo.material;
 				localHitPoint = shadingInfo.localHitPoint;
+				shadingInfo.hitPoint = ray.origin + (ray.direction * bestDistance);
 				anythingForThisPixelFound = true;
 			}
 		}
 
 		if (anythingForThisPixelFound) {
 			shadingInfo.t = bestDistance;
-			shadingInfo.localHitPoint = localHitPoint;
+			shadingInfo.material = material;
 			shadingInfo.normal = normal;
+			shadingInfo.localHitPoint = localHitPoint;
 			pixelColor = shadingInfo.material->shade(shadingInfo);
+			//pixelColor = static_cast<WMatteMaterial*>(shadingInfo.material)->getCd();
 		}
 		else {
 			pixelColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());

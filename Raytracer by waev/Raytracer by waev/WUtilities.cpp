@@ -22,3 +22,11 @@ WColor getBackgroundCheckers(int x, int y, int width, int height)
 	float sliceVal = 1.0f / 6;
 	return WColor(sliceVal * sliceX, sliceVal * sliceY, 0.5);
 }
+
+WColor randomColor()
+{
+	float randfloat1 = (float)(rand() % 99 + 1) / 100.0f;
+	float randfloat2 = (float)(rand() % 99 + 1) / 100.0f;
+	float randfloat3 = (float)(rand() % 99 + 1) / 100.0f;
+	return WColor(randfloat1, randfloat2, randfloat3);
+}

@@ -24,6 +24,7 @@ public:
 	float t;
 	WVector3 direction;
 	WWorld &world;
+	std::string name;
 
 	WShadingInfo(const WShadingInfo &si);
 

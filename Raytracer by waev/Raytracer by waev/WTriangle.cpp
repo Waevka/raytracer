@@ -95,15 +95,14 @@ int WTriangle::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 	double e3 = a*p - b*r + d*s;
 	double t = e3 * inv_denom;
 
-	if (t < 0.000001) {
+	if (t < 0.00001) {
 		hit = 0;
 		return hit;
 	}
 
-	dist = (float)t;
 	ws.normal = normal;
 	ws.localHitPoint = ray.origin + ray.direction * (float)t;
-
+	dist = (float)t;
 	return hit;
 }
 

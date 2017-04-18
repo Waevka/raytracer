@@ -29,7 +29,7 @@ WWorld::WWorld()
 	/////////////// Lights
 
 	WPointLight *pointlight1 = new WPointLight();
-	pointlight1->setLocation(WVector3(1,-0.5,11.5f));
+	pointlight1->setLocation(WVector3(12,-9.5,5.5f));
 	pointlight1->scaleRadiance(3.0f);
 	addLight(pointlight1);
 
@@ -39,7 +39,7 @@ WWorld::WWorld()
 	WColor sphereColor3(0.2f, 0.4f, 0.8f);
 
 	WSphere *testSphere = new WSphere(WVector3(0, 0.5, -0.5), 4, sphereColor);
-	WSphere *testSphere2 = new WSphere(WVector3(6, -7, 0), 5, sphereColor2);
+	WSphere *testSphere2 = new WSphere(WVector3(6, -8, 0), 7, sphereColor2);
 	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
 
 	WModel *testSphereModel = new WModel();
@@ -79,6 +79,10 @@ WWorld::WWorld()
 	sphereMat->setKa(0.4f);
 	sphereMat->setKd(0.75f);
 	sphereMat->setCd(WColor(1, 0.25f, 0));
+	WMatteMaterial *monkeyMat = new WMatteMaterial();
+	triangleMat->setKa(0.25f);
+	triangleMat->setKd(0.65f);
+	triangleMat->setCd(WColor(0.5, 0.5, 1));
 
 	(*triangle).setMaterial(triangleMat);
 	(*testSphere).setMaterial(triangleMat);
@@ -116,19 +120,23 @@ WWorld::WWorld()
 	//cout << test.toString();
 	*/
 	////////////////////////////////////////////////////////////////////////////////
+
+	//testSphereModel->addObject(testSphere2);
 	addObject(testSphereModel);
 	addObject(testSphereModel2);
-	//addObject(testSphere3);
 	//addObject(triangle);
 	//addObject(planetr1);
 	//addObject(planetr2);
 
 	//std::vector<WTriangle*> readTriangles = objReader.readFile("cube.obj");
 	WModel *monkey = new WModel();
-	monkey->objects = objReader.readFile("monkey.obj");
-	monkey->setMaterial(triangleMat);
-	//addObject(monkey);
-
+	monkey->objects = objReader.readFile("blendercube2.obj");
+	monkey->name = "MONKEY";
+	monkey->setMaterial(monkeyMat);
+	//monkey->addObject(testSphere2);
+	//monkey->addObject(testSphere);
+	addObject(monkey);
+	//addObject(testSphereModel);
 	//for (int i = 0; i < readTriangles.size(); i++) {
 	//	readTriangles[i]->setMaterial(triangleMat);
 		//addObject(readTriangles[i]);
