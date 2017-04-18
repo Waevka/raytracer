@@ -59,14 +59,15 @@ int WModel::Intersection(WRay & ray, float & dist, WShadingInfo & ws)
 
 bool WModel::shadowHit(WRay & r, float & tmin)
 {
-	//if (!getBoundingBox()->hit(r))
-	//	return false;
+	if (!getBoundingBox()->hit(r))
+		return false;
 
 	float tmin2 = 400.0f;
 	bool hit = false;
 
 	for (int i = 0; i < objects.size(); i++) {
-		if (objects[i]->shadowHit(r, tmin2) && tmin2 < tmin) {
+		bool result = objects[i]->shadowHit(r, tmin2);
+		if (result && tmin2 < tmin) {
 			tmin = tmin2;
 			hit = true;
 		}

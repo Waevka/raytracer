@@ -33,7 +33,7 @@ void WPointLight::setLocation(WVector3 v)
 
 bool WPointLight::isInShadows(WRay & r, WShadingInfo &si)
 {
-	float t;
+	float t = 400.0f;
 	float d = location.distance(r.origin);
 	WWorld &w = si.world;
 	for (int j = 0; j < w.objects.size();j++) {

@@ -24,8 +24,18 @@ WColor WPhong::shade(WShadingInfo & si)
 		float ndotwi = (float)si.normal.dot(wi);
 	
 		if (ndotwi > 0.0) {
-			L = L + (diffuse->f(si, wo, wi) + specular->f(si, wo, wi)) * 
-				si.world.lights[j]->L(si) * ndotwi;
+			bool isInShadow = false;
+
+			if (si.world.lights[j]->castsShadows()) {
+				WRay shadowRay(si.hitPoint, wi);
+				isInShadow = si.world.lights[j]->isInShadows(shadowRay, si);
+			}
+			if (!isInShadow) {
+				L = L + (diffuse->f(si, wo, wi) + specular->f(si, wo, wi)) *
+					si.world.lights[j]->L(si) * ndotwi;
+			}
+
+
 		}
 	}
 
