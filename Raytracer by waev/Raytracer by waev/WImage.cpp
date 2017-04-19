@@ -16,6 +16,20 @@ WImage::WImage(int width, int height)
 	}
 }
 
+WImage::WImage()
+{
+	this->width = 100;
+	this->height = 100;
+
+	this->image = new WColor**[width];
+	for (int i = 0; i < width; i++) {
+		this->image[i] = new WColor*[height];
+		for (int j = 0; j < height; j++) {
+			this->image[i][j] = new WColor();
+		}
+	}
+}
+
 
 WImage::~WImage()
 {

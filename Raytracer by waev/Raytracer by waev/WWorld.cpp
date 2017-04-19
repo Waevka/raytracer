@@ -134,8 +134,12 @@ WWorld::WWorld()
 	//test = test.reflect(norm);
 	//cout << test.toString();
 	*/
-	////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////TEXTURES///////////////////////////////////////
 
+	WImage *texture1 = imageWriter.readImage(1, 1, "20minlol.tga");
+	imageWriter.writeImage(*texture1, 600, 500, "pupa.tga");
+
+	/////////////////////////////////////////
 	//testSphereModel->addObject(testSphere2);
 	addObject(testSphereModel2);
 	addObject(testSphereModel);
@@ -150,7 +154,7 @@ WWorld::WWorld()
 	monkey->setMaterial(monkeyMat);
 	//monkey->addObject(testSphere2);
 	//monkey->addObject(testSphere);
-	addObject(monkey);
+	//addObject(monkey);
 	//addObject(testSphereModel);
 	//for (int i = 0; i < readTriangles.size(); i++) {
 	//	readTriangles[i]->setMaterial(triangleMat);
@@ -160,7 +164,7 @@ WWorld::WWorld()
 	flatPlane->objects = objReader.readFile("blenderflat.obj");
 	flatPlane->name = "FlatPlane";
 	flatPlane->setMaterial(triangleMat);
-	addObject(flatPlane);
+	//addObject(flatPlane);
 
 
 }
