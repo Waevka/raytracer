@@ -43,6 +43,9 @@
     <Filter Include="Source Files\WShading\WTextures">
       <UniqueIdentifier>{db8d8f00-26f8-4e1f-ac7d-ee1f4f71c22e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\WShading\WTextures\WMapping">
+      <UniqueIdentifier>{ea6f7133-ce37-499c-9985-dac7467ce12c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,6 +153,15 @@
     <ClCompile Include="WSV_MatteMaterial.cpp">
       <Filter>Source Files\WShading\WMaterials</Filter>
     </ClCompile>
+    <ClCompile Include="WImageTexture.cpp">
+      <Filter>Source Files\WShading\WTextures</Filter>
+    </ClCompile>
+    <ClCompile Include="WMapping.cpp">
+      <Filter>Source Files\WShading\WTextures\WMapping</Filter>
+    </ClCompile>
+    <ClCompile Include="WSphericalMap.cpp">
+      <Filter>Source Files\WShading\WTextures\WMapping</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -253,6 +265,15 @@
     </ClInclude>
     <ClInclude Include="WSV_MatteMaterial.h">
       <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="WImageTexture.h">
+      <Filter>Source Files\WShading\WTextures</Filter>
+    </ClInclude>
+    <ClInclude Include="WMapping.h">
+      <Filter>Source Files\WShading\WTextures\WMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="WSphericalMap.h">
+      <Filter>Source Files\WShading\WTextures\WMapping</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

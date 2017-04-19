@@ -88,7 +88,7 @@ WImage* WImageWriter::readImage(int width, int height, std::string filename)
 
 	// Allocate memory for the image data.
 	tgaFile->imageData = (unsigned char*)malloc(sizeof(unsigned char)*imageSize);
-	WImage *i = new WImage((int)tgaFile->imageWidth, (int)tgaFile->imageHeight);
+	WImage *i = new WImage((int)tgaFile->imageHeight, (int)tgaFile->imageWidth);
 
 	// Read the image data.
 	fread(tgaFile->imageData, sizeof(unsigned char), imageSize, filePtr);
@@ -108,13 +108,13 @@ WImage* WImageWriter::readImage(int width, int height, std::string filename)
 		//if (tgaFile->imageData[imageIdx] == 128)
 			//std::cout << "fug:";
 		WColor color(r, g, b);
-		i->setPixel(color, x, y);
-		if (x < (int)tgaFile->imageWidth) {
-			x++;
+		i->setPixel(color, (int)tgaFile->imageHeight - x - 1, y);
+		if (y < (int)tgaFile->imageWidth) {
+			y++;
 		}
-		if(x == (int) tgaFile->imageWidth) {
-			x = 0;
-			y += 1;
+		if(y == (int) tgaFile->imageWidth) {
+			y = 0;
+			x += 1;
 		}
 	}
 

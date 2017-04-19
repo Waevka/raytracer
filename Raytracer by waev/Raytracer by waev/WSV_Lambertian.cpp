@@ -2,7 +2,7 @@
 
 
 
-WSV_Lambertian::WSV_Lambertian()
+WSV_Lambertian::WSV_Lambertian() : cd(NULL)
 {
 }
 
@@ -32,7 +32,10 @@ WTexture * WSV_Lambertian::getCd()
 }
 
 WColor WSV_Lambertian::f(const WShadingInfo & si, const WVector3 & wi, const WVector3 & wo) const
-{
+{	
+	if (cd == NULL) {
+		return (WColor(1.0, 0.0, 0.7) * kd * invPI);
+	}
 	return (cd->getColor(si) * kd * invPI);
 }
 
@@ -42,6 +45,9 @@ WColor WSV_Lambertian::sample_f(const WShadingInfo & si, WVector3 & wi, const WV
 }
 
 WColor WSV_Lambertian::rho(const WShadingInfo & si, const WVector3 & wo) const
-{
+{	
+	if (cd == NULL) {
+		return (WColor(1.0, 0.0, 0.7) * kd);
+	}
 	return (cd->getColor(si) * kd);
 }

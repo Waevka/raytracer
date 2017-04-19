@@ -157,9 +157,11 @@
     <ClCompile Include="WGeometricObject.cpp" />
     <ClCompile Include="WGlossySpecular.cpp" />
     <ClCompile Include="WImage.cpp" />
+    <ClCompile Include="WImageTexture.cpp" />
     <ClCompile Include="WImageWriter.cpp" />
     <ClCompile Include="WLambertian.cpp" />
     <ClCompile Include="WLight.cpp" />
+    <ClCompile Include="WMapping.cpp" />
     <ClCompile Include="WMaterial.cpp" />
     <ClCompile Include="WMatteMaterial.cpp" />
     <ClCompile Include="WModel.cpp" />
@@ -172,6 +174,7 @@
     <ClCompile Include="WRay.cpp" />
     <ClCompile Include="WShadingInfo.cpp" />
     <ClCompile Include="WSphere.cpp" />
+    <ClCompile Include="WSphericalMap.cpp" />
     <ClCompile Include="WSV_Lambertian.cpp" />
     <ClCompile Include="WSV_MatteMaterial.cpp" />
     <ClCompile Include="WTexture.cpp" />
@@ -193,9 +196,11 @@
     <ClInclude Include="WGeometricObject.h" />
     <ClInclude Include="WGlossySpecular.h" />
     <ClInclude Include="WImage.h" />
+    <ClInclude Include="WImageTexture.h" />
     <ClInclude Include="WImageWriter.h" />
     <ClInclude Include="WLambertian.h" />
     <ClInclude Include="WLight.h" />
+    <ClInclude Include="WMapping.h" />
     <ClInclude Include="WMaterial.h" />
     <ClInclude Include="WMatteMaterial.h" />
     <ClInclude Include="WModel.h" />
@@ -208,6 +213,7 @@
     <ClInclude Include="WRay.h" />
     <ClInclude Include="WShadingInfo.h" />
     <ClInclude Include="WSphere.h" />
+    <ClInclude Include="WSphericalMap.h" />
     <ClInclude Include="WSV_Lambertian.h" />
     <ClInclude Include="WSV_MatteMaterial.h" />
     <ClInclude Include="WTexture.h" />

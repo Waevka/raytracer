@@ -16,6 +16,7 @@
 #include "WMatteMaterial.h"
 #include "WPerspectiveCamera.h"
 #include "WPointLight.h"
+#include "WSV_MatteMaterial.h"
 #include "WMatteMaterial.h"
 #include "WModel.h"
 #include "WPhong.h"
@@ -86,12 +87,12 @@ WWorld::WWorld()
 	triangleMat->setKs(0.2f);
 	triangleMat->setCd(WColor(1,1,0));
 	triangleMat->setExp(10);
-	WMatteMaterial *sphereMat = new WMatteMaterial();
+	WSV_MatteMaterial *sphereMat = new WSV_MatteMaterial();
 	sphereMat->setKa(0.25f);
 	sphereMat->setKd(0.65f);
 	//sphereMat->setKs(0.2f);
 	//sphereMat->setExp(200);
-	sphereMat->setCd(WColor(1, 0.25f, 0));
+	//sphereMat->setCd(WColor(1, 0.25f, 0));
 	WPhong *monkeyMat = new WPhong();
 	monkeyMat->setKa(0.25f);
 	monkeyMat->setKd(0.65f);
@@ -137,7 +138,7 @@ WWorld::WWorld()
 	/////////////////////////////////////////TEXTURES///////////////////////////////////////
 
 	WImage *texture1 = imageWriter.readImage(1, 1, "20minlol.tga");
-	imageWriter.writeImage(*texture1, 600, 500, "pupa.tga");
+	imageWriter.writeImage(*texture1, 500, 600, "pupa.tga");
 
 	/////////////////////////////////////////
 	//testSphereModel->addObject(testSphere2);
