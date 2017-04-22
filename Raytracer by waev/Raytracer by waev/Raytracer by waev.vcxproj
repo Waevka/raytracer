@@ -154,6 +154,7 @@
     <ClCompile Include="WCamera.cpp" />
     <ClCompile Include="WColor.cpp" />
     <ClCompile Include="WConstantColor.cpp" />
+    <ClCompile Include="WDirectionalLight.cpp" />
     <ClCompile Include="WGeometricObject.cpp" />
     <ClCompile Include="WGlossySpecular.cpp" />
     <ClCompile Include="WImage.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="WCamera.h" />
     <ClInclude Include="WColor.h" />
     <ClInclude Include="WConstantColor.h" />
+    <ClInclude Include="WDirectionalLight.h" />
     <ClInclude Include="WGeometricObject.h" />
     <ClInclude Include="WGlossySpecular.h" />
     <ClInclude Include="WImage.h" />

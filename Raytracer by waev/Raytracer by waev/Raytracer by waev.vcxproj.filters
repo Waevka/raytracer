@@ -162,6 +162,9 @@
     <ClCompile Include="WSphericalMap.cpp">
       <Filter>Source Files\WShading\WTextures\WMapping</Filter>
     </ClCompile>
+    <ClCompile Include="WDirectionalLight.cpp">
+      <Filter>Source Files\WShading\WLights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="WSphericalMap.h">
       <Filter>Source Files\WShading\WTextures\WMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="WDirectionalLight.h">
+      <Filter>Source Files\WShading\WLights</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
