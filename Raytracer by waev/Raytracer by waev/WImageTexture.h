@@ -1,6 +1,7 @@
 #pragma once
 #include "WTexture.h"
 #include "WImage.h"
+#include "WMapping.h"
 class WImageTexture :
 	public WTexture
 {
@@ -8,7 +9,8 @@ public:
 	WImageTexture();
 	~WImageTexture();
 
-	virtual WColor getColor(const WShadingInfo &si) const;
+	void setColor(WImage *c);
+	virtual WColor getColor(WShadingInfo &si) const;
 private:
 	int hres;
 	int vres;

@@ -9,7 +9,7 @@ public:
 	WConstantColor();
 	~WConstantColor();
 	void setColor(const WColor c);
-	virtual WColor getColor(const WShadingInfo &si) const;
+	virtual WColor getColor(WShadingInfo &si) const;
 private:
 	WColor color;
 };

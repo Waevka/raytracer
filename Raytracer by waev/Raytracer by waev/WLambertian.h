@@ -16,8 +16,8 @@ public:
 	void setCd(WColor c);
 	WColor getCd();
 
-	virtual WColor f(const WShadingInfo &si, const WVector3 &wi, const WVector3 &wo) const;
+	virtual WColor f(WShadingInfo &si, const WVector3 &wi, const WVector3 &wo) const;
 	virtual WColor sample_f(const WShadingInfo &si, WVector3 &wi, const WVector3 &wo) const;
-	virtual WColor rho(const WShadingInfo &si, const WVector3 &wo) const;
+	virtual WColor rho(WShadingInfo &si, const WVector3 &wo) const;
 };
 

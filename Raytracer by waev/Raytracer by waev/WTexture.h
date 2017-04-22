@@ -6,6 +6,6 @@ class WTexture
 public:
 	WTexture();
 	~WTexture();
-	virtual WColor getColor(const WShadingInfo &si) const = 0;
+	virtual WColor getColor(WShadingInfo &si) const = 0;
 };
 

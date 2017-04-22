@@ -16,7 +16,7 @@ void WConstantColor::setColor(const WColor c)
 	color = c;
 }
 
-WColor WConstantColor::getColor(const WShadingInfo & si) const
+WColor WConstantColor::getColor(WShadingInfo & si) const
 {
 	return color;
 }

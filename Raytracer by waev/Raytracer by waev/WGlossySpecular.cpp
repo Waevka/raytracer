@@ -2,7 +2,7 @@
 
 
 
-WColor WGlossySpecular::f(const WShadingInfo & si, const WVector3 & wi, const WVector3 & wo) const
+WColor WGlossySpecular::f(WShadingInfo & si, const WVector3 & wi, const WVector3 & wo) const
 {	
 	WColor c(0.0, 0.0, 0.0);
 	float ndotwi = (float)si.normal.dot(wi);
@@ -21,7 +21,7 @@ WColor WGlossySpecular::sample_f(const WShadingInfo & si, WVector3 & wi, const W
 	return WColor();
 }
 
-WColor WGlossySpecular::rho(const WShadingInfo & si, const WVector3 & wo) const
+WColor WGlossySpecular::rho(WShadingInfo & si, const WVector3 & wo) const
 {
 	return WColor(0.0, 0.0, 0.0);
 }

@@ -33,7 +33,7 @@ WColor WLambertian::getCd()
 	return cd;
 }
 
-WColor WLambertian::f(const WShadingInfo & si, const WVector3 & wi, const WVector3 & wo) const
+WColor WLambertian::f(WShadingInfo & si, const WVector3 & wi, const WVector3 & wo) const
 {
 	WColor wc(cd);
 	wc = wc * kd;
@@ -46,7 +46,7 @@ WColor WLambertian::sample_f(const WShadingInfo & si, WVector3 & wi, const WVect
 	return WColor(); ///////////////////////// careful
 }
 
-WColor WLambertian::rho(const WShadingInfo & si, const WVector3 & wo) const
+WColor WLambertian::rho(WShadingInfo & si, const WVector3 & wo) const
 {
 	WColor wc(cd);
 	wc = wc * kd;

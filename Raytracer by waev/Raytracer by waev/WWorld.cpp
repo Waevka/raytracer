@@ -19,6 +19,9 @@
 #include "WSV_MatteMaterial.h"
 #include "WMatteMaterial.h"
 #include "WModel.h"
+#include"WGlossySpecular.h"
+#include "WSphericalMap.h"
+#include "WImageTexture.h"
 #include "WPhong.h"
 
 #define TESTSIZE_W 500
@@ -34,18 +37,18 @@ WWorld::WWorld()
 	WPointLight *pointlight1 = new WPointLight();
 	pointlight1->setLocation(WVector3(12,-9.5,5.5f));
 	pointlight1->scaleRadiance(3.0f);
-	pointlight1->setColor(WColor(1.0f, 0.0, 0.0));
-	addLight(pointlight1);
+	pointlight1->setColor(WColor(0.7f, 0.7, 0.0));
+	//addLight(pointlight1);
 
 	WPointLight *pointlight2 = new WPointLight();
 	pointlight2->setLocation(WVector3(10, -20.5, 9.5f));
-	pointlight2->scaleRadiance(3.0f);
-	pointlight2->setColor(WColor(0.2f, 0.2f, 1.0f));
-	addLight(pointlight2);
+	pointlight2->scaleRadiance(6.0f);
+	pointlight2->setColor(WColor(0.6f, 0.0f, 0.0f));
+	//addLight(pointlight2);
 
 	///////////////
-	WColor sphereColor(0.9f, 0.5f, 0.5f);
-	WColor sphereColor2(0.4f, 0.8f, 0.2f);
+	WColor sphereColor(1.0f, 0.0f, 0.0f);
+	WColor sphereColor2(0.0f, 1.0f, 0.0f);
 	WColor sphereColor3(0.2f, 0.4f, 0.8f);
 
 	WSphere *testSphere = new WSphere(WVector3(-3, 0.5, -0.5), 6, sphereColor);
@@ -85,13 +88,22 @@ WWorld::WWorld()
 	triangleMat->setKa(0.25f);
 	triangleMat->setKd(0.65f);
 	triangleMat->setKs(0.2f);
-	triangleMat->setCd(WColor(1,1,0));
+	triangleMat->setCd(WColor(0.2,0.1,0.8));
 	triangleMat->setExp(10);
+	WSphericalMap* sphericalMapPtr = new WSphericalMap();
+	WImage *texture1 = imageWriter.readImage(1, 1, "20minlol.tga");
+	WImageTexture *imageTexture = new WImageTexture();
+	imageTexture->setColor(texture1);
 	WSV_MatteMaterial *sphereMat = new WSV_MatteMaterial();
 	sphereMat->setKa(0.25f);
 	sphereMat->setKd(0.65f);
-	//sphereMat->setKs(0.2f);
-	//sphereMat->setExp(200);
+	sphereMat->setCd(imageTexture);
+	WPhong *sphere2Mat = new WPhong();
+	sphere2Mat->setKa(0.25f);
+	sphere2Mat->setKd(0.65f);
+	sphere2Mat->setCd(WColor(1.0, 0.3f, 0.0f));
+	sphere2Mat->setKs(0.2f);
+	sphere2Mat->setExp(200);
 	//sphereMat->setCd(WColor(1, 0.25f, 0));
 	WPhong *monkeyMat = new WPhong();
 	monkeyMat->setKa(0.25f);
@@ -101,8 +113,8 @@ WWorld::WWorld()
 	monkeyMat->setExp(10);
 
 	(*triangle).setMaterial(triangleMat);
-	(*testSphere).setMaterial(triangleMat);
-	(*testSphere2).setMaterial(sphereMat);
+	(*testSphere).setMaterial(sphereMat);
+	(*testSphere2).setMaterial(sphere2Mat);
 	(*planetr1).setMaterial(triangleMat);
 	(*planetr2).setMaterial(triangleMat);
 
@@ -136,8 +148,6 @@ WWorld::WWorld()
 	//cout << test.toString();
 	*/
 	/////////////////////////////////////////TEXTURES///////////////////////////////////////
-
-	WImage *texture1 = imageWriter.readImage(1, 1, "20minlol.tga");
 	imageWriter.writeImage(*texture1, 500, 600, "pupa.tga");
 
 	/////////////////////////////////////////
@@ -153,19 +163,13 @@ WWorld::WWorld()
 	monkey->objects = objReader.readFile("monkeyx8.obj");
 	monkey->name = "MONKEY";
 	monkey->setMaterial(monkeyMat);
-	//monkey->addObject(testSphere2);
-	//monkey->addObject(testSphere);
 	//addObject(monkey);
-	//addObject(testSphereModel);
-	//for (int i = 0; i < readTriangles.size(); i++) {
-	//	readTriangles[i]->setMaterial(triangleMat);
-		//addObject(readTriangles[i]);
-	//}
+
 	WModel *flatPlane = new WModel();
 	flatPlane->objects = objReader.readFile("blenderflat.obj");
 	flatPlane->name = "FlatPlane";
 	flatPlane->setMaterial(triangleMat);
-	//addObject(flatPlane);
+	addObject(flatPlane);
 
 
 }
