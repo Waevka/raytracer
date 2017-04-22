@@ -8,7 +8,11 @@
 #define invTWO_PI	0.1591549430918953358;
 
 
-WImageTexture::WImageTexture() : WTexture(), mapping_ptr(new WSphericalMap()), vres(600), hres(500)
+WImageTexture::WImageTexture() : WTexture(), mapping_ptr(NULL), vres(), hres()
+{
+}
+
+WImageTexture::WImageTexture(WMapping *map, int v, int h) : mapping_ptr(map), vres(v), hres(h)
 {
 }
 

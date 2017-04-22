@@ -7,6 +7,7 @@ class WImageTexture :
 {
 public:
 	WImageTexture();
+	WImageTexture(WMapping *map, int v, int h);
 	~WImageTexture();
 
 	void setColor(WImage *c);

@@ -92,7 +92,7 @@ WWorld::WWorld()
 	triangleMat->setExp(10);
 	WSphericalMap* sphericalMapPtr = new WSphericalMap();
 	WImage *texture1 = imageWriter.readImage(1, 1, "20minlol.tga");
-	WImageTexture *imageTexture = new WImageTexture();
+	WImageTexture *imageTexture = new WImageTexture(sphericalMapPtr, texture1->getHeight(), texture1->getWidth());
 	imageTexture->setColor(texture1);
 	WSV_MatteMaterial *sphereMat = new WSV_MatteMaterial();
 	sphereMat->setKa(0.25f);

@@ -53,3 +53,13 @@ WColor WImage::getPixel(int x, int y)
 {	
 	return WColor(this->image[x][y]->r, this->image[x][y]->g, this->image[x][y]->b, this->image[x][y]->a);
 }
+
+int WImage::getWidth()
+{
+	return width;
+}
+
+int WImage::getHeight()
+{
+	return height;
+}

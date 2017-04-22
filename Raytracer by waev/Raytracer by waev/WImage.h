@@ -12,5 +12,7 @@ public:
 	~WImage();
 	void setPixel(WColor &c, int x, int y);
 	WColor getPixel(int x, int y);
+	int getWidth();
+	int getHeight();
 };
 
