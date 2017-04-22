@@ -52,6 +52,7 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 					dist = i2;
 					ws.normal = (v + ray.direction * dist) / radius;
 					ws.localHitPoint = ray.origin + ray.direction * dist;
+					setUvCoords(ws);
 					returnValue = 1;
 				}
 			}
@@ -60,6 +61,7 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 					dist = i1;
 					ws.normal = (v + ray.direction * dist) / radius;
 					ws.localHitPoint = ray.origin + ray.direction * dist;
+					setUvCoords(ws);
 					returnValue = 2;
 				}
 			}
@@ -70,6 +72,7 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 		dist = b;
 		ws.normal = (v + ray.direction * dist) / radius;
 		ws.localHitPoint = ray.origin + ray.direction * dist;
+		setUvCoords(ws);
 	}
 
 	return returnValue;
@@ -122,4 +125,18 @@ void WSphere::maxXYZ(float & mx, float & my, float & mz)
 	mx = origin.x + radius;
 	my = origin.y + radius;
 	mz = origin.z + radius;
+}
+
+void WSphere::setUvCoords(WShadingInfo &si) {
+
+	WVector3 lhp(si.localHitPoint);
+	lhp.normalize();
+
+	float theta = acos(lhp.y);
+	float phi = atan2(lhp.x, lhp.z);
+	if (phi < 0.0) {
+		phi += TWO_PI;
+	}
+	si.u = phi * invTWO_PI;
+	si.v = 1 - theta * invPI;
 }

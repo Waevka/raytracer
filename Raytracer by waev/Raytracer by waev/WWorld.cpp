@@ -37,8 +37,8 @@ WWorld::WWorld()
 	WPointLight *pointlight1 = new WPointLight();
 	pointlight1->setLocation(WVector3(12,-9.5,5.5f));
 	pointlight1->scaleRadiance(3.0f);
-	pointlight1->setColor(WColor(0.7f, 0.7, 0.0));
-	//addLight(pointlight1);
+	pointlight1->setColor(WColor(0.7f, 0.7f, 0.0f));
+	addLight(pointlight1);
 
 	WPointLight *pointlight2 = new WPointLight();
 	pointlight2->setLocation(WVector3(10, -20.5, 9.5f));
@@ -88,7 +88,7 @@ WWorld::WWorld()
 	triangleMat->setKa(0.25f);
 	triangleMat->setKd(0.65f);
 	triangleMat->setKs(0.2f);
-	triangleMat->setCd(WColor(0.2,0.1,0.8));
+	triangleMat->setCd(WColor(0.2f,0.1f,0.8f));
 	triangleMat->setExp(10);
 	WSphericalMap* sphericalMapPtr = new WSphericalMap();
 	WImage *texture1 = imageWriter.readImage(1, 1, "20minlol.tga");

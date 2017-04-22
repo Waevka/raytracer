@@ -25,17 +25,6 @@ void WImageTexture::setColor(WImage *c)
 WColor WImageTexture::getColor(WShadingInfo & si) const
 {
 	int row, column;
-	WVector3 lhp(si.localHitPoint);
-	lhp.normalize();
-	float theta = acos(lhp.y);
-	float phi = atan2(lhp.x, lhp.z);
-	if (phi < 0.0) {
-		phi += TWO_PI;
-	}
-
-	// map to (u, v)
-	si.u = phi * invTWO_PI;
-	si.v = 1 - theta * invPI;
 
 	if (mapping_ptr) {
 		mapping_ptr->getTexelCoordinates(si.localHitPoint, hres, vres,
