@@ -19,10 +19,11 @@
 #include "WSV_MatteMaterial.h"
 #include "WMatteMaterial.h"
 #include "WModel.h"
-#include"WGlossySpecular.h"
+#include "WGlossySpecular.h"
 #include "WSphericalMap.h"
 #include "WImageTexture.h"
 #include "WPhong.h"
+#include "WTrianglePlane.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -36,8 +37,8 @@ WWorld::WWorld()
 
 	WPointLight *pointlight1 = new WPointLight();
 	pointlight1->setLocation(WVector3(12,-9.5,5.5f));
-	pointlight1->scaleRadiance(3.0f);
-	pointlight1->setColor(WColor(0.7f, 0.7f, 0.0f));
+	pointlight1->scaleRadiance(4.0f);
+	pointlight1->setColor(WColor(0.7f, 0.7f, 0.7f));
 	addLight(pointlight1);
 
 	WPointLight *pointlight2 = new WPointLight();
@@ -165,8 +166,8 @@ WWorld::WWorld()
 	monkey->setMaterial(monkeyMat);
 	//addObject(monkey);
 
-	WModel *flatPlane = new WModel();
-	flatPlane->objects = objReader.readFile("blenderflat.obj");
+	WTrianglePlane *flatPlane = new WTrianglePlane(WVector3(-9.0f, 0.0f, 0.0f), 50, 50);
+	//flatPlane->objects = objReader.readFile("blenderflat.obj");
 	flatPlane->name = "FlatPlane";
 	flatPlane->setMaterial(triangleMat);
 	addObject(flatPlane);

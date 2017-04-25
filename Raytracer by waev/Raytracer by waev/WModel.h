@@ -1,6 +1,6 @@
 #pragma once
 #include "WGeometricObject.h"
-#include"WBoundingBox.h"
+#include "WBoundingBox.h"
 #include <vector>
 
 class WModel :

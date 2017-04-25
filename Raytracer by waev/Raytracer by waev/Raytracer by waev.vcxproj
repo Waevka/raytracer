@@ -180,6 +180,7 @@
     <ClCompile Include="WSV_MatteMaterial.cpp" />
     <ClCompile Include="WTexture.cpp" />
     <ClCompile Include="WTriangle.cpp" />
+    <ClCompile Include="WTrianglePlane.cpp" />
     <ClCompile Include="WUtilities.cpp" />
     <ClCompile Include="WVector2.cpp" />
     <ClCompile Include="WVector3.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="WSV_MatteMaterial.h" />
     <ClInclude Include="WTexture.h" />
     <ClInclude Include="WTriangle.h" />
+    <ClInclude Include="WTrianglePlane.h" />
     <ClInclude Include="WUtilities.h" />
     <ClInclude Include="WVector2.h" />
     <ClInclude Include="WVector3.h" />
