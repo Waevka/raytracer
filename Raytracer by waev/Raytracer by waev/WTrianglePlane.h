@@ -6,6 +6,7 @@ class WTrianglePlane :
 public:
 	WTrianglePlane(WVector3 &center, float width, float height);
 	~WTrianglePlane();
+	virtual int Intersection(WRay &ray, float &dist, WShadingInfo &ws);
 private:
 	WVector3 center;
 	float width;

@@ -24,6 +24,7 @@
 #include "WImageTexture.h"
 #include "WPhong.h"
 #include "WTrianglePlane.h"
+#include "WRectangleMap.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -91,6 +92,7 @@ WWorld::WWorld()
 	triangleMat->setKs(0.2f);
 	triangleMat->setCd(WColor(0.2f,0.1f,0.8f));
 	triangleMat->setExp(10);
+
 	WSphericalMap* sphericalMapPtr = new WSphericalMap();
 	WImage *texture1 = imageWriter.readImage(1, 1, "20minlol.tga");
 	WImageTexture *imageTexture = new WImageTexture(sphericalMapPtr, texture1->getHeight(), texture1->getWidth());
@@ -99,6 +101,15 @@ WWorld::WWorld()
 	sphereMat->setKa(0.25f);
 	sphereMat->setKd(0.65f);
 	sphereMat->setCd(imageTexture);
+
+	WRectangleMap *rectangleMapPtr = new WRectangleMap();
+	WImageTexture *imagePlaneTexture = new WImageTexture(rectangleMapPtr, texture1->getHeight(), texture1->getWidth());
+	imagePlaneTexture->setColor(texture1);
+	WSV_MatteMaterial *planeMat = new WSV_MatteMaterial();
+	planeMat->setKa(0.25f);
+	planeMat->setKd(0.65f);
+	planeMat->setCd(imagePlaneTexture);
+
 	WPhong *sphere2Mat = new WPhong();
 	sphere2Mat->setKa(0.25f);
 	sphere2Mat->setKd(0.65f);
@@ -169,7 +180,7 @@ WWorld::WWorld()
 	WTrianglePlane *flatPlane = new WTrianglePlane(WVector3(-9.0f, 0.0f, 0.0f), 50, 50);
 	//flatPlane->objects = objReader.readFile("blenderflat.obj");
 	flatPlane->name = "FlatPlane";
-	flatPlane->setMaterial(triangleMat);
+	flatPlane->setMaterial(planeMat);
 	addObject(flatPlane);
 
 

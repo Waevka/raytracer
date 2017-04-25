@@ -173,6 +173,7 @@
     <ClCompile Include="WPlane.cpp" />
     <ClCompile Include="WPointLight.cpp" />
     <ClCompile Include="WRay.cpp" />
+    <ClCompile Include="WRectangleMap.cpp" />
     <ClCompile Include="WShadingInfo.cpp" />
     <ClCompile Include="WSphere.cpp" />
     <ClCompile Include="WSphericalMap.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="WPlane.h" />
     <ClInclude Include="WPointLight.h" />
     <ClInclude Include="WRay.h" />
+    <ClInclude Include="WRectangleMap.h" />
     <ClInclude Include="WShadingInfo.h" />
     <ClInclude Include="WSphere.h" />
     <ClInclude Include="WSphericalMap.h" />

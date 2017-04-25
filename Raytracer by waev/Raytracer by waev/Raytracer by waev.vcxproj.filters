@@ -168,6 +168,9 @@
     <ClCompile Include="WTrianglePlane.cpp">
       <Filter>Source Files\WGeometricObjects</Filter>
     </ClCompile>
+    <ClCompile Include="WRectangleMap.cpp">
+      <Filter>Source Files\WShading\WTextures\WMapping</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -286,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="WTrianglePlane.h">
       <Filter>Source Files\WGeometricObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="WRectangleMap.h">
+      <Filter>Source Files\WShading\WTextures\WMapping</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
