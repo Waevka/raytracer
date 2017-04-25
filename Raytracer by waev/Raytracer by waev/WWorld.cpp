@@ -103,8 +103,9 @@ WWorld::WWorld()
 	sphereMat->setCd(imageTexture);
 
 	WRectangleMap *rectangleMapPtr = new WRectangleMap();
-	WImageTexture *imagePlaneTexture = new WImageTexture(rectangleMapPtr, texture1->getHeight(), texture1->getWidth());
-	imagePlaneTexture->setColor(texture1);
+	WImage *texture2 = imageWriter.readImage(1, 1, "buny.tga");
+	WImageTexture *imagePlaneTexture = new WImageTexture(rectangleMapPtr, texture2->getHeight(), texture2->getWidth());
+	imagePlaneTexture->setColor(texture2);
 	WSV_MatteMaterial *planeMat = new WSV_MatteMaterial();
 	planeMat->setKa(0.25f);
 	planeMat->setKd(0.65f);
@@ -177,7 +178,7 @@ WWorld::WWorld()
 	monkey->setMaterial(monkeyMat);
 	//addObject(monkey);
 
-	WTrianglePlane *flatPlane = new WTrianglePlane(WVector3(-9.0f, 0.0f, 0.0f), 50, 50);
+	WTrianglePlane *flatPlane = new WTrianglePlane(WVector3(-9.0f, 0.0f, 0.0f), 50, 30);
 	//flatPlane->objects = objReader.readFile("blenderflat.obj");
 	flatPlane->name = "FlatPlane";
 	flatPlane->setMaterial(planeMat);
