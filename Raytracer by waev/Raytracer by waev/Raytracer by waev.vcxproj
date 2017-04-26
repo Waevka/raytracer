@@ -165,6 +165,8 @@
     <ClCompile Include="WMapping.cpp" />
     <ClCompile Include="WMaterial.cpp" />
     <ClCompile Include="WMatteMaterial.cpp" />
+    <ClCompile Include="WMirror.cpp" />
+    <ClCompile Include="WMirrorBRDF.cpp" />
     <ClCompile Include="WModel.cpp" />
     <ClCompile Include="WObjReader.cpp" />
     <ClCompile Include="WOrthoCamera.cpp" />
@@ -207,6 +209,8 @@
     <ClInclude Include="WMapping.h" />
     <ClInclude Include="WMaterial.h" />
     <ClInclude Include="WMatteMaterial.h" />
+    <ClInclude Include="WMirror.h" />
+    <ClInclude Include="WMirrorBRDF.h" />
     <ClInclude Include="WModel.h" />
     <ClInclude Include="WObjReader.h" />
     <ClInclude Include="WOrthoCamera.h" />

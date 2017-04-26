@@ -64,6 +64,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 		WVector3 normal;
 		WVector3 localHitPoint;
 		WVector3 hitPoint;
+		shadingInfo.rayBounces = 0;
 
 		for (int j = 0; j < objects.size(); j++) {
 

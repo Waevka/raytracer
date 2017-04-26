@@ -171,6 +171,12 @@
     <ClCompile Include="WRectangleMap.cpp">
       <Filter>Source Files\WShading\WTextures\WMapping</Filter>
     </ClCompile>
+    <ClCompile Include="WMirror.cpp">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="WMirrorBRDF.cpp">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -292,6 +298,12 @@
     </ClInclude>
     <ClInclude Include="WRectangleMap.h">
       <Filter>Source Files\WShading\WTextures\WMapping</Filter>
+    </ClInclude>
+    <ClInclude Include="WMirror.h">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="WMirrorBRDF.h">
+      <Filter>Source Files\WShading\WBRDF</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

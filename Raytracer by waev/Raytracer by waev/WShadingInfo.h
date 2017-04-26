@@ -27,6 +27,7 @@ public:
 	std::string name;
 	float u;
 	float v;
+	int rayBounces;
 
 	WShadingInfo(const WShadingInfo &si);
 
