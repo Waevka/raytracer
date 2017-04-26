@@ -7,7 +7,7 @@
 void WCamera::draw(int TESTSIZE_W, int TESTSIZE_H, WViewPlane &viewPlane)
 {
 	WImage testImage(viewPlane.getWidth(), viewPlane.getHeight());
-
+	this->viewPlane = &viewPlane;
 	//generate rays
 	WRay **testRays;
 	generateRays(testRays, viewPlane);
@@ -38,6 +38,7 @@ void WCamera::intersectRays(WViewPlane &viewPlane, WRay** &rays, WImage &testIma
 			if (i == 367 && j == 358) {
 				std::cout << "hui";
 			}
+			shadingInfo.rayBounces = 0;
 			WColor pixelColor = intersectSingleRay(rays[i][j], shadingInfo, i, j, viewPlane, 0);
 			pixelColor = correctColor(pixelColor);
 			testImage.setPixel(pixelColor, i, j);
@@ -64,12 +65,11 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 		WVector3 normal;
 		WVector3 localHitPoint;
 		WVector3 hitPoint;
-		shadingInfo.rayBounces = 0;
 
 		for (int j = 0; j < objects.size(); j++) {
 
 			result = objects[j]->Intersection(ray, distance, shadingInfo);
-			if (result > 0 && distance < bestDistance ) {
+			if (result > 0 && distance < bestDistance && distance > 0.001) {
 				bestDistance = distance;
 				normal = shadingInfo.normal;
 				material = shadingInfo.material;
@@ -136,7 +136,28 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 	return pixelColor;
 }
 
-WCamera::WCamera(std::string name, WWorld &wr) : world(wr)
+WColor WCamera::intersectSingleReflectionRay(WRay & ray, WShadingInfo & shadingInfo, int i, int j, int aliasingLevel)
+{	
+	if (shadingInfo.rayBounces > 1) {
+		return WColor(0.0f);
+	}
+
+	shadingInfo.rayBounces++;
+	WShadingInfo ws(shadingInfo);
+	WColor pixelColor;
+	pixelColor = intersectSingleRay(ray, ws, 0, 0, (*viewPlane), aliasingLevel);
+	if (ws.hitObject) {
+		ws.ray = ray;
+		pixelColor = ws.material->shade(ws);
+	}
+	else {
+		pixelColor = getBackgroundCheckers(i, j, viewPlane->getWidth(), viewPlane->getHeight());
+	}
+
+	return pixelColor;
+}
+
+WCamera::WCamera(std::string name, WWorld &wr) : world(wr), viewPlane(new WViewPlane)
 {
 	this->name = name;
 	aliasingLevel = 2;

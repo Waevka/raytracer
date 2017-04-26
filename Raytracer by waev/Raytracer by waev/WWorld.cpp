@@ -25,6 +25,7 @@
 #include "WPhong.h"
 #include "WTrianglePlane.h"
 #include "WRectangleMap.h"
+#include "WMirror.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -55,7 +56,7 @@ WWorld::WWorld()
 
 	WSphere *testSphere = new WSphere(WVector3(-3, 0.5, -0.5), 6, sphereColor);
 	WSphere *testSphere2 = new WSphere(WVector3(6, -8, 0), 5, sphereColor2);
-	WSphere *testSphere3 = new WSphere(WVector3(4, -8, -4), 6, sphereColor3);
+	WSphere *testSphere3 = new WSphere(WVector3(7, 7.0, -0.5), 6, sphereColor3);
 
 	WModel *testSphereModel = new WModel();
 	testSphereModel->name = "SPHERE";
@@ -64,6 +65,10 @@ WWorld::WWorld()
 	WModel *testSphereModel2 = new WModel();
 	testSphereModel2->name = "SPHERE2";
 	testSphereModel2-> addObject(testSphere2);
+
+	WModel *testSphereModel3 = new WModel();
+	testSphereModel3->name = "SPHERE3";
+	testSphereModel3->addObject(testSphere3);
 
 	WTriangle *triangle= new WTriangle(
 		WVector3(-10,-10,0),
@@ -118,6 +123,16 @@ WWorld::WWorld()
 	sphere2Mat->setKs(0.2f);
 	sphere2Mat->setExp(200);
 	//sphereMat->setCd(WColor(1, 0.25f, 0));
+
+	WMirror *sphere3Mat = new WMirror();
+	sphere3Mat->setKa(0.25f);
+	sphere3Mat->setKd(0.65f);
+	sphere3Mat->setCd(WColor(0.9, 0.2, 0.9));
+	sphere3Mat->setKs(0.2f);
+	sphere3Mat->setExp(200);
+	sphere3Mat->setKr(0.75f);
+	sphere3Mat->setCr(WColor(0.5f, 0.5f, 0.5f));
+
 	WPhong *monkeyMat = new WPhong();
 	monkeyMat->setKa(0.25f);
 	monkeyMat->setKd(0.65f);
@@ -128,6 +143,7 @@ WWorld::WWorld()
 	(*triangle).setMaterial(triangleMat);
 	(*testSphere).setMaterial(sphereMat);
 	(*testSphere2).setMaterial(sphere2Mat);
+	(*testSphere3).setMaterial(sphere3Mat);
 	(*planetr1).setMaterial(triangleMat);
 	(*planetr2).setMaterial(triangleMat);
 
@@ -167,6 +183,7 @@ WWorld::WWorld()
 	//testSphereModel->addObject(testSphere2);
 	addObject(testSphereModel2);
 	addObject(testSphereModel);
+	addObject(testSphereModel3);
 	//addObject(triangle);
 	//addObject(planetr1);
 	//addObject(planetr2);
@@ -196,6 +213,7 @@ void WWorld::draw()
 {	
 	WOrthoCamera ortho(*this);
 	WPerspectiveCamera persp(*this);
+	perspCam = &persp;
 
 	//ortho - draw 
 	/*

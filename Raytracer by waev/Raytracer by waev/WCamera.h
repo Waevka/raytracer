@@ -8,11 +8,11 @@
 class WCamera
 {
 private:
-	int aliasingLevel;
 protected:
 	WImageWriter imageWriter;
 	std::string name;
 	WWorld &world;
+	WViewPlane *viewPlane;
 public:
 	virtual void draw(int TESTSIZE_W, int TESTSIZE_H, WViewPlane &viewPlane);
 	virtual void generateRays(WRay** &rays, WViewPlane &viewPlane);
@@ -20,7 +20,9 @@ public:
 	virtual void intersectRays(WViewPlane &viewPlane, WRay** &rays, WImage &testImage);
 	virtual WColor rayAliasing(int currentLevel);
 	virtual WColor intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, WViewPlane &viewPlane, int aliasingLevel);
+	virtual WColor intersectSingleReflectionRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, int aliasingLevel);
 	WCamera(std::string name, WWorld &wr);
 	~WCamera();
+	int aliasingLevel;
 };
 
