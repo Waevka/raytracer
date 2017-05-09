@@ -5,9 +5,9 @@
 
 WColor::WColor()
 {
-	this->r = 0.9f;
-	this->g = 0.9f;
-	this->b = 0.9f;
+	this->r = 1.0f;
+	this->g = 1.0f;
+	this->b = 1.0f;
 	this->a = 1.0f;
 }
 

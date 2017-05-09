@@ -18,5 +18,6 @@ private:
 	void createLeftPlane();
 	void createRightPlane();
 	void createFrontPlane();
+	void createBackPlane();
 };
 

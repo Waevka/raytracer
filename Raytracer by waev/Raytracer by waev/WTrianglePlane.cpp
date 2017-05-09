@@ -20,6 +20,8 @@ WTrianglePlane::WTrianglePlane(WVector3 & center, float width, float height, int
 	case 4:
 		createFrontPlane();
 		break;
+	case 5:
+		createBackPlane();
 	default:
 		createUpPlane();
 		break;
@@ -80,7 +82,7 @@ int WTrianglePlane::Intersection(WRay & ray, float & dist, WShadingInfo & ws)
 void WTrianglePlane::createUpPlane()
 {
 	WTriangle *first = new WTriangle(
-		WVector3(center.x, center.y - 0.5*width, center.z - 0.5*height),
+		WVector3(center.x + 0.0001f, center.y - 0.5*width, center.z - 0.5*height),
 		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
 		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
 		WVector3(1.0f, 0.0f, 0.0f)
@@ -98,7 +100,7 @@ void WTrianglePlane::createUpPlane()
 void WTrianglePlane::createDownPlane()
 {
 	WTriangle *first = new WTriangle(
-		WVector3(center.x, center.y - 0.5*width, center.z - 0.5*height),
+		WVector3(center.x + 0.0001f, center.y - 0.5*width, center.z - 0.5*height),
 		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
 		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
 		WVector3(-1.0f, 0.0f, 0.0f)
@@ -116,7 +118,7 @@ void WTrianglePlane::createDownPlane()
 void WTrianglePlane::createLeftPlane()
 {
 	WTriangle *first = new WTriangle(
-		WVector3(center.x - 0.5*width, center.y, center.z - 0.5*height),
+		WVector3(center.x - 0.5*width, center.y + 0.0001f, center.z - 0.5*height),
 		WVector3(center.x + 0.5*width, center.y , center.z - 0.5*height),
 		WVector3(center.x - 0.5*width, center.y , center.z + 0.5*height),
 		WVector3(0.0f, -1.0f, 0.0f)
@@ -134,7 +136,7 @@ void WTrianglePlane::createLeftPlane()
 void WTrianglePlane::createRightPlane()
 {
 	WTriangle *first = new WTriangle(
-		WVector3(center.x - 0.5*width, center.y, center.z - 0.5*height),
+		WVector3(center.x - 0.5*width, center.y + 0.0001f, center.z - 0.5*height),
 		WVector3(center.x + 0.5*width, center.y, center.z - 0.5*height),
 		WVector3(center.x - 0.5*width, center.y, center.z + 0.5*height),
 		WVector3(0.0f, 1.0f, 0.0f)
@@ -162,6 +164,24 @@ void WTrianglePlane::createFrontPlane()
 		WVector3(center.x - 0.5*width, center.y + 0.5*height, center.z),
 		WVector3(center.x + 0.5*width, center.y - 0.5*height, center.z),
 		WVector3(0.0f, 0.0f, 1.0f)
+	);
+	addObject(first);
+	addObject(second);
+}
+
+void WTrianglePlane::createBackPlane()
+{
+	WTriangle *first = new WTriangle(
+		WVector3(center.x - 0.5*width, center.y - 0.5*height, center.z + 0.0001f),
+		WVector3(center.x + 0.5*width, center.y - 0.5*height, center.z),
+		WVector3(center.x - 0.5*width, center.y + 0.5*height, center.z),
+		WVector3(0.0f, 0.0f, -1.0f)
+	);
+	WTriangle *second = new WTriangle(
+		WVector3(center.x + 0.5*width, center.y + 0.5*height, center.z),
+		WVector3(center.x - 0.5*width, center.y + 0.5*height, center.z),
+		WVector3(center.x + 0.5*width, center.y - 0.5*height, center.z),
+		WVector3(0.0f, 0.0f, -1.0f)
 	);
 	addObject(first);
 	addObject(second);

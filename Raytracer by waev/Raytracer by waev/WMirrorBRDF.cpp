@@ -40,8 +40,8 @@ WColor WMirrorBRDF::sample_f(const WShadingInfo & si, WVector3 & wi, const WVect
 {
 	float ndotwo = si.normal.dot(wo);
 	wi = -wo + si.normal * ndotwo * 2.0;
-	return (cr * kr / (si.normal.dot(wi)));
-	// WColor();
+	WColor wclr((cr * kr / (si.normal.dot(wi))));
+	return wclr;
 }
 
 WColor WMirrorBRDF::rho(WShadingInfo & si, const WVector3 & wo) const

@@ -26,7 +26,7 @@ WColor WMirror::shade(WShadingInfo & si)
 
 	WColor reflectedColor = si.world.perspCam->intersectSingleReflectionRay(reflectedRay,
 		si, 0, 0, si.world.perspCam->aliasingLevel + 1);
-	L = fr * reflectedColor * si.normal.dot(wi);
+	L = L + fr * reflectedColor * si.normal.dot(wi);
 
 	return L;
 }

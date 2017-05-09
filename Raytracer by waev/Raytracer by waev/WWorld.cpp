@@ -38,9 +38,9 @@ WWorld::WWorld()
 	/////////////// Lights
 
 	WPointLight *pointlight1 = new WPointLight();
-	pointlight1->setLocation(WVector3(29, -10, 4));
+	pointlight1->setLocation(WVector3(28, -13, 15));
 	pointlight1->scaleRadiance(3.0f);
-	pointlight1->setColor(WColor(0.8f, 0.8f, 0.7f));
+	pointlight1->setColor(WColor(0.9f, 0.9f, 0.7f));
 	addLight(pointlight1);
 
 	WPointLight *pointlight2 = new WPointLight();
@@ -55,8 +55,8 @@ WWorld::WWorld()
 	WColor sphereColor3(0.2f, 0.4f, 0.8f);
 
 	WSphere *testSphere = new WSphere(WVector3(-3, 0.5, -0.5), 6, sphereColor);
-	WSphere *testSphere2 = new WSphere(WVector3(6, -8, 0), 5, sphereColor2);
-	WSphere *testSphere3 = new WSphere(WVector3(10, -20.0, 2.5), 6, sphereColor3);
+	WSphere *testSphere2 = new WSphere(WVector3(14, -24, 3), 5, sphereColor2);
+	WSphere *testSphere3 = new WSphere(WVector3(14, -12.0, 2.5), 6, sphereColor3);
 
 	WModel *testSphereModel = new WModel();
 	testSphereModel->name = "SPHERE";
@@ -130,7 +130,7 @@ WWorld::WWorld()
 	whiteWallMaterial->setKd(0.65f);
 
 	WMatteMaterial *redWallMaterial = new WMatteMaterial();
-	redWallMaterial->setCd(WColor(1.0f, 0.0f, 0.0f));
+	redWallMaterial->setCd(WColor(1.0f, 0.3f, 0.0f));
 	redWallMaterial->setKa(0.25f);
 	redWallMaterial->setKd(0.65f);
 
@@ -140,13 +140,13 @@ WWorld::WWorld()
 	greenWallMaterial->setKd(0.65f);
 
 	WMirror *sphere3Mat = new WMirror();
-	sphere3Mat->setKa(0.25f);
-	sphere3Mat->setKd(0.65f);
-	sphere3Mat->setCd(WColor(0.9, 0.2, 0.9));
-	sphere3Mat->setKs(0.2f);
+	sphere3Mat->setKa(1.0f);
+	sphere3Mat->setKd(1.00f);
+	sphere3Mat->setCd(WColor(1.0, 1.0, 1.0));
+	sphere3Mat->setKs(1.0f);
 	sphere3Mat->setExp(200);
-	sphere3Mat->setKr(0.75f);
-	sphere3Mat->setCr(WColor(0.5f, 0.5f, 0.5f));
+	sphere3Mat->setKr(1.0f);
+	sphere3Mat->setCr(WColor(1.0f, 1.0f, 1.0f));
 
 	WPhong *monkeyMat = new WPhong();
 	monkeyMat->setKa(0.25f);
@@ -243,6 +243,11 @@ WWorld::WWorld()
 	flatPlane5->name = "FlatPlaneFront";
 	flatPlane5->setMaterial(whiteWallMaterial);
 	addObject(flatPlane5);
+
+	WTrianglePlane *flatPlane6 = new WTrianglePlane(WVector3(-20.0f, 0.0f + hBoxDelta, 30.0f + verticalBoxDelta), 100, 100, 5);
+	flatPlane6->name = "FlatPlaneBack";
+	flatPlane6->setMaterial(whiteWallMaterial);
+	addObject(flatPlane6);
 }
 
 
