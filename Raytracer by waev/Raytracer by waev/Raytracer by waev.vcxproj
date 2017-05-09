@@ -182,6 +182,8 @@
     <ClCompile Include="WSV_Lambertian.cpp" />
     <ClCompile Include="WSV_MatteMaterial.cpp" />
     <ClCompile Include="WTexture.cpp" />
+    <ClCompile Include="WTransparentBDTF.cpp" />
+    <ClCompile Include="WTransparentMaterial.cpp" />
     <ClCompile Include="WTriangle.cpp" />
     <ClCompile Include="WTrianglePlane.cpp" />
     <ClCompile Include="WUtilities.cpp" />
@@ -226,6 +228,8 @@
     <ClInclude Include="WSV_Lambertian.h" />
     <ClInclude Include="WSV_MatteMaterial.h" />
     <ClInclude Include="WTexture.h" />
+    <ClInclude Include="WTransparentBDTF.h" />
+    <ClInclude Include="WTransparentMaterial.h" />
     <ClInclude Include="WTriangle.h" />
     <ClInclude Include="WTrianglePlane.h" />
     <ClInclude Include="WUtilities.h" />

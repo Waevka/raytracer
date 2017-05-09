@@ -26,6 +26,7 @@
 #include "WTrianglePlane.h"
 #include "WRectangleMap.h"
 #include "WMirror.h"
+#include "WTransparentMaterial.h"
 
 #define TESTSIZE_W 500
 #define TESTSIZE_H 600
@@ -53,10 +54,12 @@ WWorld::WWorld()
 	WColor sphereColor(1.0f, 0.0f, 0.0f);
 	WColor sphereColor2(0.0f, 1.0f, 0.0f);
 	WColor sphereColor3(0.2f, 0.4f, 0.8f);
+	WColor sphereColor4(0.2f, 0.4f, 0.8f);
 
-	WSphere *testSphere = new WSphere(WVector3(-3, 0.5, -0.5), 6, sphereColor);
-	WSphere *testSphere2 = new WSphere(WVector3(14, -24, 3), 5, sphereColor2);
-	WSphere *testSphere3 = new WSphere(WVector3(14, -12.0, 2.5), 6, sphereColor3);
+	WSphere *testSphere = new WSphere(WVector3(-3, 0.5, -0.5), 6, sphereColor); //textured
+	WSphere *testSphere2 = new WSphere(WVector3(14, -24, 3), 5, sphereColor2); //red
+	WSphere *testSphere3 = new WSphere(WVector3(14, -12.0, 2.5), 6, sphereColor3); //mirror
+	WSphere *testSphere4 = new WSphere(WVector3(14, -24.0, 8.5), 3, sphereColor4); //transparent
 
 	WModel *testSphereModel = new WModel();
 	testSphereModel->name = "SPHERE";
@@ -69,6 +72,10 @@ WWorld::WWorld()
 	WModel *testSphereModel3 = new WModel();
 	testSphereModel3->name = "SPHERE3";
 	testSphereModel3->addObject(testSphere3);
+
+	WModel *testSphereModel4 = new WModel();
+	testSphereModel4->name = "SPHERE4";
+	testSphereModel4->addObject(testSphere4);
 
 	WTriangle *triangle= new WTriangle(
 		WVector3(-10,-10,0),
@@ -148,6 +155,16 @@ WWorld::WWorld()
 	sphere3Mat->setKr(1.0f);
 	sphere3Mat->setCr(WColor(1.0f, 1.0f, 1.0f));
 
+	WTransparentMaterial *sphere4Mat = new WTransparentMaterial();
+	sphere4Mat->setKa(1.0f);
+	sphere4Mat->setKd(1.00f);
+	sphere4Mat->setCd(WColor(1.0, 1.0, 1.0));
+	sphere4Mat->setKs(1.0f);
+	sphere4Mat->setExp(200);
+	sphere4Mat->setKr(1.0f);
+	sphere4Mat->setIor(1.5);
+	sphere4Mat->setKt(0.9);
+
 	WPhong *monkeyMat = new WPhong();
 	monkeyMat->setKa(0.25f);
 	monkeyMat->setKd(0.65f);
@@ -159,6 +176,7 @@ WWorld::WWorld()
 	(*testSphere).setMaterial(sphereMat);
 	(*testSphere2).setMaterial(sphere2Mat);
 	(*testSphere3).setMaterial(sphere3Mat);
+	(*testSphere4).setMaterial(sphere4Mat);
 	(*planetr1).setMaterial(triangleMat);
 	(*planetr2).setMaterial(triangleMat);
 
@@ -199,6 +217,7 @@ WWorld::WWorld()
 	addObject(testSphereModel2);
 	addObject(testSphereModel);
 	addObject(testSphereModel3);
+	addObject(testSphereModel4);
 	//addObject(triangle);
 	//addObject(planetr1);
 	//addObject(planetr2);

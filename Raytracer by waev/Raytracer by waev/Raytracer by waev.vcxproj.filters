@@ -177,6 +177,12 @@
     <ClCompile Include="WMirrorBRDF.cpp">
       <Filter>Source Files\WShading\WBRDF</Filter>
     </ClCompile>
+    <ClCompile Include="WTransparentMaterial.cpp">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="WTransparentBDTF.cpp">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -303,6 +309,12 @@
       <Filter>Source Files\WShading\WMaterials</Filter>
     </ClInclude>
     <ClInclude Include="WMirrorBRDF.h">
+      <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="WTransparentMaterial.h">
+      <Filter>Source Files\WShading\WMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="WTransparentBDTF.h">
       <Filter>Source Files\WShading\WBRDF</Filter>
     </ClInclude>
   </ItemGroup>
