@@ -38,9 +38,9 @@ WWorld::WWorld()
 	/////////////// Lights
 
 	WPointLight *pointlight1 = new WPointLight();
-	pointlight1->setLocation(WVector3(12,-9.5,5.5f));
-	pointlight1->scaleRadiance(4.0f);
-	pointlight1->setColor(WColor(0.7f, 0.7f, 0.7f));
+	pointlight1->setLocation(WVector3(29, -10, 4));
+	pointlight1->scaleRadiance(3.0f);
+	pointlight1->setColor(WColor(0.8f, 0.8f, 0.7f));
 	addLight(pointlight1);
 
 	WPointLight *pointlight2 = new WPointLight();
@@ -56,7 +56,7 @@ WWorld::WWorld()
 
 	WSphere *testSphere = new WSphere(WVector3(-3, 0.5, -0.5), 6, sphereColor);
 	WSphere *testSphere2 = new WSphere(WVector3(6, -8, 0), 5, sphereColor2);
-	WSphere *testSphere3 = new WSphere(WVector3(7, 7.0, -0.5), 6, sphereColor3);
+	WSphere *testSphere3 = new WSphere(WVector3(10, -20.0, 2.5), 6, sphereColor3);
 
 	WModel *testSphereModel = new WModel();
 	testSphereModel->name = "SPHERE";
@@ -123,6 +123,21 @@ WWorld::WWorld()
 	sphere2Mat->setKs(0.2f);
 	sphere2Mat->setExp(200);
 	//sphereMat->setCd(WColor(1, 0.25f, 0));
+
+	WMatteMaterial *whiteWallMaterial = new WMatteMaterial();
+	whiteWallMaterial->setCd(WColor(1.0f, 1.0f, 1.0f));
+	whiteWallMaterial->setKa(0.25f);
+	whiteWallMaterial->setKd(0.65f);
+
+	WMatteMaterial *redWallMaterial = new WMatteMaterial();
+	redWallMaterial->setCd(WColor(1.0f, 0.0f, 0.0f));
+	redWallMaterial->setKa(0.25f);
+	redWallMaterial->setKd(0.65f);
+
+	WMatteMaterial *greenWallMaterial = new WMatteMaterial();
+	greenWallMaterial->setCd(WColor(0.0f, 1.0f, 0.0f));
+	greenWallMaterial->setKa(0.25f);
+	greenWallMaterial->setKd(0.65f);
 
 	WMirror *sphere3Mat = new WMirror();
 	sphere3Mat->setKa(0.25f);
@@ -195,13 +210,39 @@ WWorld::WWorld()
 	monkey->setMaterial(monkeyMat);
 	//addObject(monkey);
 
-	WTrianglePlane *flatPlane = new WTrianglePlane(WVector3(-9.0f, 0.0f, 0.0f), 50, 30);
+	WTrianglePlane *flatPlaneBuny = new WTrianglePlane(WVector3(-25.0f, 0.0f, 0.0f), 50, 30, 0);
 	//flatPlane->objects = objReader.readFile("blenderflat.obj");
-	flatPlane->name = "FlatPlane";
-	flatPlane->setMaterial(planeMat);
-	addObject(flatPlane);
+	flatPlaneBuny->name = "FlatPlaneBuny";
+	flatPlaneBuny->setMaterial(planeMat);
+	addObject(flatPlaneBuny);
 
+	float hBoxDelta = -10.0f; // horizontal
+	float verticalBoxDelta = 8.0f; // vertical
 
+	WTrianglePlane *flatPlane1 = new WTrianglePlane(WVector3(-10.0f, 0.0f + hBoxDelta, 0.0f + verticalBoxDelta), 50, 30, 0);
+	flatPlane1->name = "FlatPlaneBottom";
+	flatPlane1->setMaterial(whiteWallMaterial);
+	addObject(flatPlane1);
+
+	WTrianglePlane *flatPlane2 = new WTrianglePlane(WVector3(30.0f, 0.0f + hBoxDelta, 0.0f + verticalBoxDelta), 50, 30, 1);
+	flatPlane2->name = "FlatPlaneTop";
+	flatPlane2->setMaterial(whiteWallMaterial);
+	addObject(flatPlane2);
+
+	WTrianglePlane *flatPlane3 = new WTrianglePlane(WVector3(10.0f, 25.0f + hBoxDelta, 0.0f + verticalBoxDelta), 50, 30, 2);
+	flatPlane3->name = "FlatPlaneRight";
+	flatPlane3->setMaterial(greenWallMaterial);
+	addObject(flatPlane3);
+
+	WTrianglePlane *flatPlane4 = new WTrianglePlane(WVector3(10.0f, -25.0f + hBoxDelta, 0.0f + verticalBoxDelta), 50, 30, 3);
+	flatPlane4->name = "FlatPlaneLeft";
+	flatPlane4->setMaterial(redWallMaterial);
+	addObject(flatPlane4);
+
+	WTrianglePlane *flatPlane5 = new WTrianglePlane(WVector3(10.0f, 0.0f + hBoxDelta, -15.0f + verticalBoxDelta), 50, 50, 4);
+	flatPlane5->name = "FlatPlaneFront";
+	flatPlane5->setMaterial(whiteWallMaterial);
+	addObject(flatPlane5);
 }
 
 

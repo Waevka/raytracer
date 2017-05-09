@@ -2,22 +2,28 @@
 #include "WTriangle.h"
 
 
-WTrianglePlane::WTrianglePlane(WVector3 & center, float width, float height) : WModel(), center(center), width(width), height(height)
+WTrianglePlane::WTrianglePlane(WVector3 & center, float width, float height, int direction) : WModel(), center(center), width(width), height(height), direction(direction)
 {
-	WTriangle *first = new WTriangle(
-		WVector3(center.x, center.y - 0.5*width, center.z - 0.5*height),
-		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
-		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
-		WVector3(1.0f, 0.0f, 0.0f)
-	);
-	WTriangle *second = new WTriangle(
-		WVector3(center.x, center.y + 0.5*width, center.z + 0.5*height),
-		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
-		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
-		WVector3(1.0f, 0.0f, 0.0f)
-	);
-	addObject(first);
-	addObject(second);
+	switch (this->direction) {
+	case 0:
+		createUpPlane();
+		break;
+	case 1:
+		createDownPlane();
+		break;
+	case 2:
+		createLeftPlane();
+		break;
+	case 3:
+		createRightPlane();
+		break;
+	case 4:
+		createFrontPlane();
+		break;
+	default:
+		createUpPlane();
+		break;
+	}
 }
 
 WTrianglePlane::~WTrianglePlane()
@@ -69,4 +75,94 @@ int WTrianglePlane::Intersection(WRay & ray, float & dist, WShadingInfo & ws)
 	}
 
 	return anythingForThisPixelFound;
+}
+
+void WTrianglePlane::createUpPlane()
+{
+	WTriangle *first = new WTriangle(
+		WVector3(center.x, center.y - 0.5*width, center.z - 0.5*height),
+		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
+		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
+		WVector3(1.0f, 0.0f, 0.0f)
+	);
+	WTriangle *second = new WTriangle(
+		WVector3(center.x, center.y + 0.5*width, center.z + 0.5*height),
+		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
+		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
+		WVector3(1.0f, 0.0f, 0.0f)
+	);
+	addObject(first);
+	addObject(second);
+}
+
+void WTrianglePlane::createDownPlane()
+{
+	WTriangle *first = new WTriangle(
+		WVector3(center.x, center.y - 0.5*width, center.z - 0.5*height),
+		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
+		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
+		WVector3(-1.0f, 0.0f, 0.0f)
+	);
+	WTriangle *second = new WTriangle(
+		WVector3(center.x, center.y + 0.5*width, center.z + 0.5*height),
+		WVector3(center.x, center.y - 0.5*width, center.z + 0.5*height),
+		WVector3(center.x, center.y + 0.5*width, center.z - 0.5*height),
+		WVector3(-1.0f, 0.0f, 0.0f)
+	);
+	addObject(first);
+	addObject(second);
+}
+
+void WTrianglePlane::createLeftPlane()
+{
+	WTriangle *first = new WTriangle(
+		WVector3(center.x - 0.5*width, center.y, center.z - 0.5*height),
+		WVector3(center.x + 0.5*width, center.y , center.z - 0.5*height),
+		WVector3(center.x - 0.5*width, center.y , center.z + 0.5*height),
+		WVector3(0.0f, -1.0f, 0.0f)
+	);
+	WTriangle *second = new WTriangle(
+		WVector3(center.x + 0.5*width, center.y, center.z + 0.5*height),
+		WVector3(center.x - 0.5*width, center.y, center.z + 0.5*height),
+		WVector3(center.x + 0.5*width, center.y , center.z - 0.5*height),
+		WVector3(0.0f, -1.0f, 0.0f)
+	);
+	addObject(first);
+	addObject(second);
+}
+
+void WTrianglePlane::createRightPlane()
+{
+	WTriangle *first = new WTriangle(
+		WVector3(center.x - 0.5*width, center.y, center.z - 0.5*height),
+		WVector3(center.x + 0.5*width, center.y, center.z - 0.5*height),
+		WVector3(center.x - 0.5*width, center.y, center.z + 0.5*height),
+		WVector3(0.0f, 1.0f, 0.0f)
+	);
+	WTriangle *second = new WTriangle(
+		WVector3(center.x + 0.5*width, center.y, center.z + 0.5*height),
+		WVector3(center.x - 0.5*width, center.y, center.z + 0.5*height),
+		WVector3(center.x + 0.5*width, center.y, center.z - 0.5*height),
+		WVector3(0.0f, 1.0f, 0.0f)
+	);
+	addObject(first);
+	addObject(second);
+}
+
+void WTrianglePlane::createFrontPlane()
+{
+	WTriangle *first = new WTriangle(
+		WVector3(center.x - 0.5*width, center.y - 0.5*height, center.z+0.0001f),
+		WVector3(center.x + 0.5*width, center.y - 0.5*height, center.z),
+		WVector3(center.x - 0.5*width, center.y + 0.5*height, center.z),
+		WVector3(0.0f, 0.0f, 1.0f)
+	);
+	WTriangle *second = new WTriangle(
+		WVector3(center.x + 0.5*width, center.y + 0.5*height, center.z),
+		WVector3(center.x - 0.5*width, center.y + 0.5*height, center.z),
+		WVector3(center.x + 0.5*width, center.y - 0.5*height, center.z),
+		WVector3(0.0f, 0.0f, 1.0f)
+	);
+	addObject(first);
+	addObject(second);
 }

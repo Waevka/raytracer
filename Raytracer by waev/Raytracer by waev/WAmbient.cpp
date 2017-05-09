@@ -2,9 +2,9 @@
 
 
 
-WAmbient::WAmbient() : WLight(), ls(0.8f)
+WAmbient::WAmbient() : WLight(), ls(0.5f)
 {
-	color = WColor(0.7f, 0.7f, 0.7f);
+	color = WColor(0.6f, 0.6f, 0.6f);
 }
 
 
