@@ -28,30 +28,16 @@ void WTransparentMaterial::setKt(float k)
 }
 
 WColor WTransparentMaterial::shade(WShadingInfo &si)
-{
+{	
 	WColor L(WPhong::shade(si));
-	WVector3 wo = -si.ray.direction;
+	WVector3 wo = si.ray.direction;
 	WVector3 wi;
 	WColor fr = transparent->sample_f(si, wi, wo);
-	WRay reflectedRay(si.hitPoint, wi);
+	WRay reflectedRay(si.hitPoint + (0.00001f), wi);
 
-	if (transparent->tir(si)) {
 		WColor transparentColor = si.world.perspCam->intersectSingleReflectionRay(reflectedRay,
 			si, 0, 0, si.world.perspCam->aliasingLevel + 1);
-		L = L + transparentColor;
-		// kr = 1.0;
-	}
-	else {
-		WVector3 wt;
-		WColor ft = transparent->sample_f(si, wt, wi);
-		WRay transmittedRay(si.hitPoint, wt);
-
-		L = L + si.world.perspCam->intersectSingleReflectionRay(reflectedRay,
-			si, 0, 0, si.world.perspCam->aliasingLevel + 1) * fabs(si.normal.dot(wi));
-
-		L = L + si.world.perspCam->intersectSingleReflectionRay(transmittedRay,
-			si, 0, 0, si.world.perspCam->aliasingLevel + 1) * fabs(si.normal.dot(wt));
-	}
+		L = L*0.25 + transparentColor;
 
 	return L;
 }

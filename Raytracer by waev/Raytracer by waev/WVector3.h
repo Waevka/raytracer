@@ -40,7 +40,8 @@ public:
 	WVector3 operator* (const float &f) const;
 	WVector3 operator* (WVector3 &v);
 	WVector3 operator* (const WVector3 &v) const;
-	WVector3 operator+ (WVector3 &v);
+	WVector3 operator+ (WVector3 &v); 
+	WVector3 operator+ (float v);
 	WVector3 operator- (WVector3 &v);
 	WVector3 operator- ();
 	WVector3 operator- () const;

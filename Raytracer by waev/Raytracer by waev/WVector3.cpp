@@ -214,6 +214,12 @@ WVector3 WVector3::operator+(WVector3 &v)
 	return v2;
 }
 
+WVector3 WVector3::operator+(float v)
+{
+	WVector3 v2(x + v, y + v, z + v);
+	return v2;
+}
+
 WVector3 WVector3::operator-(WVector3 &v)
 {
 	WVector3 v2(x - v.x, y - v.y, z - v.z);
