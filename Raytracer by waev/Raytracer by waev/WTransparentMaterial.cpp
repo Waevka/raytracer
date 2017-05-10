@@ -33,7 +33,9 @@ WColor WTransparentMaterial::shade(WShadingInfo &si)
 	WVector3 wo = si.ray.direction;
 	WVector3 wi;
 	WColor fr = transparent->sample_f(si, wi, wo);
-	WRay reflectedRay(si.hitPoint + (0.00001f), wi);
+	WVector3 origin = si.hitPoint;
+	origin = origin + (-si.normal) * 0.00001f;
+	WRay reflectedRay(origin, wi);
 
 		WColor transparentColor = si.world.perspCam->intersectSingleReflectionRay(reflectedRay,
 			si, 0, 0, si.world.perspCam->aliasingLevel + 1);

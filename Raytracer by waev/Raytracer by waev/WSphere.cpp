@@ -53,7 +53,7 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 					ws.normal = (v + ray.direction * dist) / radius;
 					ws.localHitPoint = ray.origin + ray.direction * dist;
 					setUvCoords(ws);
-					returnValue = 1;
+					returnValue = 0;
 				}
 			}
 			else {
@@ -68,7 +68,7 @@ int WSphere::Intersection(WRay &ray, float & dist, WShadingInfo &ws)
 		}
 	}
 	else if (det == 0) {
-		returnValue = 1;
+		returnValue = 0;
 		dist = b;
 		ws.normal = (v + ray.direction * dist) / radius;
 		ws.localHitPoint = ray.origin + ray.direction * dist;

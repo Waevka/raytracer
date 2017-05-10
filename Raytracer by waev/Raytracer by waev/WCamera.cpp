@@ -138,7 +138,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 
 WColor WCamera::intersectSingleReflectionRay(WRay & ray, WShadingInfo & shadingInfo, int i, int j, int aliasingLevel)
 {	
-	if (shadingInfo.rayBounces > 10) {
+	if (shadingInfo.rayBounces > 3) {
 		return WColor(0.0f);
 	}
 
