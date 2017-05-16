@@ -16,5 +16,6 @@ public:
 	virtual WColor f(WShadingInfo &si, const WVector3 &wi, const WVector3 &wo) const;
 	void setIor(float i);
 	void setKt(float k);
+	float getIor();
 };
 

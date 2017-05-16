@@ -65,3 +65,8 @@ void WTransparentBDTF::setKt(float k)
 {
 	kt = k;
 }
+
+float WTransparentBDTF::getIor()
+{
+	return ior;
+}

@@ -45,10 +45,10 @@ WWorld::WWorld()
 	addLight(pointlight1);
 
 	WPointLight *pointlight2 = new WPointLight();
-	pointlight2->setLocation(WVector3(10, -20.5, 9.5f));
-	pointlight2->scaleRadiance(6.0f);
-	pointlight2->setColor(WColor(0.6f, 0.0f, 0.0f));
-	//addLight(pointlight2);
+	pointlight2->setLocation(WVector3(20, 5, 15));
+	pointlight2->scaleRadiance(2.0f);
+	pointlight2->setColor(WColor(0.6f, 0.5f, 0.6f));
+	addLight(pointlight2);
 
 	///////////////
 	WColor sphereColor(1.0f, 0.0f, 0.0f);
@@ -59,7 +59,7 @@ WWorld::WWorld()
 	WSphere *testSphere = new WSphere(WVector3(-3, 0.5, -0.5), 6, sphereColor); //textured
 	WSphere *testSphere2 = new WSphere(WVector3(14, -24, 3), 5, sphereColor2); //red
 	WSphere *testSphere3 = new WSphere(WVector3(14, -12.0, 2.5), 6, sphereColor3); //mirror
-	WSphere *testSphere4 = new WSphere(WVector3(14, -24.0, 8.5), 8, sphereColor4); //transparent
+	WSphere *testSphere4 = new WSphere(WVector3(14, -16.0, 8.5), 4, sphereColor4); //transparent
 
 	WModel *testSphereModel = new WModel();
 	testSphereModel->name = "SPHERE";
@@ -162,7 +162,7 @@ WWorld::WWorld()
 	sphere4Mat->setKs(1.0f);
 	sphere4Mat->setExp(200);
 	sphere4Mat->setKr(1.0f);
-	sphere4Mat->setIor(1.0);
+	sphere4Mat->setIor(1.01f);
 	sphere4Mat->setKt(0.9);
 
 	WPhong *monkeyMat = new WPhong();
