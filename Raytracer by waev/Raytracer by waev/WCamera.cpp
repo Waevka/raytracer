@@ -82,7 +82,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 
 		if (anythingForThisPixelFound) {
 			if (usePathTracing) {
-				WColor *pathColor = new WColor; //loop this
+				WColor *pathColor = new WColor(0.0); //loop this
 				bool pathIsValid = intersectSinglePathRay(ray, shadingInfo, i, j, viewPlane, path, pathColor);
 				if (!pathIsValid) {
 					pixelColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());
@@ -97,6 +97,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 				shadingInfo.normal = normal;
 				shadingInfo.localHitPoint = localHitPoint;
 				shadingInfo.hitPoint = hitPoint;
+				shadingInfo.hitObject = true;
 				pixelColor = shadingInfo.material->shade(shadingInfo);
 
 				//pixelColor = static_cast<WMatteMaterial*>(shadingInfo.material)->getCd();
@@ -104,6 +105,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 		}
 		else {
 			pixelColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());
+			shadingInfo.hitObject = false;
 		}
 
 	}
@@ -171,23 +173,39 @@ WColor WCamera::intersectSingleReflectionRay(WRay & ray, WShadingInfo & shadingI
 }
 
 bool WCamera::intersectSinglePathRay(WRay & ray, WShadingInfo & shadingInfo, int i, int j, WViewPlane &viewPlane, WPath * path, WColor *color)
-{
+{	
 	if(path->pathLength > pathTracingPathLength) {
 		//check if the item hit is a light source
 		//if not, return false
-		return false;
+		//intersect with all lights, if lightHit == false
+		if (path->pathLength > 0) {
+			*color = *color / path->pathLength;
+		}
+		return true;
 	}
 
 	usePathTracing = false;
-	*color = intersectSingleRay(ray, shadingInfo, i, j, viewPlane, 0, path);
+	WColor result = intersectSingleRay(ray, shadingInfo, i, j, viewPlane, 0, path);
 	usePathTracing = true;
+	if (!shadingInfo.hitObject) {
+		if (path->pathLength > 0) {
+			*color = *color / path->pathLength;
+			return false;
+		}
+	}
+	if (path->pathLength == 0) {
+		*color = result;
+	}
+	//*color = *color + result;
 
 	if (path != NULL) {
 		path->rays.push_back(ray);
 		path->pathLength++;
 	}
 
-	return true;
+	WRay randomRay = generateSinglePathBounceRay(ray, 0, 0, i, j, shadingInfo.hitPoint);
+	return intersectSinglePathRay(randomRay, shadingInfo, i, j, viewPlane, path, color);
+	
 }
 
 void WCamera::setUsePathTracing(bool use)
@@ -200,7 +218,7 @@ WCamera::WCamera(std::string name, WWorld &wr) : world(wr), viewPlane(new WViewP
 	this->name = name;
 	aliasingLevel = 0;
 	usePathTracing = false;
-	pathTracingPathLength = 5;
+	pathTracingPathLength = 1;
 }
 
 
