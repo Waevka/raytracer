@@ -216,8 +216,8 @@ WWorld::WWorld()
 	//testSphereModel->addObject(testSphere2);
 	addObject(testSphereModel2);
 	addObject(testSphereModel);
-	addObject(testSphereModel3);
-	addObject(testSphereModel4);
+	//addObject(testSphereModel3);
+	//addObject(testSphereModel4);
 	//addObject(triangle);
 	//addObject(planetr1);
 	//addObject(planetr2);
@@ -290,6 +290,7 @@ void WWorld::draw()
 	WRay rayPersp(WVector3(10, -10, 30), WVector3(0.5f, 0.0f, -1.0f));
 	WViewPlane viewPlanePersp = WViewPlane(0.05f, TESTSIZE_W, TESTSIZE_H, rayPersp);
 	persp.setDistance(-10);
+	persp.setUsePathTracing(true);
 	persp.draw(TESTSIZE_W, TESTSIZE_H, viewPlanePersp);
 }
 

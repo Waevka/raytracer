@@ -39,7 +39,8 @@ void WCamera::intersectRays(WViewPlane &viewPlane, WRay** &rays, WImage &testIma
 				std::cout << "hui";
 			}
 			shadingInfo.rayBounces = 0;
-			WColor pixelColor = intersectSingleRay(rays[i][j], shadingInfo, i, j, viewPlane, 0);
+			WPath *path = new WPath();
+			WColor pixelColor = intersectSingleRay(rays[i][j], shadingInfo, i, j, viewPlane, 0, path);
 			pixelColor = correctColor(pixelColor);
 			testImage.setPixel(pixelColor, i, j);
 		}
@@ -51,7 +52,7 @@ WColor WCamera::rayAliasing(int currentLevel)
 	return WColor();
 }
 
-WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, WViewPlane &viewPlane, int aliasingLevel)
+WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, WViewPlane &viewPlane, int aliasingLevel, WPath *path)
 {	
 	WColor pixelColor;
 	std::vector<WGeometricObject*> &objects = shadingInfo.world.objects;
@@ -102,28 +103,28 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 		WRay bottomLeftRay	= generateSingleRay(ray, -	offset, -	offset, i, j);
 		WRay bottomRightRay = generateSingleRay(ray,	offset, -	offset, i, j);
 
-		WColor middle		= intersectSingleRay(ray,				shadingInfo, i, j, viewPlane, this->aliasingLevel);
-		WColor topLeft		= intersectSingleRay(topLeftRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel);
-		WColor topRight		= intersectSingleRay(topRightRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel);
-		WColor bottomLeft	= intersectSingleRay(bottomLeftRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel);
-		WColor bottomRight	= intersectSingleRay(bottomRightRay,	shadingInfo, i, j, viewPlane, this->aliasingLevel);
+		WColor middle		= intersectSingleRay(ray,				shadingInfo, i, j, viewPlane, this->aliasingLevel, NULL);
+		WColor topLeft		= intersectSingleRay(topLeftRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel, NULL);
+		WColor topRight		= intersectSingleRay(topRightRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel, NULL);
+		WColor bottomLeft	= intersectSingleRay(bottomLeftRay,		shadingInfo, i, j, viewPlane, this->aliasingLevel, NULL);
+		WColor bottomRight	= intersectSingleRay(bottomRightRay,	shadingInfo, i, j, viewPlane, this->aliasingLevel, NULL);
 
 		offset = (float)(viewPlane.getPixelSize() * pow(0.5f, aliasingLevel + 2)); //TODO: offset/2
 
 		if (middle != topLeft) {
-			intersectSingleRay(topLeftRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(topLeftRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1, NULL);
 			topLeftRay = generateSingleRay(ray, -offset, offset, i, j);
 		}
 		if (middle != topLeft) {
-			intersectSingleRay(topRightRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(topRightRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1, NULL);
 			topRightRay = generateSingleRay(ray, offset, offset, i, j);
 		}
 		if (middle != topLeft) {
-			intersectSingleRay(bottomLeftRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(bottomLeftRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1, NULL);
 			bottomLeftRay = generateSingleRay(ray, -offset, -offset, i, j);
 		}
 		if (middle != topLeft) {
-			intersectSingleRay(bottomRightRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1);
+			intersectSingleRay(bottomRightRay, shadingInfo, i, j, viewPlane, aliasingLevel + 1, NULL);
 			bottomRightRay = generateSingleRay(ray, offset, -offset, i, j);
 		}
 
@@ -145,7 +146,7 @@ WColor WCamera::intersectSingleReflectionRay(WRay & ray, WShadingInfo & shadingI
 	shadingInfo.rayBounces++;
 	WShadingInfo ws(shadingInfo);
 	WColor pixelColor;
-	pixelColor = intersectSingleRay(ray, ws, 0, 0, (*viewPlane), aliasingLevel);
+	pixelColor = intersectSingleRay(ray, ws, 0, 0, (*viewPlane), aliasingLevel, NULL);
 	if (ws.hitObject) {
 		ws.ray = ray;
 		pixelColor = ws.material->shade(ws);
@@ -157,10 +158,17 @@ WColor WCamera::intersectSingleReflectionRay(WRay & ray, WShadingInfo & shadingI
 	return pixelColor;
 }
 
+void WCamera::setUsePathTracing(bool use)
+{	
+	usePathTracing = use;
+}
+
 WCamera::WCamera(std::string name, WWorld &wr) : world(wr), viewPlane(new WViewPlane)
 {
 	this->name = name;
 	aliasingLevel = 2;
+	usePathTracing = false;
+	pathTracingPathLength = 5;
 }
 
 

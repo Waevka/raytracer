@@ -183,6 +183,9 @@
     <ClCompile Include="WTransparentBDTF.cpp">
       <Filter>Source Files\WShading\WBRDF</Filter>
     </ClCompile>
+    <ClCompile Include="WPath.cpp">
+      <Filter>Source Files\WStructures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h">
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="WTransparentBDTF.h">
       <Filter>Source Files\WShading\WBRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="WPath.h">
+      <Filter>Source Files\WStructures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

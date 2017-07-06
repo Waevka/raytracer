@@ -170,6 +170,7 @@
     <ClCompile Include="WModel.cpp" />
     <ClCompile Include="WObjReader.cpp" />
     <ClCompile Include="WOrthoCamera.cpp" />
+    <ClCompile Include="WPath.cpp" />
     <ClCompile Include="WPerspectiveCamera.cpp" />
     <ClCompile Include="WPhong.cpp" />
     <ClCompile Include="WPlane.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="WModel.h" />
     <ClInclude Include="WObjReader.h" />
     <ClInclude Include="WOrthoCamera.h" />
+    <ClInclude Include="WPath.h" />
     <ClInclude Include="WPerspectiveCamera.h" />
     <ClInclude Include="WPhong.h" />
     <ClInclude Include="WPlane.h" />
