@@ -23,6 +23,7 @@ public:
 	virtual WColor rayAliasing(int currentLevel);
 	virtual WColor intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, WViewPlane &viewPlane, int aliasingLevel, WPath *path);
 	virtual WColor intersectSingleReflectionRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, int aliasingLevel);
+	bool intersectSinglePathRay(WRay &ray, WShadingInfo &shadingInfo, int i, int j, WPath *path);
 	void setUsePathTracing(bool use);
 	WCamera(std::string name, WWorld &wr);
 	~WCamera();
