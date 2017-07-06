@@ -85,7 +85,7 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 				WColor *pathColor = new WColor(0.0); //loop this
 				bool pathIsValid = intersectSinglePathRay(ray, shadingInfo, i, j, viewPlane, path, pathColor);
 				if (!pathIsValid) {
-					pixelColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());
+					pixelColor = *pathColor;
 				}
 				else {
 					pixelColor = *pathColor;
