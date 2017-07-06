@@ -52,3 +52,13 @@ WRay WPerspectiveCamera::generateSingleRay(WRay & ray, float xOffset, float yOff
 	newDirection.normalize();
 	return WRay(ray.origin, newDirection);
 }
+
+WRay WPerspectiveCamera::generateSinglePathBounceRay(WRay & ray, float xOffset, float yOffset, int i, int j, WVector3 hitPoint)
+{
+	float newRayX = (rand() % 100) / 100.0f; //make this random
+	float newRayY = (rand() % 100) / 100.0f; //make this random
+	float newRayZ = (rand() % 100) / 100.0f; //make this random
+	WVector3 newDirection = WVector3(newRayX, newRayY, newRayZ);
+	newDirection.normalize();
+	return WRay(hitPoint, newDirection);
+}

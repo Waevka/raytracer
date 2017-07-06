@@ -41,3 +41,8 @@ WRay WOrthoCamera::generateSingleRay(WRay &ray, float xOffset, float yOffset, in
 	float newRayZ = ray.origin.z;
 	return WRay(WVector3(newRayX, newRayY, newRayZ), ray.direction);
 }
+
+WRay WOrthoCamera::generateSinglePathBounceRay(WRay & ray, float xOffset, float yOffset, int i, int j, WVector3 hitPoint)
+{
+	return WRay();
+}

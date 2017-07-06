@@ -82,9 +82,13 @@ WColor WCamera::intersectSingleRay(WRay &ray, WShadingInfo &shadingInfo, int i, 
 
 		if (anythingForThisPixelFound) {
 			if (usePathTracing) {
-				bool pathIsValid = intersectSinglePathRay(ray, shadingInfo, i, j, path);
+				WColor *pathColor = new WColor; //loop this
+				bool pathIsValid = intersectSinglePathRay(ray, shadingInfo, i, j, viewPlane, path, pathColor);
 				if (!pathIsValid) {
 					pixelColor = getBackgroundCheckers(i, j, viewPlane.getWidth(), viewPlane.getHeight());
+				}
+				else {
+					pixelColor = *pathColor;
 				}
 			}
 			else {
@@ -166,18 +170,24 @@ WColor WCamera::intersectSingleReflectionRay(WRay & ray, WShadingInfo & shadingI
 	return pixelColor;
 }
 
-bool WCamera::intersectSinglePathRay(WRay & ray, WShadingInfo & shadingInfo, int i, int j, WPath * path)
+bool WCamera::intersectSinglePathRay(WRay & ray, WShadingInfo & shadingInfo, int i, int j, WViewPlane &viewPlane, WPath * path, WColor *color)
 {
-	if(path->pathLength >= pathTracingPathLength) {
+	if(path->pathLength > pathTracingPathLength) {
+		//check if the item hit is a light source
+		//if not, return false
 		return false;
 	}
+
+	usePathTracing = false;
+	*color = intersectSingleRay(ray, shadingInfo, i, j, viewPlane, 0, path);
+	usePathTracing = true;
 
 	if (path != NULL) {
 		path->rays.push_back(ray);
 		path->pathLength++;
 	}
 
-	return false;
+	return true;
 }
 
 void WCamera::setUsePathTracing(bool use)
